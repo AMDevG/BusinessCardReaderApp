@@ -15,7 +15,7 @@ admin.initializeApp();
 const bucketName = 'gs://buseinesscardreader.appspot.com';
 const testFileName = 'testCard1.png';
 // [START vision_text_detection]
-export const detectBCard = functions.https.onRequest((request: any, response: any) => { (async function detectText() {
+export const detectBCard = functions.https.onRequest(async (request: any, response: any) => {
     const client = new vision.ImageAnnotatorClient();
     // Performs text detection on the local file
     // const [result] = await client.textDetection(fileName);
@@ -27,8 +27,7 @@ export const detectBCard = functions.https.onRequest((request: any, response: an
     const detections = result.textAnnotations;
     console.log('Text:');
     detections.forEach((text: string) => console.log(text));
-  })
-});
+  });
 
 
 // TUTORIAL CODE FROM https://angularfirebase.com/lessons/google-cloud-vision-with-ionic-and-firebase/
