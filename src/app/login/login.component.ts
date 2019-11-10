@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 import { Router} from '@angular/router';
+import { UsersService } from '../user/users.service';
+import { User } from '../user/user.model'
 
 @Component({
   selector: 'app-login',
@@ -11,14 +13,15 @@ import { Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  user: User;
   // errorMessage: string;
 
   // emailaddress = '';
   // password = '';
 
-  constructor(public authService: AuthService, private router: Router,
+  constructor(public authService: AuthService, private usersService: UsersService, private router: Router,
               private fb: FormBuilder) {
-                this.createForm();
+      this.createForm();
   }
 
     createForm() {
@@ -28,9 +31,10 @@ export class LoginComponent implements OnInit {
       });
     }
     onSubmit(value: any){
-      console.log("Onsubmit received: ", value.email);
-      console.log("Onsubmit received: ", value.password);
-      //Call Auth Service Functions Here;
+      this.user = new User(value.email, value.password);
+      this.usersService.setCurrentUser(this.user);
+      this.authService.login(this.user);
+
     }
   ngOnInit() {
   }

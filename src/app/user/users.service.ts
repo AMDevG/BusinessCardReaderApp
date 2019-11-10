@@ -9,6 +9,7 @@ export class UsersService {
   currentUser: Subject<User> = new BehaviorSubject<User>(null);
 
   public setCurrentUser(newUser: User): void {
+    console.log('Just Set Current User');
     this.currentUser.next(newUser);
   }
 }

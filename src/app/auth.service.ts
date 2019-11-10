@@ -14,12 +14,13 @@ export class AuthService {
   constructor(private angularFireAuthentication: AngularFireAuth) {
 }
 
-login(credentials: User ) {
+login(user: User ) {
+  console.log('login func in auth service received', user);
     return new Promise((resolve, reject) => {
         this.angularFireAuthentication.auth
-            .signInWithEmailAndPassword(credentials.email, credentials.password)
+            .signInWithEmailAndPassword(user.email, user.password)
             .then(
-                result => resolve(result),
+                result => {resolve(result); console.log("User is logged in!", this.angularFireAuthentication.auth.currentUser);},
                 error => reject(error)
             );
     });
