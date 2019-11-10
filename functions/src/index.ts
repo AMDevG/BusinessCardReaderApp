@@ -16,8 +16,7 @@ const bucketName = 'gs://buseinesscardreader.appspot.com';
 
 // ONCHANGE NO LONGER SUPPORTED SEE DOCS LINK BELOW FOR UPDATED FIREBASE API
  //  https://firebase.google.com/docs/functions/beta-v1-diff#storage
-
-
+ // https://firebase.google.com/docs/functions/get-started
 
 export const imageTagger = functions.storage.bucket(bucketName)
     .onChange( async event => {
