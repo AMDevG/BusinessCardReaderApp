@@ -1,0 +1,79 @@
+<div class="ui raised segment">
+  <h2 class="ui header">Please Login</h2>
+      <form [formGroup]="loginForm"
+        (ngSubmit)="onSubmit(loginForm.value);"
+        class="ui form"
+        [class.error]="!loginForm.valid && loginForm.touched" >
+      
+        <div class="field">
+        <label for="emailInput">Email </label>
+        <input type="text"
+               id="emailInput"
+               placeholder="Enter your email"
+               [formControl]="loginForm.controls['email']" >
+            <p class="error is-danger" [hidden]="loginForm.get('email').valid">
+              Email is required.
+            </p>
+
+      <div class="field">
+        <label for="passwordInput"> Password </label>
+        <input type="password"
+               id="passwordInput"
+               placeholder="Enter your password"
+               [formControl]="loginForm.controls['password']">
+      </div>
+
+      <br>
+      <br>
+      
+    
+      <button type="submit" class="ui button">Submit</button>
+
+      <!-- <button type="submit" (onSubmit)="signup(loginForm.value)" class="ui button">Signup</button> -->
+
+    
+</div>
+
+
+
+
+<!-- <div class="ui raised segment">
+    <h2 class="ui header">Please Login</h2>
+    <form [formGroup]="loginForm"
+          (ngSubmit)="onSubmit(loginForm.value)"
+          class="ui form"
+          [class.error]="!loginForm.valid && loginForm.touched">
+  
+      <div class="field"
+        [class.error]="!loginForm.get('email').valid && loginForm.get('email').touched">
+        <label for="emailInput">Email </label>
+        <input type="text"
+               id="emailInput"
+               placeholder="Enter your email"
+               [formControl]="loginForm.controls['email']">
+         <div *ngIf="!loginForm.controls['email'].valid"
+           class="ui error message">Email is invalid</div>
+         <div *ngIf="loginForm.controls['email'].hasError('required')"
+           class="ui error message">Email is required</div>
+      </div>
+
+      <div class="field"
+      [class.error]="!loginForm.get('password').valid && loginForm.get('password').touched">
+      <label for="passwordInput"> Password </label>
+      <input type="text"
+             id="passwordInput"
+             placeholder="Enter your password"
+             [formControl]="loginForm.controls['password']">
+       <div *ngIf="!loginForm.controls['password'].valid"
+         class="ui error message">Email is invalid</div>
+       <div *ngIf="loginForm.controls['password'].hasError('required')"
+         class="ui error message">Email is required</div>
+    </div>
+  
+      <div *ngIf="!loginForm.valid"
+        class="ui error message">Form is invalid</div>
+  
+      <button type="submit" class="ui button">Submit</button>
+    </form>
+  </div> -->
+  
