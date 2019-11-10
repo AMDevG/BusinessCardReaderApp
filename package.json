@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.5",
     "@angular/platform-browser-dynamic": "~8.2.5",
     "@angular/router": "~8.2.5",
+    "@google-cloud/vision": "^1.7.0",
     "ngx-webcam": "^0.2.6",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.5.3",
