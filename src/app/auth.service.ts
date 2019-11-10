@@ -36,7 +36,10 @@ login(user: User ) {
         this.angularFireAuthentication.auth
             .signInWithEmailAndPassword(user.email, user.password)
             .then(
-                result => {resolve(result); },
+                result => {resolve(result);
+                           this.router.initialNavigation();
+                           this.router.navigate(['/scan']);
+                },
                 error => reject(error)
             );
     });

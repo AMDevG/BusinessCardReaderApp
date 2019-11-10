@@ -22,10 +22,14 @@
                placeholder="Enter your password"
                [formControl]="loginForm.controls['password']">
       </div>
+
+      <br>
+      <br>
+      
     
       <button type="submit" class="ui button">Submit</button>
 
-      <button type="submit" (click)="signup(loginForm.value)" class="ui button">Signup</button>
+      <!-- <button type="submit" (onSubmit)="signup(loginForm.value)" class="ui button">Signup</button> -->
 
     
 </div>
