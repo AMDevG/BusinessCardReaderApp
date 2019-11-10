@@ -1,7 +1,7 @@
 <div class="ui raised segment">
   <h2 class="ui header">Please Login</h2>
       <form [formGroup]="loginForm"
-        (ngSubmit)="onSubmit(loginForm.value)"
+        (ngSubmit)="onSubmit(loginForm.value);"
         class="ui form"
         [class.error]="!loginForm.valid && loginForm.touched" >
       
@@ -32,6 +32,9 @@
       </div>
     
       <button type="submit" class="ui button">Submit</button>
+
+      <button type="submit" (click)="signup(loginForm.value)" class="ui button">Signup</button>
+
     
 </div>
 

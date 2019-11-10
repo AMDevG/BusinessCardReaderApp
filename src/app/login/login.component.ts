@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { Router} from '@angular/router';
 import { UsersService } from '../user/users.service';
 import { User } from '../user/user.model'
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +33,17 @@ export class LoginComponent implements OnInit {
     }
     onSubmit(value: any){
       this.user = new User(value.email, value.password);
-      this.usersService.setCurrentUser(this.user);
-      this.authService.login(this.user);
+      //this.usersService.setCurrentUser(this.user);
+      //this.authService.login(this.user);
+
+      //Logic : CHECK IF USER HAS ACCOUNT OR NOT
 
     }
+
+    signup(value: any){
+      this.authService.signup(this.user);
+    }
+
   ngOnInit() {
   }
 
