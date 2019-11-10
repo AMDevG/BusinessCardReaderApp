@@ -13,17 +13,21 @@ const admin = require('firebase-admin');
 const vision = require('@google-cloud/vision');
 admin.initializeApp();
 const bucketName = 'gs://buseinesscardreader.appspot.com';
+const testFilePath = '/Users/jberry/Desktop/testCard1.png'
 const testFileName = 'testCard1.png';
 // [START vision_text_detection]
 export const detectBCard = functions.https.onRequest(async (request: any, response: any) => {
     const client = new vision.ImageAnnotatorClient();
+    console.log("Hey were in Detect BCard!");
     // Performs text detection on the local file
-    // const [result] = await client.textDetection(fileName);
+    console.log("About to call local text Detection!")
+    const [result] = await client.textDetection(testFilePath);
     
     // Text Detection on Cloud Bucket
-    const [result] = await client.textDetection(
-    `gs://${bucketName}/${testFileName}`
-    );
+    //console.log("About to call cloud text Detection!")
+    // const [result] = await client.textDetection(
+    // `gs://${bucketName}/${testFileName}`
+    // );
     const detections = result.textAnnotations;
     console.log('Text:');
     detections.forEach((text: string) => console.log(text));
