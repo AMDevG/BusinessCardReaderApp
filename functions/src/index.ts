@@ -1,37 +1,35 @@
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
 // export const helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
-
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const vision = require('@google-cloud/vision');
-
-admin.initializeApp();
-
-const visionClient = new vision.ImageAnotatorClient();
-const bucketName = 'gs://buseinesscardreader.appspot.com';
 
 // ONCHANGE NO LONGER SUPPORTED SEE DOCS LINK BELOW FOR UPDATED FIREBASE API
 //  https://firebase.google.com/docs/functions/beta-v1-diff#storage
 // https://firebase.google.com/docs/functions/get-started
 // https://github.com/firebase/friendlypix
+// detectLandmarksGCS(bucketName, fileName) 
 
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const vision = require('@google-cloud/vision');
+admin.initializeApp();
+const bucketName = 'gs://buseinesscardreader.appspot.com';
+const testFileName = 'testCard1.png';
+// [START vision_text_detection]
 
-// TEST CODE FOR ON UPLOAD ========
-//  Error on req, res -- Express syntax probably *****
-
- exports.addMessage = functions.https.onRequest(async (request: any, response: any) => {
-    // Grab the text parameter.
-    const original = request.query.text;
-    // Push the new message into the Realtime Database using the Firebase Admin SDK.
-    const snapshot = await admin.database().ref('/messages').push({original: original});
-    // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-    response.redirect(303, snapshot.ref.toString());
-  }); //=============
-
+export const detectBCard = functions.https.onRequest((request: any, response: any) => { (async function detectText() {
+    const client = new vision.ImageAnnotatorClient();
+    // Performs text detection on the local file
+    // const [result] = await client.textDetection(fileName);
+    
+    // Text Detection on Cloud Bucket
+    const [result] = await client.textDetection(
+    `gs://${bucketName}/${testFileName}`
+    );
+    const detections = result.textAnnotations;
+    console.log('Text:');
+    detections.forEach((text: string) => console.log(text));
+  })
+});
 
 
 // TUTORIAL CODE FROM https://angularfirebase.com/lessons/google-cloud-vision-with-ionic-and-firebase/
@@ -53,3 +51,14 @@ const bucketName = 'gs://buseinesscardreader.appspot.com';
 
 //         return docRef.set(data);
 //     });
+
+// TEST CODE FOR ON UPLOAD ========
+//  exports.addMessage = functions.https.onRequest(async (request: any, response: any) => {
+//     // Grab the text parameter.
+//     const original = request.query.text;
+//     // Push the new message into the Realtime Database using the Firebase Admin SDK.
+//     const snapshot = await admin.database().ref('/messages').push({original: original});
+//     // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
+//     response.redirect(303, snapshot.ref.toString());
+//   }); 
+  //=============
