@@ -1,5 +1,3 @@
-import * as functions from 'firebase-functions';
-
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -7,29 +5,35 @@ import * as functions from 'firebase-functions';
 //  response.send("Hello from Firebase!");
 // });
 
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const vision = require('@google-cloud/vision');
 
-import * as admin from 'firebase-admin';
 admin.initializeApp();
 
-// tslint:disable-next-line: no-implicit-dependencies
-// import * as vision from '@google-cloud/vision';
-// const visionClient = new vision.ImageAnotatorClient();
+const visionClient = new vision.ImageAnotatorClient();
+const bucketName = 'gs://buseinesscardreader.appspot.com';
 
-// const bucketName = 'gs://buseinesscardreader.appspot.com';
+// ONCHANGE NO LONGER SUPPORTED SEE DOCS LINK BELOW FOR UPDATED FIREBASE API
+ //  https://firebase.google.com/docs/functions/beta-v1-diff#storage
 
-// export const imageTagger = functions.storage.bucket(bucketName).onChange( async event => {
-//         const object = event.data;
-//         const filePath = object.name;
-//         const imageUri = 'gs://${bucketName}/${filePath}';
 
-//         //const docId = filePath.split('.jpg')[0];
-//         const docRef  = admin.firestore().collection('businessCards').doc('CardTest1');
 
-//         const textRequest = await visionClient.documentTextDetection(imageUri)
-//         const fullText = textRequest[0].textAnnotations[0]
-//         const text =  fullText ? fullText.description : null
+export const imageTagger = functions.storage.bucket(bucketName)
+    .onChange( async event => {
+        const object = event.data;
+        const filePath = object.name;
+        const imageUri = 'gs://${bucketName}/${filePath}';
 
-//         const data = { text };
+        // const docId = filePath.split('.jpg')[0];
+        const docId = 'CardTest1';
+        const docRef  = admin.firestore().collection('businessCards').doc(docId);
 
-//         return docRef.set(data);
-//     });
+        const textRequest = await visionClient.documentTextDetection(imageUri)
+        const fullText = textRequest[0].textAnnotations[0]
+        const text =  fullText ? fullText.description : null
+
+        const data = { text };
+
+        return docRef.set(data);
+    });
