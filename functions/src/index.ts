@@ -15,7 +15,6 @@ admin.initializeApp();
 const bucketName = 'gs://buseinesscardreader.appspot.com';
 const testFileName = 'testCard1.png';
 // [START vision_text_detection]
-
 export const detectBCard = functions.https.onRequest((request: any, response: any) => { (async function detectText() {
     const client = new vision.ImageAnnotatorClient();
     // Performs text detection on the local file
