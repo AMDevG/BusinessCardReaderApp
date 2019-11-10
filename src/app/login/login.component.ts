@@ -11,10 +11,10 @@ import { Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  errorMessage: string;
+  // errorMessage: string;
 
-  emailaddress = '';
-  password = '';
+  // emailaddress = '';
+  // password = '';
 
   constructor(public authService: AuthService, private router: Router,
               private fb: FormBuilder) {
@@ -23,12 +23,13 @@ export class LoginComponent implements OnInit {
 
     createForm() {
       this.loginForm = this.fb.group({
-        email:  ['', Validators.required],
-        password:  ['', Validators.required]
+        email:  ['', [Validators.required, Validators.email]],
+        password:  ['', [Validators.required, Validators.required]]
       });
     }
-    onSubmit(){
-      console.log("Onsubmit was pushed!");
+    onSubmit(value: any){
+      console.log("Onsubmit received: ", value.email);
+      console.log("Onsubmit received: ", value.password);
       //Call Auth Service Functions Here;
     }
   ngOnInit() {
