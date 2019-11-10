@@ -6,14 +6,15 @@ import * as firebase from 'firebase/app';
 import { User } from './user/user.model';
 import { resolve } from 'url';
 import { reject } from 'q';
-
+import { first, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 // import { Credentials } from 'firebase/models';
 
 
 @Injectable()
 export class AuthService {
   user: User;
-  constructor(private angularFireAuthentication: AngularFireAuth) {
+  constructor(private angularFireAuthentication: AngularFireAuth, private router: Router) {
 }
 
 signup(user: User) {
@@ -31,16 +32,21 @@ signup(user: User) {
 
 login(user: User ) {
   console.log('login func in auth service received', user);
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
         this.angularFireAuthentication.auth
             .signInWithEmailAndPassword(user.email, user.password)
             .then(
-                result => {resolve(result); console.log("User is logged in!", this.angularFireAuthentication.auth.currentUser);},
+                result => {resolve(result); },
                 error => reject(error)
             );
     });
 }
 }
+
+
+
+
+
 
 
 // logout(user: User) {

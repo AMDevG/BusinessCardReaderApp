@@ -33,11 +33,8 @@ export class LoginComponent implements OnInit {
     }
     onSubmit(value: any){
       this.user = new User(value.email, value.password);
-      //this.usersService.setCurrentUser(this.user);
-      //this.authService.login(this.user);
-
-      //Logic : CHECK IF USER HAS ACCOUNT OR NOT
-
+      this.usersService.setCurrentUser(this.user);
+      this.authService.login(this.user);
     }
 
     signup(value: any){
