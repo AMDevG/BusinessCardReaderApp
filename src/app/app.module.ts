@@ -6,10 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {WebcamModule} from 'ngx-webcam';
+import { AuthGuardService } from './auth-guard.service';
+import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
+import { CameraWindowComponent } from './camera-window/camera-window.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    CameraWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +23,7 @@ import {WebcamModule} from 'ngx-webcam';
     WebcamModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
