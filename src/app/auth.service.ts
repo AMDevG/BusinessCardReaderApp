@@ -44,6 +44,23 @@ login(user: User ) {
             );
     });
 }
+
+logout(user: User ) {
+  console.log('logout func in auth service received', user);
+  return new Promise((resolve, reject) => {
+        this.angularFireAuthentication.auth
+            .signOut()
+            .then(
+                result => {resolve(result);
+                           this.router.initialNavigation();
+                           this.router.navigate(['/login']);
+                },
+                error => reject(error)
+            );
+    });
+}
+
+
 }
 
 

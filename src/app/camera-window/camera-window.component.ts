@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-camera-window',
@@ -9,6 +10,9 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
   styleUrls: ['./camera-window.component.css']
 })
 export class CameraWindowComponent implements OnInit {
+
+  constructor(private authService: AuthService) {}
+
   public showWebcam = true;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;

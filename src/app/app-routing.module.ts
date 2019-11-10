@@ -3,12 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CameraWindowComponent } from './camera-window/camera-window.component';
 import { AuthGuardService } from './auth-guard.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent},
-  {path: 'scan', component: CameraWindowComponent, canActivate: [AuthGuardService] }
+  {path: '', redirectTo: 'scan', pathMatch: 'full'},
+  {path: 'scan', component: CameraWindowComponent, canActivate: [AuthGuardService] },
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
