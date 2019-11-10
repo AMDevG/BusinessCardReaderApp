@@ -8,7 +8,7 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
   templateUrl: './camera-window.component.html',
   styleUrls: ['./camera-window.component.css']
 })
-export class AppComponent implements OnInit {
+export class CameraWindowComponent implements OnInit {
   public showWebcam = true;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
