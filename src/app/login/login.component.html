@@ -2,7 +2,8 @@
   <h2 class="ui header">Please Login</h2>
       <form [formGroup]="loginForm"
         (ngSubmit)="onSubmit(loginForm.value)"
-        class="ui form">
+        class="ui form"
+        [class.error]="!loginForm.valid && loginForm.touched">
       
         <div class="field">
         <label for="emailInput">Email </label>
@@ -15,6 +16,22 @@
          <div *ngIf="loginForm.controls['email'].hasError('required')"
            class="ui error message">Email is required</div>
       </div>
+      <div class="field">
+        <label for="passwordInput"> Password </label>
+        <input type="password"
+               id="passwordInput"
+               placeholder="Enter your password"
+               [formControl]="loginForm.controls['password']">
+         <div *ngIf="!loginForm.controls['email'].valid"
+           class="ui error message">Password is invalid</div>
+         <div *ngIf="loginForm.controls['password'].hasError('required')"
+           class="ui error message">Password is required</div>
+      </div>
+
+      <button type="submit" class="ui button">Submit</button>
+    </form>
+</div>
+
 
 
 

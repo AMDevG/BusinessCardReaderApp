@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuardService] },
+  { path: 'login', component: LoginComponent },
   {path: 'scan', component: CameraWindowComponent}
 ];
 
