@@ -1,5 +1,4 @@
 import { uuid } from '../util/uuid';
-import { Observable } from 'rxjs';
 
 export class User {
   id: string;
@@ -11,6 +10,4 @@ export class User {
     this.email = email;
     this.password = password;
   }
-
-
 }

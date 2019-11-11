@@ -1,8 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-// import {Subject} from 'rxjs/Subject';
-// import {Observable} from 'rxjs/Observable';
-// import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

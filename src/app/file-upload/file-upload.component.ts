@@ -5,8 +5,6 @@ import { UsersService } from '../user/users.service';
 import { Router} from '@angular/router';
 import { UploadService } from '../upload.service';
 import { BusinessCardService } from '../business-card.service';
-import { calculateString } from 'bytebuffer';
-
 
 @Component({
   selector: 'app-file-upload',
@@ -26,13 +24,13 @@ export class FileUploadComponent implements OnInit {
   }
 
   onSubmit(value: any) {
-    // this.uploadService.filePathUri = value.uploadedImgURL;
-    // this.uploadService.firstName = value.firstNameInput;
     let submittedBCard = this.businessCardService
           .createNewBusinessCard(value.firstName, value.lastNameInput,
                                 value.companyInput, value.email, value.phoneInput);
-
+// PASSES BUSINESSCARD OBJECT TO UPLOADSERVICE TO HANDE DB WRITES/HTTP; WITH UUID FROM BCARD
+// SERVICE
     this.uploadService.uploadToStorage(submittedBCard);
+// ** UPLOAD TO STORAGE IS BUGGY; SEVERAL FIELDS RETURN UNDEFINED;
   }
 
   createForm() {
@@ -44,5 +42,4 @@ export class FileUploadComponent implements OnInit {
       phoneInput: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
-
 }

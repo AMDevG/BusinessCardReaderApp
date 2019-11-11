@@ -16,17 +16,15 @@ export class CameraWindowComponent implements OnInit {
   constructor(private authService: AuthService, private uploadService: UploadService) {}
 
   public showWebcam = true;
-  // public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string;
 
   public errors: WebcamInitError[] = [];
   public webcamImage: WebcamImage = null;
+  private trigger: Subject<void> = new Subject<void>();
 
   base64ImgUpload: string;
   uploadedImgURL: string;
-  private trigger: Subject<void> = new Subject<void>();
-  // private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
   public ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs()
@@ -47,13 +45,12 @@ export class CameraWindowComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    // console.log('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
     this.base64ImgUpload = this.webcamImage.imageAsBase64;
     this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
 
-    this.uploadService.base64Img = this.base64ImgUpload;
-    this.uploadService.filePathUri = this.uploadedImgURL;
+    // this.uploadService.base64Img = this.base64ImgUpload;
+    // this.uploadService.filePathUri = this.uploadedImgURL;
 
   }
 
