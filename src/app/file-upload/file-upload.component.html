@@ -1,30 +1,30 @@
 <div class="ui raised segment">
-        <h2 class="ui header">Please Login</h2>
+        <h2 class="ui header">Extracted Text</h2>
             <form [formGroup]="uploadForm"
               (ngSubmit)="onSubmit(uploadForm.value);"
               class="ui form">
             
               <div class="field">
-              <label for="firstNameInput">First Name: </label>
+              <label for="firstName">First Name: </label>
               <input type="text"
-                     id="firstNameInput"
+                     id="firstName"
                      placeholder="Loading..."
                      [formControl]="uploadForm.controls['firstNameInput']" >
               </div>
     
 
             <div class="field">
-                    <label for="lasttNameInput">Last Name: </label>
+                    <label for="lasttName">Last Name: </label>
                     <input type="text"
-                           id="lastNameInput"
+                           id="lastName"
                            placeholder="Loading..."
                            [formControl]="uploadForm.controls['lastNameInput']" >
             </div>
 
             <div class="field">
-                <label for="companyInput">Company: </label>
+                <label for="companyName">Company: </label>
                 <input type="text"
-                   id="companyInput"
+                   id="companyName"
                    placeholder="Loading..."
                    [formControl]="uploadForm.controls['companyInput']" >
             </div>

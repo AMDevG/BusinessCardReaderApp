@@ -18,15 +18,13 @@
     </div>
   </div>
   
+
   <div class="snapshot" *ngIf="webcamImage">
     <img [src]="webcamImage.imageAsDataUrl"/>
-
-    <div class="container">
-      <app-file-upload></app-file-upload>
-    </div>
+    <app-file-upload></app-file-upload>
   </div>
   
-  <h4 *ngIf="errors.length > 0">Messages:</h4>
+  <!-- <h4 *ngIf="errors.length > 0">Messages:</h4>
   <ul *ngFor="let error of errors">
     <li>{{error | json}}</li>
-  </ul>
+  </ul> -->

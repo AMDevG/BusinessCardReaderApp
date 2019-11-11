@@ -21,6 +21,7 @@ export class CameraWindowComponent implements OnInit {
   public errors: WebcamInitError[] = [];
   public webcamImage: WebcamImage = null;
 
+  private base64ImgUpload: string;
   private trigger: Subject<void> = new Subject<void>();
   // private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
@@ -45,6 +46,8 @@ export class CameraWindowComponent implements OnInit {
   public handleImage(webcamImage: WebcamImage): void {
     console.log('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
+    this.base64ImgUpload = this.webcamImage.imageAsBase64;
+    console.log('Base 64 Encoding of Image is: ', this.base64ImgUpload);
   }
 
   public get triggerObservable(): Observable<void> {

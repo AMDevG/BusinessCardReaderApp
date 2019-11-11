@@ -12,7 +12,7 @@ import { Router} from '@angular/router';
 })
 export class FileUploadComponent implements OnInit {
   uploadForm: FormGroup;
-
+  base64EncodedImage: string;
   constructor(public authService: AuthService, private usersService: UsersService, private router: Router,
               private fb: FormBuilder) {  this.createForm();  }
 
@@ -27,6 +27,7 @@ export class FileUploadComponent implements OnInit {
     this.uploadForm = this.fb.group({
       firstNameInput:  ['', [Validators.required, Validators.minLength(3)]],
       lastNameInput:  ['', [Validators.required, Validators.minLength(3)]],
+      companyInput: ['', [Validators.required, Validators.minLength(3)]],
       emailInput:  ['', [Validators.required, Validators.email]],
       phoneInput: ['', [Validators.required, Validators.minLength(3)]]
     });
