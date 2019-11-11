@@ -15,12 +15,14 @@ import { AngularFireModule } from '@angular/fire';
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { UsersService } from './user/users.service';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CameraWindowComponent
+    CameraWindowComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

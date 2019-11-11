@@ -5,7 +5,6 @@
   
     <div>
       <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-              [switchCamera]="nextWebcamObservable"
               [videoOptions]="videoOptions"
               [imageQuality]="1"
               (initError)="handleInitError($event)"
@@ -15,16 +14,16 @@
       <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam On/Off</button>
       <br/>
       <span><button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button></span>
-      <!-- <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button> -->
-      <!-- <input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow Camera Switch</label> -->
       <br/>
-      <!-- DeviceId: <input id="deviceId" type="text" [(ngModel)]="deviceId" style="width: 500px"> -->
-      <!-- <button (click)="showNextWebcam(deviceId);">Activate</button> -->
     </div>
   </div>
   
   <div class="snapshot" *ngIf="webcamImage">
     <img [src]="webcamImage.imageAsDataUrl"/>
+
+    <div class="container">
+      <app-file-upload></app-file-upload>
+    </div>
   </div>
   
   <h4 *ngIf="errors.length > 0">Messages:</h4>

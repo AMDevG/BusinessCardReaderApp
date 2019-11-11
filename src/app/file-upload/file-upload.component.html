@@ -1,0 +1,48 @@
+<div class="ui raised segment">
+        <h2 class="ui header">Please Login</h2>
+            <form [formGroup]="uploadForm"
+              (ngSubmit)="onSubmit(uploadForm.value);"
+              class="ui form">
+            
+              <div class="field">
+              <label for="firstNameInput">First Name: </label>
+              <input type="text"
+                     id="firstNameInput"
+                     placeholder="Loading..."
+                     [formControl]="uploadForm.controls['firstNameInput']" >
+              </div>
+    
+
+            <div class="field">
+                    <label for="lasttNameInput">Last Name: </label>
+                    <input type="text"
+                           id="lastNameInput"
+                           placeholder="Loading..."
+                           [formControl]="uploadForm.controls['lastNameInput']" >
+            </div>
+
+            <div class="field">
+                <label for="companyInput">Company: </label>
+                <input type="text"
+                   id="companyInput"
+                   placeholder="Loading..."
+                   [formControl]="uploadForm.controls['companyInput']" >
+            </div>
+            <div class="field">
+                    <label for="emailInput">Email: </label>
+                    <input type="text"
+                       id="emailInput"
+                       placeholder="Loading..."
+                       [formControl]="uploadForm.controls['emailInput']" >
+            </div>
+            <div class="field">
+                        <label for="phoneInput">Phone: </label>
+                        <input type="text"
+                           id="phoneInput"
+                           placeholder="Loading..."
+                           [formControl]="uploadForm.controls['phoneInput']" >
+            </div>
+    </form>
+</div>
+
+
