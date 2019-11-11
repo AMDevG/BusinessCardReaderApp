@@ -4,6 +4,8 @@ import {AuthService} from '../auth.service';
 import { UsersService } from '../user/users.service';
 import { Router} from '@angular/router';
 import { UploadService } from '../upload.service';
+import { BusinessCardService } from '../business-card.service';
+import { calculateString } from 'bytebuffer';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class FileUploadComponent implements OnInit {
   base64EncodedImage: string;
   uploadedImgURL: string;
 
-  constructor(public authService: AuthService, private usersService: UsersService,
+  constructor(public authService: AuthService, private usersService: UsersService, private businessCardService: BusinessCardService,
               private uploadService: UploadService, private router: Router,
               private fb: FormBuilder) {  this.createForm();  }
 
@@ -26,7 +28,11 @@ export class FileUploadComponent implements OnInit {
   onSubmit(value: any) {
     // this.uploadService.filePathUri = value.uploadedImgURL;
     // this.uploadService.firstName = value.firstNameInput;
-    this.uploadService.createNewBusinessCard();
+    let submittedBCard = this.businessCardService
+          .createNewBusinessCard(value.firstName, value.lastNameInput,
+                                value.companyInput, value.email, value.phoneInput);
+
+    this.uploadService.uploadToStorage(submittedBCard);
   }
 
   createForm() {
