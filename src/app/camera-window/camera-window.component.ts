@@ -3,6 +3,8 @@ import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { AuthService } from '../auth.service';
+import { URL } from 'url';
+import { UploadService } from '../upload.service';
 
 @Component({
   selector: 'app-camera-window',
@@ -11,7 +13,7 @@ import { AuthService } from '../auth.service';
 })
 export class CameraWindowComponent implements OnInit {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private uploadService: UploadService) {}
 
   public showWebcam = true;
   // public allowCameraSwitch = true;
@@ -21,7 +23,8 @@ export class CameraWindowComponent implements OnInit {
   public errors: WebcamInitError[] = [];
   public webcamImage: WebcamImage = null;
 
-  private base64ImgUpload: string;
+  base64ImgUpload: string;
+  uploadedImgURL: string;
   private trigger: Subject<void> = new Subject<void>();
   // private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
@@ -44,10 +47,14 @@ export class CameraWindowComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    console.log('received webcam image', webcamImage);
+    // console.log('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
     this.base64ImgUpload = this.webcamImage.imageAsBase64;
-    console.log('Base 64 Encoding of Image is: ', this.base64ImgUpload);
+    this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
+
+    this.uploadService.base64Img = this.base64ImgUpload;
+    this.uploadService.filePathUri = this.uploadedImgURL;
+
   }
 
   public get triggerObservable(): Observable<void> {

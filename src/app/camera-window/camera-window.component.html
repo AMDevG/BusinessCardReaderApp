@@ -4,9 +4,9 @@
     </h1>
   
     <div>
-      <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+      <webcam [height]="250" [width]="250" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
               [videoOptions]="videoOptions"
-              [imageQuality]="1"
+              [imageQuality]="0.5"
               (initError)="handleInitError($event)"
       ></webcam>
       <br/>
@@ -19,7 +19,7 @@
   </div>
   
 
-  <div class="snapshot" *ngIf="webcamImage">
+  <div style="height: 250px; width:250px;" class="snapshot" *ngIf="webcamImage">
     <img [src]="webcamImage.imageAsDataUrl"/>
     <app-file-upload></app-file-upload>
   </div>

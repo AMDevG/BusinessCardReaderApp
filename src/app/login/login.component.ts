@@ -4,8 +4,7 @@ import { AuthService } from '../auth.service';
 
 import { Router} from '@angular/router';
 import { UsersService } from '../user/users.service';
-import { User } from '../user/user.model'
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { User } from '../user/user.model';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +14,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   user: User;
-  // errorMessage: string;
-
-  // emailaddress = '';
-  // password = '';
 
   constructor(public authService: AuthService, private usersService: UsersService, private router: Router,
               private fb: FormBuilder) {

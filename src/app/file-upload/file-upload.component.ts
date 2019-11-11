@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from '../auth.service';
 import { UsersService } from '../user/users.service';
 import { Router} from '@angular/router';
+import { UploadService } from '../upload.service';
 
 
 @Component({
@@ -13,14 +14,19 @@ import { Router} from '@angular/router';
 export class FileUploadComponent implements OnInit {
   uploadForm: FormGroup;
   base64EncodedImage: string;
-  constructor(public authService: AuthService, private usersService: UsersService, private router: Router,
+  uploadedImgURL: string;
+
+  constructor(public authService: AuthService, private usersService: UsersService,
+              private uploadService: UploadService, private router: Router,
               private fb: FormBuilder) {  this.createForm();  }
 
   ngOnInit() {
   }
 
   onSubmit(value: any) {
-    console.log('onSubmit received in file upload: ', value);
+    // this.uploadService.filePathUri = value.uploadedImgURL;
+    // this.uploadService.firstName = value.firstNameInput;
+    this.uploadService.createNewBusinessCard();
   }
 
   createForm() {

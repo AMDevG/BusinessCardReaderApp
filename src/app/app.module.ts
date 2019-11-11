@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { UsersService } from './user/users.service';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { UploadService } from './upload.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthGuardService, AuthService, AngularFireAuth, UsersService],
+  providers: [AuthGuardService, AuthService, AngularFireAuth, UsersService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
