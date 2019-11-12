@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from '../auth.service';
-import { UsersService } from '../user/users.service';
-import { Router} from '@angular/router';
 import { UploadService } from '../upload.service';
 import { BusinessCardService } from '../business-card.service';
 import { VisionService } from '../vision.service';

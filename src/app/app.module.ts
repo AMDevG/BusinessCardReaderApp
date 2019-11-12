@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { CameraWindowComponent } from './camera-window/camera-window.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth} from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';

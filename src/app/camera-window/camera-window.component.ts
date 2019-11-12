@@ -3,7 +3,6 @@ import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { AuthService } from '../auth.service';
-import { URL } from 'url';
 import { UploadService } from '../upload.service';
 
 @Component({

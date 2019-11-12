@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VisionService {
-
+  textArray: string[];
   constructor(private httpClient: HttpClient) { }
 
   request: any = {
@@ -28,12 +28,17 @@ export class VisionService {
     extractText() {
       console.log('Beginning text extraction');
       this.httpClient.post(this.url, this.request)
-        .subscribe( (results: any) => {
-          console.log('RESULTS RESULTS RESULTS');
-          console.log(results);
-          console.log('RESULTS RESULTS RESULTS');
-        }
-      );
-    }
-}
+      .subscribe( (results: any) => {
+        const tmpArr = results.responses[0].textAnnotations;
+        tmpArr.array.forEach(element => {
+          this.textArray.push(element);
+        });
+      }
+    );
+      console.log('textArr: ', this.textArray);
+  }
 
+  // processText(visionResult: object) {
+  //   console.log('processText Received', visionResult);
+  // }
+}
