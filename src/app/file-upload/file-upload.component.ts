@@ -5,6 +5,7 @@ import { UsersService } from '../user/users.service';
 import { Router} from '@angular/router';
 import { UploadService } from '../upload.service';
 import { BusinessCardService } from '../business-card.service';
+import { VisionService } from '../vision.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -16,22 +17,24 @@ export class FileUploadComponent implements OnInit {
   base64EncodedImage: string;
   uploadedImgURL: string;
 
-  constructor(public authService: AuthService, private usersService: UsersService, private businessCardService: BusinessCardService,
-              private uploadService: UploadService, private router: Router,
+  constructor(public authService: AuthService, private businessCardService: BusinessCardService,
+              private uploadService: UploadService, private visionService: VisionService,
               private fb: FormBuilder) {  this.createForm();  }
 
   ngOnInit() {
   }
 
   onSubmit(value: any) {
+    // PASSES BUSINESSCARD OBJECT TO UPLOADSERVICE TO HANDE DB WRITES/HTTP; WITH UUID FROM BCARD
+    // SERVICE
     let submittedBCard = this.businessCardService
           .createNewBusinessCard(value.firstName, value.lastNameInput,
                                 value.companyInput, value.email, value.phoneInput);
-// PASSES BUSINESSCARD OBJECT TO UPLOADSERVICE TO HANDE DB WRITES/HTTP; WITH UUID FROM BCARD
-// SERVICE
-    this.uploadService.uploadToStorage(submittedBCard);
-// ** UPLOAD TO STORAGE IS BUGGY; SEVERAL FIELDS RETURN UNDEFINED;
+    console.log('Calling vision Service');
+    this.visionService.extractText();
   }
+    // this.uploadService.uploadToStorage(submittedBCard);
+// ** UPLOAD TO STORAGE IS BUGGY; SEVERAL FIELDS RETURN UNDEFINED;
 
   createForm() {
     this.uploadForm = this.fb.group({

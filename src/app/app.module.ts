@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { UsersService } from './user/users.service';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { UploadService } from './upload.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UploadService } from './upload.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule,
     WebcamModule,
     FormsModule,
