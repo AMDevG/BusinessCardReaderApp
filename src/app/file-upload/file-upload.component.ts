@@ -30,6 +30,7 @@ export class FileUploadComponent implements OnInit {
                                 value.companyInput, value.email, value.phoneInput);
     console.log('Calling vision Service');
     this.visionService.extractText();
+    console.log(this.visionService.getDescriptionArray());
   }
     // this.uploadService.uploadToStorage(submittedBCard);
 // ** UPLOAD TO STORAGE IS BUGGY; SEVERAL FIELDS RETURN UNDEFINED;
