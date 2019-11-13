@@ -18,13 +18,15 @@ import { UsersService } from './user/users.service';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { UploadService } from './upload.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BusinessCardComponent } from './business-card/business-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CameraWindowComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    BusinessCardComponent
   ],
   imports: [
     BrowserModule,
