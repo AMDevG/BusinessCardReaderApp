@@ -21,9 +21,9 @@
 
   <div style="height: 250px; width:250px;" class="snapshot" *ngIf="webcamImage">
     <img [src]="webcamImage.imageAsDataUrl"/>
-    <app-file-upload></app-file-upload>
   </div>
   
+  <app-business-card></app-business-card>
   <!-- <h4 *ngIf="errors.length > 0">Messages:</h4>
   <ul *ngFor="let error of errors">
     <li>{{error | json}}</li>
