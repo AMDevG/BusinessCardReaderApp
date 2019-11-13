@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
-import { AuthService } from '../auth.service';
-import { UploadService } from '../upload.service';
+import { AuthService } from '../../auth.service';
+import { UploadService } from '../../upload.service';
 
 @Component({
   selector: 'app-camera-window',

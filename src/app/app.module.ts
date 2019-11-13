@@ -7,26 +7,26 @@ import { AppComponent } from './app.component';
 import { WebcamModule } from 'ngx-webcam';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';
-import { LoginComponent } from './login/login.component';
-import { CameraWindowComponent } from './camera-window/camera-window.component';
+import { LoginComponent } from './components/login/login.component';
+import { CameraWindowComponent } from './components/camera-window/camera-window.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuth} from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { UsersService } from './user/users.service';
-import { FileUploadComponent } from './file-upload/file-upload.component';
 import { UploadService } from './upload.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BusinessCardComponent } from './business-card/business-card.component';
+import { BusinessCardComponent } from './components/business-card/business-card.component';
+import { DashBoardComponent } from './components/dash-board/dash-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CameraWindowComponent,
-    FileUploadComponent,
-    BusinessCardComponent
+    BusinessCardComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule,
