@@ -43,7 +43,6 @@ export class VisionService {
   getDescriptionArray() {
     return this.textArray;
   }
-
   //CALL IN VISION ARRAY TO SYNCH OR SUBSCRIBE MAKE OBSERVABLE??
   processIntoForm(){
     console.log('Assign annotations to form field values; Call BusinessServ to pass form to BCardComponent');
