@@ -32,16 +32,21 @@ export class VisionService {
       .subscribe( (results: any) => {
         const tmpArr = results.responses[0].textAnnotations;
         tmpArr.forEach(element => {
-          // console.log('Pushing elm: ', element);
           this.textArray.push(element['description']);
           // console.log('Descr: ', element['description']);
         });
+        console.log('Going to pass array of type to process: ', typeof this.textArray);
       }
     );
   }
 
   getDescriptionArray() {
     return this.textArray;
+  }
+
+  //CALL IN VISION ARRAY TO SYNCH OR SUBSCRIBE MAKE OBSERVABLE??
+  processIntoForm(){
+    console.log('Assign annotations to form field values; Call BusinessServ to pass form to BCardComponent');
   }
 
   // processText() {

@@ -10,8 +10,11 @@ import { AuthService } from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { CameraWindowComponent } from './components/camera-window/camera-window.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AngularFireAuth} from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule, FirebaseFirestore } from '@angular/fire';
+// import { AngularFirestore } from '@angular/fire/firestore';
+
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { UsersService } from './user/users.service';
@@ -19,6 +22,7 @@ import { UploadService } from './upload.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
+
 
 @NgModule({
   declarations: [

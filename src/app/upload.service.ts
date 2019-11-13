@@ -6,6 +6,7 @@ import { BusinessCard } from './business-card';
 import { BusinessCardService } from './business-card.service';
 import { FormBuilder, FormGroup, Validators, Form } from '@angular/forms';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +28,12 @@ export class UploadService {
     });
     return FormGroup;
   }
-uploadToStorage(businessCard: BusinessCard) {
+}
+
+
+
+
+  // uploadToStorage(businessCard: BusinessCard) {
   // const API_ENDPIOINT = 'https://buseinesscardreader-4e06a-carddb.firebaseio.com/';
   // const ref = firebase.storage().ref();
   // console.log('Storage ref is ${ref}');
@@ -35,9 +41,8 @@ uploadToStorage(businessCard: BusinessCard) {
   // var imgUri = '[IMGURI]';
   // ref.putString('id', 'base64').then(function(snapshot) {
   // console.log('Uploaded a Full Card minus ID', businessCard);
-}
+// }
 
   // NEED TO CALL FIREDATABASE UPLOAD TO COLLECTIONS; ATTACHED TO USERID & ADD IMGURI + BASE64; 
-  // RETURN SUCCESS; NO IMG CARD ON NGIF, CLEAR SCREAN OF CAPTURE;
-}
+  // RETURN SUCCESS; NO IMG CARD ON NGIF, CLEAR SCREAN OF CAPTURE
 
