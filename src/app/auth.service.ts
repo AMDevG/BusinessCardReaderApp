@@ -55,6 +55,10 @@ export class AuthService implements CanActivate {
       }
   }
 
+  getCurrentUser(): string {
+      return this.userDetails.email;
+  }
+
   logout() {
       this.angularFireAuthentication.auth.signOut()
       .then((res) => this.router.navigate(['/login']));

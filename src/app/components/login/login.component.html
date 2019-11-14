@@ -1,27 +1,26 @@
 <div class="ui raised segment">
   <h2 class="ui header">Please Login</h2>
-      <form [formGroup]="loginForm"
+    <form [formGroup]="loginForm"
         (ngSubmit)="onSubmit(loginForm.value);"
         class="ui form"
         [class.error]="!loginForm.valid && loginForm.touched" >
       
         <div class="field">
         <label for="emailInput">Email </label>
-        <input type="text"
+        <input type="text" autocomplete="email"
                id="emailInput"
                placeholder="Enter your email"
                [formControl]="loginForm.controls['email']" >
-            <p class="error is-danger" [hidden]="loginForm.get('email').valid">
-              Email is required.
-            </p>
+            </div>
 
-      <div class="field">
+        <div class="field">
         <label for="passwordInput"> Password </label>
-        <input type="password"
+        <input type="password" autocomplete="current-password"
                id="passwordInput"
                placeholder="Enter your password"
                [formControl]="loginForm.controls['password']">
       </div>
-      <br>
       <button type="submit" class="ui button">Submit</button>
+    </form>
 </div>
+    
