@@ -11,7 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CameraWindowComponent } from './components/camera-window/camera-window.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFireModule, FirebaseFirestore } from '@angular/fire';
 // import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -41,6 +41,7 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [AuthGuardService, AuthService, AngularFireAuth, UsersService, UploadService],
   bootstrap: [AppComponent]
