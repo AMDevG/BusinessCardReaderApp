@@ -36,6 +36,7 @@ export class VisionService {
           // console.log('Descr: ', element['description']);
         });
         console.log('Going to pass array of type to process: ', typeof this.textArray);
+        this.processIntoForm();
       }
     );
   }
@@ -44,7 +45,9 @@ export class VisionService {
     return this.textArray;
   }
   //CALL IN VISION ARRAY TO SYNCH OR SUBSCRIBE MAKE OBSERVABLE??
-  processIntoForm(){
+  processIntoForm() {
+    console.log('textArray: ');
+    this.textArray.forEach(item => {console.log(item)});
     console.log('Assign annotations to form field values; Call BusinessServ to pass form to BCardComponent');
   }
 
