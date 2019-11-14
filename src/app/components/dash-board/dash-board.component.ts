@@ -10,14 +10,13 @@ export class DashBoardComponent implements OnInit {
     visibleCam: boolean = false;
     userName: string;
 
+    constructor(private authService: AuthService) {}
+
+    ngOnInit() {
+        this.userName = this.authService.getCurrentUser();
+    }
+
     toggleCameraWindow() {
         this.visibleCam = !this.visibleCam;
     }
-  
-    constructor(private authService: AuthService) {}
-
-  ngOnInit() {
-      this.userName = this.authService.getCurrentUser();
-  }
-
 }
