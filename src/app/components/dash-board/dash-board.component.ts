@@ -13,7 +13,7 @@ export class DashBoardComponent implements OnInit {
         this.visibleCam = !this.visibleCam;
     }
   
-    constructor(private authService: AuthService,) { }
+    constructor(private authService: AuthService) {}
 
   ngOnInit() {
   }

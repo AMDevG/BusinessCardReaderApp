@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VisionService {
-  // textArray: string[];
   textArray = [];
+  
   constructor(private httpClient: HttpClient) { }
 
   request: any = {
@@ -51,7 +51,9 @@ export class VisionService {
     console.log('Assign annotations to form field values; Call BusinessServ to pass form to BCardComponent');
   }
 
-  // processText() {
-  //   console.log('testarr: ', this.textArray);
-  // }
+  uploadImageToStorage() {
+      console.log("Mock call to upload Image!");
+      console.log("Uploaded and Processing!");
+    //   WILL NEED TO CHANGE IMAGE URI IN REQUEST -> THEN CALL EXTRACT TEXT 
+  }
 }

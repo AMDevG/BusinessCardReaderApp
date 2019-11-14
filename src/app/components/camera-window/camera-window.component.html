@@ -7,16 +7,15 @@
       ></webcam>
       <button class="actionBtn" (click)="triggerSnapshot();">Capture</button>
       <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam On/Off</button>
-      <!-- <br/> -->
-      <!-- <span><button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button></span> -->
-      <!-- <br/> -->
+      <br>
     </div>
-    <div *ngIf="webcamImage">
-        <img [src]="webcamImage.imageAsDataUrl" alt="Loading" height="100" width="100"/>
+    <div *ngIf="webcamImage" style="text-align:center">
+        <h4>Your Captured Image:</h4>
+        <img [src]="webcamImage.imageAsDataUrl" alt="Loading" height="500" width="500"/>
+        <button type="submit" (click)="this.visionService.uploadImageToStorage()" class="ui button">Upload Image</button>
+        <button type="submit" (click)="hideCapture()" class="ui button">Retake</button>
       </div>
   </div>
-  
-
   
   <!-- class="snapshot" -->
   <!-- <app-business-card></app-business-card> -->
