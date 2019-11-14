@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       this.user = new User(value.email, value.password);
       this.usersService.setCurrentUser(this.user);
       this.authService.login(this.user);
+      console.log('User: ', this.user, 'was authenticated');
     }
 
     signup(value: any){

@@ -30,7 +30,7 @@ login(user: User ) {
             .then(
                 result => {resolve(result);
                            this.router.initialNavigation();
-                           this.router.navigate(['/scan']);
+                           this.router.navigate(['dash']);
                 },
                 error => reject(error)
             );

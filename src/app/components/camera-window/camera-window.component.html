@@ -1,29 +1,25 @@
-<div style="text-align:center">
-    <h1>
-      Scan Card Here!
-    </h1>
-  
+<div *ngIf="displayCamera" style="text-align:center">
     <div>
       <webcam [height]="250" [width]="250" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
               [videoOptions]="videoOptions"
               [imageQuality]="0.5"
               (initError)="handleInitError($event)"
       ></webcam>
-      <br/>
       <button class="actionBtn" (click)="triggerSnapshot();">Capture</button>
       <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam On/Off</button>
-      <br/>
-      <span><button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button></span>
-      <br/>
+      <!-- <br/> -->
+      <!-- <span><button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button></span> -->
+      <!-- <br/> -->
     </div>
+    <div *ngIf="webcamImage">
+        <img [src]="webcamImage.imageAsDataUrl" alt="Loading" height="100" width="100"/>
+      </div>
   </div>
   
 
-  <div style="height: 250px; width:250px;" class="snapshot" *ngIf="webcamImage">
-    <img [src]="webcamImage.imageAsDataUrl"/>
-  </div>
   
-  <app-business-card></app-business-card>
+  <!-- class="snapshot" -->
+  <!-- <app-business-card></app-business-card> -->
   <!-- <h4 *ngIf="errors.length > 0">Messages:</h4>
   <ul *ngFor="let error of errors">
     <li>{{error | json}}</li>

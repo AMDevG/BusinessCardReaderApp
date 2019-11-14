@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent implements OnInit {
+    visibleCam: boolean = false;
 
-  constructor() { }
+    toggleCameraWindow() {
+        this.visibleCam = !this.visibleCam;
+    }
+  
+    constructor(private authService: AuthService,) { }
 
   ngOnInit() {
   }

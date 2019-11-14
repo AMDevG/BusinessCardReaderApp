@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
-import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
+import { Component, OnInit, Input } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import { WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { AuthService } from '../../auth.service';
 import { UploadService } from '../../upload.service';
 
@@ -11,8 +11,9 @@ import { UploadService } from '../../upload.service';
   styleUrls: ['./camera-window.component.css']
 })
 export class CameraWindowComponent implements OnInit {
+@Input() displayCamera: boolean;
 
-  constructor(private authService: AuthService, private uploadService: UploadService) {}
+constructor(private authService: AuthService, private uploadService: UploadService) {}
 
   public showWebcam = true;
   public multipleWebcamsAvailable = false;

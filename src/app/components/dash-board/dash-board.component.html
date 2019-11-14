@@ -1,1 +1,6 @@
-<p>dash-board works!</p>
+<h1>Welcome to you Dashboard, User!</h1>
+<button (click)="toggleCameraWindow()" class="ui button">Scan A Business Card</button> 
+<button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button>
+
+<app-camera-window [displayCamera]="visibleCam"></app-camera-window>
+
