@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { WebcamModule } from 'ngx-webcam';
-import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { CameraWindowComponent } from './components/camera-window/camera-window.component';
@@ -43,7 +42,7 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  providers: [AuthGuardService, AuthService, AngularFireAuth, UsersService, UploadService],
+  providers: [AuthService, AngularFireAuth, UsersService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
