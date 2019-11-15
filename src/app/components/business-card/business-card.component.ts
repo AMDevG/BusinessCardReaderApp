@@ -3,6 +3,7 @@ import { BusinessCardService } from '../../business-card.service';
 import { VisionService } from '../../vision.service';
 import { UploadService } from '../../upload.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-business-card',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dash-board',
@@ -9,8 +10,9 @@ import { AuthService } from 'src/app/auth.service';
 export class DashBoardComponent implements OnInit {
     visibleCam: boolean = false;
     userName: string;
+    title = 'DashBoard';
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private titleService: Title) {}
 
     ngOnInit() {
         this.userName = this.authService.getCurrentUser();

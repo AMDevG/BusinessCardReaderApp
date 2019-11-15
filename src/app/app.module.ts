@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +42,8 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  providers: [AuthService, AngularFireAuth, UsersService, UploadService],
+  providers: [AuthService, AngularFireAuth,
+              UsersService, UploadService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

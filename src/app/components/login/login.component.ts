@@ -5,6 +5,7 @@ import { AuthService } from '../../auth.service';
 import { Router} from '@angular/router';
 import { UsersService } from '../../user/users.service';
 import { User } from '../../user/user.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,16 @@ import { User } from '../../user/user.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  title = 'Login';
   loginForm: FormGroup;
   user: User;
   @Input() redirectUrl: string;
   @Output() success = new EventEmitter();
 
-  constructor(public authService: AuthService, private router: Router,public fb: FormBuilder) {
+  constructor(public authService: AuthService, private router: Router,
+              public fb: FormBuilder, private titleService: Title) {
+
+
     this.loginForm = fb.group({
         email: new FormControl('', Validators.compose([
           Validators.email,
@@ -25,6 +30,7 @@ export class LoginComponent {
         ])),
         password: new FormControl('', Validators.required)
       });
+    this.titleService.setTitle( this.title );
   }
 
     onSubmit(): void {
