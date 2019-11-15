@@ -16,6 +16,7 @@ export class DashBoardComponent implements OnInit {
 
     ngOnInit() {
         this.userName = this.authService.getCurrentUser();
+        this.titleService.setTitle(this.title);
     }
 
     toggleCameraWindow() {

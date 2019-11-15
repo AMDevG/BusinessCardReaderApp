@@ -30,7 +30,7 @@ export class LoginComponent {
         ])),
         password: new FormControl('', Validators.required)
       });
-    this.titleService.setTitle( this.title );
+    this.titleService.setTitle(this.title);
   }
 
     onSubmit(): void {
