@@ -1,13 +1,12 @@
 <div class="ui raised segment">
   <h2 class="ui header">Please Login</h2>
     <form [formGroup]="loginForm"
-        (ngSubmit)="onSubmit(loginForm.value);"
         class="ui form"
         [class.error]="!loginForm.valid && loginForm.touched" >
 
         <div class="field">
         <label for="emailInput">Email </label>
-        <input type="text" autocomplete="email"
+        <input type="text"
                id="emailInput"
                placeholder="Enter your email"
                [formControl]="loginForm.controls['email']" >
@@ -15,7 +14,7 @@
 
         <div class="field">
         <label for="passwordInput"> Password </label>
-        <input type="password" autocomplete="current-password"
+        <input type="password"
                id="passwordInput"
                placeholder="Enter your password"
                [formControl]="loginForm.controls['password']">
