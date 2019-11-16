@@ -31,7 +31,8 @@ export class BusinessCardComponent implements OnInit {
   }
   ngOnInit() {}
 
-  // onSubmit(value: any) {
+  onSubmit(value: any) {
+    console.log('form submit!');
   //   // PASSES BUSINESSCARD OBJECT TO UPLOADSERVICE TO HANDE DB WRITES/HTTP; WITH UUID FROM BCARD
   //   // SERVICE
   //   let submittedBCard = this.businessCardService
@@ -40,7 +41,7 @@ export class BusinessCardComponent implements OnInit {
   //   console.log('Calling vision Service');
   //   this.visionService.extractText();
   //   console.log(this.visionService.getDescriptionArray());
-  // }
+  }
 
 
 
