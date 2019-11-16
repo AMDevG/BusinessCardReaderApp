@@ -27,9 +27,9 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
   declarations: [
     AppComponent,
     LoginComponent,
-    CameraWindowComponent,
     BusinessCardComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    CameraWindowComponent
   ],
   imports: [
     BrowserModule,

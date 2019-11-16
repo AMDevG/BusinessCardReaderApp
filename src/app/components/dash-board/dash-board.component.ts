@@ -8,9 +8,9 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent implements OnInit {
-    visibleCam: boolean = false;
+    visibleCam = false;
     userName: string;
-    title = 'DashBoard';
+    title = 'Dashboard';
 
     constructor(private authService: AuthService, private titleService: Title) {}
 

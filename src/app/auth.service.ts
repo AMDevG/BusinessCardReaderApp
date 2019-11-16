@@ -12,15 +12,14 @@ export class AuthService implements CanActivate {
     private user: Observable<firebase.User>;
     private userDetails: firebase.User = null;
 
-    constructor(private angularFireAuthentication: AngularFireAuth, private router: Router) {
+    constructor(public angularFireAuthentication: AngularFireAuth, private router: Router) {
         this.user = angularFireAuthentication.authState;
         this.user.subscribe(
             (user) => {
-                if (user){
+                if (user) {
                     this.userDetails = user;
                     console.log('Subscribed in authService to: ', this.userDetails);
-                }
-                else{
+                } else {
                     this.userDetails = null;
                 }
             }
@@ -35,8 +34,8 @@ export class AuthService implements CanActivate {
     }
 
     isAuthenticated(): boolean {
-        if(this.angularFireAuthentication.auth.currentUser === null){
-            console.log("User is not authenticated");
+        if (this.angularFireAuthentication.auth.currentUser === null) {
+            console.log('User is not authenticated');
             return false;
         }
         return true;
@@ -45,7 +44,7 @@ export class AuthService implements CanActivate {
     isLoggedIn() {
         if (this.userDetails === null) {
             return false;
-        } else{
+        } else {
             return true;
         }
     }
@@ -65,8 +64,8 @@ export class AuthService implements CanActivate {
                 .signInWithEmailAndPassword(email, password)
                 .then(
                     result => {resolve(result);
-                                this.router.initialNavigation();
-                                this.router.navigate(['/dash']);
+                               this.router.initialNavigation();
+                               this.router.navigate(['/dash']);
                     },
                     error => {
                         return reject(error);
