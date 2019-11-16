@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFireModule, FirebaseFirestore } from '@angular/fire';
-// import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -23,10 +23,6 @@ import { BusinessCardComponent } from './components/business-card/business-card.
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import * as admin from 'firebase-admin';
 
-// export const FIRE_ADMIN = admin.initializeApp({
-//   credential: admin.credential.applicationDefault(),
-//   databaseURL: 'https://buseinesscardreader.firebaseio.com',
-// });
 
 @NgModule({
   declarations: [
@@ -44,8 +40,9 @@ import * as admin from 'firebase-admin';
     WebcamModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [AuthService, AngularFireAuth,
               UsersService, UploadService, Title],
