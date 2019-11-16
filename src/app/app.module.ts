@@ -21,7 +21,12 @@ import { UploadService } from './upload.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
+import * as admin from 'firebase-admin';
 
+// export const FIRE_ADMIN = admin.initializeApp({
+//   credential: admin.credential.applicationDefault(),
+//   databaseURL: 'https://buseinesscardreader.firebaseio.com',
+// });
 
 @NgModule({
   declarations: [
@@ -40,10 +45,11 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [AuthService, AngularFireAuth,
               UsersService, UploadService, Title],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }

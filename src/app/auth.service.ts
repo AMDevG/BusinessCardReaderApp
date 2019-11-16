@@ -3,9 +3,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 // import { AngularFireAuth } from 'angularfire2/auth';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 // import * as firebase from 'firebase/app';
-import * as admin from 'firebase-admin';
+// import * as admin from 'firebase-admin';
 import { User } from './user/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+// import { FIRE_ADMIN } from '../app/app.module';
+
+// admin.initializeApp({
+//   credential: admin.credential.applicationDefault(),
+//   databaseURL: 'https://buseinesscardreader.firebaseio.com',
+// });
 
 @Injectable()
 export class AuthService implements CanActivate {
@@ -58,10 +64,12 @@ export class AuthService implements CanActivate {
     // }
 
     getCurrentUserID() {
-      this.endodedUserID = this.angularFireAuthentication.auth.currentUser.getIdToken(true)
-        .then(function(encodedUserID) {
-          this.decodedUserID = admin.auth().verifyIdToken(this.endodedUserID.uid);
-      });
+      // this.endodedUserID = this.angularFireAuthentication.auth.currentUser.getIdToken(true)
+      //   .then(function(encodedUserID) {
+      //     this.decodedUserID = FIRE_ADMIN.auth().verifyIdToken(this.endodedUserID.uid);
+      //     console.log('cur usr token: ', this.decodedUserID);
+      // });
+      return 'TestUser';
 }
     logout() {
         this.angularFireAuthentication.auth.signOut()

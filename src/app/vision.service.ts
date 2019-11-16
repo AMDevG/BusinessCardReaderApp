@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VisionService {
   textArray = [];
-  
+
   constructor(private httpClient: HttpClient) { }
 
   request: any = {
@@ -54,6 +54,6 @@ export class VisionService {
   uploadImageToStorage() {
       console.log("Mock call to upload Image!");
       console.log("Uploaded and Processing!");
-    //   WILL NEED TO CHANGE IMAGE URI IN REQUEST -> THEN CALL EXTRACT TEXT 
+    //   WILL NEED TO CHANGE IMAGE URI IN REQUEST -> THEN CALL EXTRACT TEXT
   }
 }
