@@ -29,7 +29,6 @@ export class UploadService {
     const base64Obj = {
       base64
     };
-    // console.log('usersCollection: ', this.usersCollection);
 
     if (base64 !== null ) {
       // this.firestore.collection('users/kKANbY9qhzYkIMWFWVWHm5QqsYu1/images');
