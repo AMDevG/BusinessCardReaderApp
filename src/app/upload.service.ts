@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import { BusinessCard } from './business-card';
 import { BusinessCardService } from './business-card.service';
 import { FormBuilder, FormGroup, Validators, Form } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -15,11 +16,35 @@ export class UploadService {
   filePathUri: string;
   userId: string;
   uploadForm: FormGroup;
+  collString: string;
+  usersRef: AngularFirestoreCollection<string>;
 
-  constructor(private authService: AuthService, private fireAuthService: AngularFireAuth, private fb: FormBuilder) {
-    // const storageRef = firebase.storage().ref();
+  constructor(private authService: AuthService, private firestore: AngularFirestore,
+              private fireAuthService: AngularFireAuth, private fb: FormBuilder) {
+                this.usersRef = this.firestore.collection<string>('users');
+    // const storageRef = firestore.collection('/users');
   }
+  uploadImage(base64: string, imageUri: string) {
+    this.userId = this.authService.getCurrentUserID();
+    const base64Obj = {
+      base64
+    };
+    // console.log('usersCollection: ', this.usersCollection);
 
+    if (base64 !== null ) {
+      // this.firestore.collection('users/kKANbY9qhzYkIMWFWVWHm5QqsYu1/images');
+      return new Promise<any>((resolve, reject) =>{
+        // this.usersCollection
+        this.firestore.collection('users/kKANbY9qhzYkIMWFWVWHm5QqsYu1/images')
+          .add(base64Obj)
+          .then(res => {console.log('Successul upload!'); }, err => reject(err));
+    });
+
+    } else {
+      console.log('Didnt receive base64');
+    }
+
+  }
   createForm() {
     this.uploadForm = this.fb.group({
       firstNameInput:  ['', [Validators.required, Validators.minLength(3)]],
@@ -29,19 +54,6 @@ export class UploadService {
       phoneInput: ['', [Validators.required, Validators.minLength(3)]]
     });
     return FormGroup;
-  }
-
-  uploadImage(base64: string, imageUri: string) {
-    this.userId = this.authService.getCurrentUserID();
-    if (base64 !== null ) {
-      console.log('Upload service received base64 and url: ', imageUri);
-      console.log('For User uid: ', this.userId);
-    } else {
-      console.log('Didnt receive base64');
-      console.log('Upload service received base64 and url: ', imageUri);
-      console.log('For User uid: ', this.userId);
-    }
-
   }
 }
 
