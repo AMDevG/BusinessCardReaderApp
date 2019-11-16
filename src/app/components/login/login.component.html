@@ -19,7 +19,7 @@
                placeholder="Enter your password"
                [formControl]="loginForm.controls['password']">
       </div>
-      <button type="submit" class="ui button">Submit</button>
+      <button type="submit" (click)="onSubmit()" class="ui button">Submit</button>
     </form>
 </div>
 

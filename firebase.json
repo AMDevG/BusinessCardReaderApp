@@ -10,7 +10,7 @@
     "source": "functions"
   },
   "hosting": {
-    "public": "dist",
+    "public": "dist/BusinessCardReaderApp",
     "ignore": [
       "firebase.json",
       "**/.*",
