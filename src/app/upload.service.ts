@@ -16,7 +16,9 @@ export class UploadService {
   userId: string;
   uploadForm: FormGroup;
 
-  constructor(private authService: AuthService, private fireAuthService: AngularFireAuth, private fb: FormBuilder) { }
+  constructor(private authService: AuthService, private fireAuthService: AngularFireAuth, private fb: FormBuilder) {
+    // const storageRef = firebase.storage().ref();
+  }
 
   createForm() {
     this.uploadForm = this.fb.group({
@@ -29,9 +31,14 @@ export class UploadService {
     return FormGroup;
   }
 
-  uploadImage(base64: string) {
-    console.log('Current user took photo: ', this.authService.getCurrentUserID());
-    console.log('Upload service received: ', base64);
+  uploadImage(base64: string, imageUri: string) {
+    this.userId = this.authService.getCurrentUserID();
+    if (!base64 === null) {
+      console.log('Upload service received base64 and url: ', imageUri);
+      console.log('For User uid: ', this.userId);
+    } else {
+      console.log('Didnt receive base64');
+    }
 
   }
 }

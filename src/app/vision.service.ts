@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import domtoimage from 'dom-to-image';
+
 
 @Injectable({
   providedIn: 'root'
@@ -46,36 +46,33 @@ export class VisionService {
   getDescriptionArray() {
     return this.textArray;
   }
-  //CALL IN VISION ARRAY TO SYNCH OR SUBSCRIBE MAKE OBSERVABLE??
+
   processIntoForm() {
     console.log('textArray: ');
-    this.textArray.forEach(item => {console.log(item)});
+    this.textArray.forEach(item => {console.log(item); });
     console.log('Assign annotations to form field values; Call BusinessServ to pass form to BCardComponent');
   }
 
-  uploadImageToStorage() {
-      console.log("Mock call to upload Image!");
+  // uploadImageToStorage() {
+  //     console.log("Mock call to upload Image!");
+  // }
 
-      // console.log("Uploaded and Processing!");
-    //   WILL NEED TO CHANGE IMAGE URI IN REQUEST -> THEN CALL EXTRACT TEXT
-  }
+  // convertToBase64() {
+  //   // const image = document.createElement('img');
+  //   // image.src = this.imageUrl;
+  //   const imgNode = document.getElementById(`image`);
+  //   // if (imgNode ) {
+  //   console.log('SELECTED IMAGE');
 
-  convertToBase64() {
-    // const image = document.createElement('img');
-    // image.src = this.imageUrl;
-    const imgNode = document.getElementById(`image`);
-    // if (imgNode ) {
-    console.log('SELECTED IMAGE');
-
-    domtoimage.toPng(imgNode)
-      .then( (dataUrl: string) => {
-        // console.log(dataUrl);
-        this.base64 = dataUrl;
-        console.log('base64: ', this.base64);
-      }).catch( (e: any) => {
-        console.log('SELECTED IMAGE BASE64 SOMETHING WENT WRONG');
-        console.log(e);
-      });
-    // }
-  }
+  //   domtoimage.toPng(imgNode)
+  //     .then( (dataUrl: string) => {
+  //       // console.log(dataUrl);
+  //       this.base64 = dataUrl;
+  //       console.log('base64: ', this.base64);
+  //     }).catch( (e: any) => {
+  //       console.log('SELECTED IMAGE BASE64 SOMETHING WENT WRONG');
+  //       console.log(e);
+  //     });
+  //   // }
+  // }
 }
