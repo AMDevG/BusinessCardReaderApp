@@ -33,11 +33,13 @@ export class UploadService {
 
   uploadImage(base64: string, imageUri: string) {
     this.userId = this.authService.getCurrentUserID();
-    if (!base64 === null) {
+    if (base64 !== null ) {
       console.log('Upload service received base64 and url: ', imageUri);
       console.log('For User uid: ', this.userId);
     } else {
       console.log('Didnt receive base64');
+      console.log('Upload service received base64 and url: ', imageUri);
+      console.log('For User uid: ', this.userId);
     }
 
   }
