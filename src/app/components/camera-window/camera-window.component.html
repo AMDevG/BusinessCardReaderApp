@@ -1,8 +1,7 @@
 <div *ngIf="displayCamera" style="text-align:center">
     <div>
       <webcam [height]="250" [width]="250" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-              [videoOptions]="videoOptions"
-              [imageQuality]="0.5"
+              [imageQuality]="0.8"
               (initError)="handleInitError($event)"
       ></webcam>
       <button class="actionBtn" (click)="triggerSnapshot();">Capture</button>
@@ -13,11 +12,11 @@
         <h4>Your Captured Image:</h4>
         <img [src]="webcamImage.imageAsDataUrl" alt="Loading" height="500" width="500"/>
         <br>
-        <button type="submit" (click)="this.visionService.uploadImageToStorage()" class="ui button">Upload Image</button>
+        <button type="submit" (click)="uploadImage()" class="ui button">Upload Image</button>
         <button type="submit" (click)="hideCapture()" class="ui button">Retake</button>
       </div>
   </div>
-  
+
   <!-- class="snapshot" -->
   <!-- <app-business-card></app-business-card> -->
   <!-- <h4 *ngIf="errors.length > 0">Messages:</h4>

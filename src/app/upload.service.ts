@@ -28,6 +28,12 @@ export class UploadService {
     });
     return FormGroup;
   }
+
+  uploadImage(base64: string) {
+    console.log('Current user took photo: ', this.authService.getCurrentUserID());
+    console.log('Upload service received: ', base64);
+
+  }
 }
 
 
@@ -43,6 +49,6 @@ export class UploadService {
   // console.log('Uploaded a Full Card minus ID', businessCard);
 // }
 
-  // NEED TO CALL FIREDATABASE UPLOAD TO COLLECTIONS; ATTACHED TO USERID & ADD IMGURI + BASE64; 
+  // NEED TO CALL FIREDATABASE UPLOAD TO COLLECTIONS; ATTACHED TO USERID & ADD IMGURI + BASE64;
   // RETURN SUCCESS; NO IMG CARD ON NGIF, CLEAR SCREAN OF CAPTURE
 

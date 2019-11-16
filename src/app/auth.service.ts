@@ -19,16 +19,15 @@ export class AuthService implements CanActivate {
     private user: Observable<firebase.User>;
     private userDetails: firebase.User = null;
     private userID: string;
-    private endodedUserID: Promise<string | void>;
-    private decodedUserID: Promise<any>;
 
     constructor(public angularFireAuthentication: AngularFireAuth, private router: Router) {
         this.user = angularFireAuthentication.authState;
+        console.log('Constructed user Observable');
         this.user.subscribe(
             (user) => {
-                if (user) {
+              console.log('Subscribed to user!');
+              if (user) {
                     this.userDetails = user;
-                    console.log('Subscribed in authService to: ', this.userDetails);
                 } else {
                     this.userDetails = null;
                 }
@@ -48,6 +47,7 @@ export class AuthService implements CanActivate {
             console.log('User is not authenticated');
             return false;
         }
+        this.userID = this.userDetails.uid;
         return true;
     }
 
@@ -63,13 +63,8 @@ export class AuthService implements CanActivate {
     //     return this.userDetails.getIdToken();
     // }
 
-    getCurrentUserID() {
-      // this.endodedUserID = this.angularFireAuthentication.auth.currentUser.getIdToken(true)
-      //   .then(function(encodedUserID) {
-      //     this.decodedUserID = FIRE_ADMIN.auth().verifyIdToken(this.endodedUserID.uid);
-      //     console.log('cur usr token: ', this.decodedUserID);
-      // });
-      return 'TestUser';
+    getCurrentUserID(): string {
+      return this.userID;
 }
     logout() {
         this.angularFireAuthentication.auth.signOut()

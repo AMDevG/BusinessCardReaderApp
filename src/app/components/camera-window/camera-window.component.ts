@@ -23,14 +23,14 @@ export class CameraWindowComponent implements OnInit {
     base64ImgUpload: string;
     uploadedImgURL: string;
 
-    constructor(private authService: AuthService, private visionService: VisionService) {}
+    constructor(private authService: AuthService, public visionService: VisionService, private uploadService: UploadService) {}
 
     public ngOnInit(): void {
-        WebcamUtil.getAvailableVideoInputs()
-        .then((mediaDevices: MediaDeviceInfo[]) => {
-            this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
-        });
-    }
+      WebcamUtil.getAvailableVideoInputs()
+      .then((mediaDevices: MediaDeviceInfo[]) => {
+          this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+      });
+  }
 
     public triggerSnapshot(): void {
         this.trigger.next();
@@ -52,10 +52,15 @@ export class CameraWindowComponent implements OnInit {
         this.webcamImage = webcamImage;
         this.base64ImgUpload = this.webcamImage.imageAsBase64;
         this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
-        console.log('Data URL: ', this.uploadedImgURL);
-        console.log('Current user took photo: ', this.authService.getCurrentUserID());
+        // console.log('Data URL: ', this.uploadedImgURL);
+
+        // console.log('Current user took photo: ', this.authService.getCurrentUserID());
         // this.uploadService.base64Img = this.base64ImgUpload;
         // this.uploadService.filePathUri = this.uploadedImgURL;
+    }
+
+    uploadImage() {
+      this.uploadService.uploadImage(this.base64ImgUpload);
     }
 
     public hideCapture() {

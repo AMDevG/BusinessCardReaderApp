@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import domtoimage from 'dom-to-image';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisionService {
   textArray = [];
+  base64: string;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -53,7 +55,27 @@ export class VisionService {
 
   uploadImageToStorage() {
       console.log("Mock call to upload Image!");
-      console.log("Uploaded and Processing!");
+
+      // console.log("Uploaded and Processing!");
     //   WILL NEED TO CHANGE IMAGE URI IN REQUEST -> THEN CALL EXTRACT TEXT
+  }
+
+  convertToBase64() {
+    // const image = document.createElement('img');
+    // image.src = this.imageUrl;
+    const imgNode = document.getElementById(`image`);
+    // if (imgNode ) {
+    console.log('SELECTED IMAGE');
+
+    domtoimage.toPng(imgNode)
+      .then( (dataUrl: string) => {
+        // console.log(dataUrl);
+        this.base64 = dataUrl;
+        console.log('base64: ', this.base64);
+      }).catch( (e: any) => {
+        console.log('SELECTED IMAGE BASE64 SOMETHING WENT WRONG');
+        console.log(e);
+      });
+    // }
   }
 }
