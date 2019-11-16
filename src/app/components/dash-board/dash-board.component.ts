@@ -9,13 +9,14 @@ import { Title } from '@angular/platform-browser';
 })
 export class DashBoardComponent implements OnInit {
     visibleCam = false;
-    userName: string;
+    userName;
     title = 'Dashboard';
 
-    constructor(private authService: AuthService, private titleService: Title) {}
+    constructor(public authService: AuthService, private titleService: Title) {}
 
     ngOnInit() {
-        this.userName = this.authService.getCurrentUser();
+        this.userName = this.authService.getCurrentUserID();
+        console.log('INit with usr: ', this.userName);
         this.titleService.setTitle(this.title);
     }
 

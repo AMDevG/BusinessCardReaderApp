@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 // import { AngularFireAuth } from 'angularfire2/auth';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 // import * as firebase from 'firebase/app';
+import * as admin from 'firebase-admin';
 import { User } from './user/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,6 +12,9 @@ export class AuthService implements CanActivate {
 
     private user: Observable<firebase.User>;
     private userDetails: firebase.User = null;
+    private userID: string;
+    private endodedUserID: Promise<string | void>;
+    private decodedUserID: Promise<any>;
 
     constructor(public angularFireAuthentication: AngularFireAuth, private router: Router) {
         this.user = angularFireAuthentication.authState;
@@ -49,10 +53,16 @@ export class AuthService implements CanActivate {
         }
     }
 
-    getCurrentUser(): string {
-        return this.userDetails.email;
-    }
+    // getCurrentUser(): Promise<string> {
+    //     return this.userDetails.getIdToken();
+    // }
 
+    getCurrentUserID() {
+      this.endodedUserID = this.angularFireAuthentication.auth.currentUser.getIdToken(true)
+        .then(function(encodedUserID) {
+          this.decodedUserID = admin.auth().verifyIdToken(this.endodedUserID.uid);
+      });
+}
     logout() {
         this.angularFireAuthentication.auth.signOut()
         .then((res) => this.router.navigate(['/login']));
