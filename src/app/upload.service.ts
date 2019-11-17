@@ -58,7 +58,6 @@ export class UploadService {
         }).then(res => {
             console.log('Successfully added document! Calling Vision API');
             this.visionService.createRequest(base64);
-
         }, err => reject(err));
       });
     } else {

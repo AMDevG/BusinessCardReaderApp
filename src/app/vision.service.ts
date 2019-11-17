@@ -13,26 +13,31 @@ export class VisionService {
   constructor(private httpClient: HttpClient) {
     this.API_URL = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBZFB9-CMuMag5APKDt_WxZ_BNS1HO-en4';
   }
-  createRequest(base64In: string): any {
-    this.request = {
+  createRequest(baseIn: string): any {
+    let request = {
       requests: [
       {
       image: {
-        content: `${base64In}`
+        content: `${baseIn}`
       },
       features: [
         {type: 'TEXT_DETECTION',
         maxResults: 1, }]
         }]
       };
+    // this.extractText();
+    this.request = request;
+    console.log('set this.request!');
     this.extractText();
     }
 
     extractText() {
-      console.log('Beginning text extraction');
+      console.log(`Beginning text extraction URL: ${this.API_URL}`);
+
       this.httpClient.post(this.API_URL, this.request)
       .subscribe( (results: any) => {
         const tmpArr = results.responses[0].textAnnotations;
+        console.log('received tmpArr: ', tmpArr)
         tmpArr.forEach(element => {
           this.textArray.push(element['description']);
         });
