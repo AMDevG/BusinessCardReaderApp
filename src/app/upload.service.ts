@@ -29,22 +29,29 @@ export class UploadService {
   /*  *********************************************************  */
   uploadImage(base64: string, imageUri: string) {
     this.userId = this.authService.getCurrentUserID();
-    const base64Obj = {
+    let base64Obj = {
       base64
+    };
+    let datUrlObj = {
+      imageUri
     };
 
     if (base64 !== null ) {
       // this.firestore.collection('users/kKANbY9qhzYkIMWFWVWHm5QqsYu1/images');
-      return new Promise<any>((resolve, reject) =>{
+      return new Promise<any>((resolve, reject) => {
         // this.usersCollection
-        this.firestore.collection('users/${this.userId}/images')
-          .add(base64Obj)
-          .then(res => {console.log('Successul upload for user: ${this.userId}'); }, err => reject(err));
+        this.firestore.collection(`users/${this.userId}/images`)
+          .add({base64Obj, datUrlObj})
+          .then(res => {console.log(`Successul upload for user: ${this.userId}`); }, err => reject(err));
     });
 
     } else {
       console.log('Error uploading');
     }
+
+  }
+
+  retrieveImage() {
 
   }
   createForm() {
