@@ -57,7 +57,7 @@ export class UploadService {
           dataUrlStr: `${imageUri}`
         }).then(res => {
             console.log('Successfully added document! Calling Vision API');
-            this.visionService.createRequest(`${base64}`);
+            this.visionService.createRequest(base64);
         }, err => reject(err));
       });
     } else {
