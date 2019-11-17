@@ -24,6 +24,9 @@ export class UploadService {
                 this.usersRef = this.firestore.collection<string>('users');
     // const storageRef = firestore.collection('/users');
   }
+
+  // PATH TO THE IMAGES /users/[UID]/images/[IMAGEAUTO-ID] - BASE64 ATTR. AND DATAURL
+  /*  *********************************************************  */
   uploadImage(base64: string, imageUri: string) {
     this.userId = this.authService.getCurrentUserID();
     const base64Obj = {
@@ -34,13 +37,13 @@ export class UploadService {
       // this.firestore.collection('users/kKANbY9qhzYkIMWFWVWHm5QqsYu1/images');
       return new Promise<any>((resolve, reject) =>{
         // this.usersCollection
-        this.firestore.collection('users/kKANbY9qhzYkIMWFWVWHm5QqsYu1/images')
+        this.firestore.collection('users/${this.userId}/images')
           .add(base64Obj)
-          .then(res => {console.log('Successul upload!'); }, err => reject(err));
+          .then(res => {console.log('Successul upload for user: ${this.userId}'); }, err => reject(err));
     });
 
     } else {
-      console.log('Didnt receive base64');
+      console.log('Error uploading');
     }
 
   }
