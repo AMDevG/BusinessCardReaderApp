@@ -6,65 +6,87 @@ import { BusinessCard } from './business-card';
 import { BusinessCardService } from './business-card.service';
 import { FormBuilder, FormGroup, Validators, Form } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
+  imgUID: number;
   base64Img: string;
   filePathUri: string;
   userId: string;
-  uploadForm: FormGroup;
-  collString: string;
+  images: Observable<any[]>;
+  // uploadForm: FormGroup;
   usersRef: AngularFirestoreCollection<string>;
+  currentCollection: AngularFirestoreCollection;
 
   constructor(private authService: AuthService, private firestore: AngularFirestore,
-              private fireAuthService: AngularFireAuth, private fb: FormBuilder) {
-                this.usersRef = this.firestore.collection<string>('users');
-    // const storageRef = firestore.collection('/users');
+              private fireAuthService: AngularFireAuth, private fb: FormBuilder) {  }
+
+/* TEST CODE FOR UPDATING BASED ON DOCREF ID **************** */
+
+  getImageIDs() {
+    // let doc = this.firestore.collection(`users/${this.userId}/images`, ref => ref.where('id', '==', id));
+    this.currentCollection = this.firestore.collection(`users/${this.userId}/images`);
+    this.images = this.currentCollection.snapshotChanges().pipe(
+      map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        console.log('Retrieved id: ', id);
+        return { id, ...data };
+      });
+    }));
+
+
+    // doc.snapshotChanges().pipe(
+    //   map(actions => actions.map(a => {
+    //     const data = a.payload.doc.data();
+    //     const id = a.payload.doc.id;
+    //     console.log('snapshot changes called in update');
+    //     console.log(`Doc ID: ${id}`);
+    //     return { id, ...data };
+    //   }))).subscribe((_doc: any) => {
+    //    let docId = _doc[0].payload.doc.id; //first result of query [0]
+    //    console.log(`Doc ID in subscription is" ${docId}`);
+    //    this.firestore.doc(`users/${this.userId}/images`).update({base64str: value});
+    //   });
   }
 
   // PATH TO THE IMAGES /users/[UID]/images/[IMAGEAUTO-ID] - BASE64 ATTR. AND DATAURL
   /*  *********************************************************  */
   uploadImage(base64: string, imageUri: string) {
+    // console.log('Calling get image for id of doc following upload;');
+    // this.getImageIDs();
     this.userId = this.authService.getCurrentUserID();
-    let base64Obj = {
-      base64
-    };
-    let datUrlObj = {
-      imageUri
-    };
 
     if (base64 !== null ) {
-      // this.firestore.collection('users/kKANbY9qhzYkIMWFWVWHm5QqsYu1/images');
       return new Promise<any>((resolve, reject) => {
-        // this.usersCollection
-        this.firestore.collection(`users/${this.userId}/images`)
-          .add({base64Obj, datUrlObj})
-          .then(res => {console.log(`Successul upload for user: ${this.userId}`); }, err => reject(err));
-    });
-
+        this.firestore.collection(`users/${this.userId}/images`).doc('testUpload').set({
+          base64str: `${base64}`,
+          dataUrlStr: `${imageUri}`
+        })
+          .then(res => {console.log('Successfully added document!'); }, err => reject(err));
+      });
     } else {
       console.log('Error uploading');
     }
-
+  }
   }
 
-  retrieveImage() {
-
-  }
-  createForm() {
-    this.uploadForm = this.fb.group({
-      firstNameInput:  ['', [Validators.required, Validators.minLength(3)]],
-      lastNameInput:  ['', [Validators.required, Validators.minLength(3)]],
-      companyInput: ['', [Validators.required, Validators.minLength(3)]],
-      emailInput:  ['', [Validators.required, Validators.email]],
-      phoneInput: ['', [Validators.required, Validators.minLength(3)]]
-    });
-    return FormGroup;
-  }
-}
+  // createForm() {
+  //   this.uploadForm = this.fb.group({
+  //     firstNameInput:  ['', [Validators.required, Validators.minLength(3)]],
+  //     lastNameInput:  ['', [Validators.required, Validators.minLength(3)]],
+  //     companyInput: ['', [Validators.required, Validators.minLength(3)]],
+  //     emailInput:  ['', [Validators.required, Validators.email]],
+  //     phoneInput: ['', [Validators.required, Validators.minLength(3)]]
+  //   });
+  //   return FormGroup;
+  // }
 
 
 
