@@ -1,6 +1,5 @@
-<h1>Welcome to you Dashboard, {{userName}}!</h1>
+<h1>Welcome to your Dashboard!</h1>
 <button (click)="toggleCameraWindow()" class="ui button">Scan A Business Card</button>
-<!-- <button (click)="testUserData()" class="ui button">Get User Data</button> -->
 <button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button>
 
 <app-camera-window [displayCamera]="visibleCam"></app-camera-window>

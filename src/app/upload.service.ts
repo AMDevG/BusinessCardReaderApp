@@ -52,12 +52,12 @@ export class UploadService {
 
     if (base64 !== null ) {
       return new Promise<any>((resolve, reject) => {
-        this.firestore.collection(`users/${this.userId}/images`).doc('test2vision').set({
+        this.firestore.collection(`users/${this.userId}/images`).doc('test4vision').set({
           base64str: `${base64}`,
           dataUrlStr: `${imageUri}`
         }).then(res => {
             console.log('Successfully added document! Calling Vision API');
-            this.visionService.createRequest(base64);
+            this.visionService.createRequest(`${base64}`);
         }, err => reject(err));
       });
     } else {

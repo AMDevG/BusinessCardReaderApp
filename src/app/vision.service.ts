@@ -14,7 +14,7 @@ export class VisionService {
     this.API_URL = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBZFB9-CMuMag5APKDt_WxZ_BNS1HO-en4';
   }
   createRequest(baseIn: string): any {
-    let request = {
+    this.request = {
       requests: [
       {
       image: {
@@ -26,23 +26,22 @@ export class VisionService {
         }]
       };
     // this.extractText();
-    this.request = request;
-    console.log('set this.request!');
+    // console.log(`Base included: ${baseIn}`);
     this.extractText();
     }
 
     extractText() {
-      console.log(`Beginning text extraction URL: ${this.API_URL}`);
+      console.log(`Beginning text extraction, req: ${this.request['requests'][0]['image']}`);
 
       this.httpClient.post(this.API_URL, this.request)
       .subscribe( (results: any) => {
-        const tmpArr = results.responses[0].textAnnotations;
-        console.log('received tmpArr: ', tmpArr)
+        let tmpArr = results.responses[0].textAnnotations;
+        console.log('received tmpArr: ', tmpArr);
         tmpArr.forEach(element => {
           this.textArray.push(element['description']);
         });
         // console.log('Going to pass array of type to process: ', typeof this.textArray);
-        this.processIntoForm();
+        // this.processIntoForm();
       }
     );
   }
