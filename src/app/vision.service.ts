@@ -43,10 +43,9 @@ export class VisionService {
           this.textArray.push(element.description);
         });
       });
-      this.getDescriptionArray();
     }
 
-  getDescriptionArray() {
-    // console.log('Text Annotations: ', this.textArray);
+  getAnnotationsArray() {
+    return this.textArray;
   }
 }

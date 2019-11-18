@@ -15,12 +15,21 @@ export class UploadService {
   filePathUri: string;
   userId: string;
   images: Observable<any[]>;
+  annotations = [];
   usersRef: AngularFirestoreCollection<string>;
   currentCollection: AngularFirestoreCollection;
 
   constructor(private authService: AuthService, private firestore: AngularFirestore,
               private visionService: VisionService) { }
 
+/* ADD FUNCTIONAL: DO NOT UPLOAD UNTIL FORM HAS BEEN RENDERED AND EDITED
+   SPLIT INTO TWO FUNCTIONS EXTRACT TEXT -> FILL IN FORM -> DISPLAY IMAGE + FORM (USER EDIT TEXT)
+   -> UPLOAD AND SAVE;
+
+   -- RENDER INTO MY DASHBOARD:
+      - LISTEN FOR ANY CHANGES TO COLLECTION -> SNAPSHOT CHANGES
+
+*/
   uploadImage(base64: string, imageUri: string) {
     this.userId = this.authService.getCurrentUserID();
     if (base64 !== null ) {
@@ -30,10 +39,18 @@ export class UploadService {
             dataUrlStr: `${imageUri}`
           }).then(res => {
               this.visionService.createRequest(base64);
+              this.uploadAnnotations();
           }, err => reject(err));
         });
       } else {
         console.log('Error uploading');
       }
     }
+
+  uploadAnnotations() {
+    this.annotations = this.visionService.getAnnotationsArray();
+    this.annotations.forEach(element => {
+      console.log('Upload Service received ', element);
+    });
+  }
 }
