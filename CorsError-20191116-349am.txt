@@ -1,3 +1,24 @@
+VISION BASE64 ERROR:
+
+error:
+code: 400
+details: Array(1)
+0:
+@type: "type.googleapis.com/google.rpc.BadRequest"
+fieldViolations: Array(2)
+0: {description: "Invalid JSON payload received. Unknown name "image": Cannot find field."}
+1: {description: "Invalid JSON payload received. Unknown name "features": Cannot find field."}
+length: 2
+__proto__: Array(0)
+__proto__: Object
+length: 1
+__proto__: Array(0)
+message: "Invalid JSON payload received. Unknown name "image": Cannot find field.↵Invalid JSON payload received. Unknown name "features": Cannot find field."
+status: "INVALID_ARGUMENT"
+
+
+
+
 service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{userId} {
