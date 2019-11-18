@@ -16,7 +16,6 @@ export class DashBoardComponent implements OnInit {
 
     ngOnInit() {
         this.userName = this.authService.getCurrentUserID();
-        console.log('INit with usr: ', this.userName);
         this.titleService.setTitle(this.title);
     }
 

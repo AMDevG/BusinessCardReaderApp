@@ -11,8 +11,8 @@ import { CameraWindowComponent } from './components/camera-window/camera-window.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
-import { AngularFireModule, FirebaseFirestore } from '@angular/fire';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';

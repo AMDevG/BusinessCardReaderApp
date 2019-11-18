@@ -21,8 +21,6 @@ export class LoginComponent {
 
   constructor(public authService: AuthService, private router: Router,
               public fb: FormBuilder, private titleService: Title) {
-
-
     this.loginForm = fb.group({
         email: new FormControl('', Validators.compose([
           Validators.email,
@@ -38,9 +36,8 @@ export class LoginComponent {
     }
 
     doSignin(email: string, password: string): void {
-        console.log('Signing in: ', email);
         this.authService.login(email, password)
-        .then( res => {
+          .then( res => {
             this.success.emit(true);
             this.loginForm.reset();
             if (this.redirectUrl) {
