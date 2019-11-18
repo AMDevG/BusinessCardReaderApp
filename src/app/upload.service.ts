@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
 import { BusinessCard } from './business-card';
 import { BusinessCardService } from './business-card.service';
-import { FormBuilder} from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { VisionService } from './vision.service';
