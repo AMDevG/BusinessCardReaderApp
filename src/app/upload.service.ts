@@ -52,7 +52,7 @@ export class UploadService {
 
     if (base64 !== null ) {
       return new Promise<any>((resolve, reject) => {
-        this.firestore.collection(`users/${this.userId}/images`).doc('test4vision').set({
+        this.firestore.collection(`users/${this.userId}/images`).doc('testCard1').set({
           base64str: `${base64}`,
           dataUrlStr: `${imageUri}`
         }).then(res => {
@@ -65,17 +65,6 @@ export class UploadService {
     }
   }
   }
-
-  // createForm() {
-  //   this.uploadForm = this.fb.group({
-  //     firstNameInput:  ['', [Validators.required, Validators.minLength(3)]],
-  //     lastNameInput:  ['', [Validators.required, Validators.minLength(3)]],
-  //     companyInput: ['', [Validators.required, Validators.minLength(3)]],
-  //     emailInput:  ['', [Validators.required, Validators.email]],
-  //     phoneInput: ['', [Validators.required, Validators.minLength(3)]]
-  //   });
-  //   return FormGroup;
-  // }
 
 
 

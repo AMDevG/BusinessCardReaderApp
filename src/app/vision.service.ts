@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+// const vision = require('@google-cloud/vision');
+// const client = new vision.ImageAnnotatorClient();
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +15,24 @@ export class VisionService {
 
   url = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBZFB9-CMuMag5APKDt_WxZ_BNS1HO-en4';
 
-request = {
+payload = {
+    requests: [
+  {
     image: {
-      content: this.base64Enc
+      content: '',
     },
-    features: [ {
-      type: 'TEXT_DETECTION',
-      maxResults: 1,
-    }]
-  };
+    features: [
+      {
+        type: 'TEXT_DETECTION'
+      }
+    ]
+  }]
+};
 
   createRequest(base64) {
     this.base64Enc = base64;
-    //this.request['requests'][0]['image']['content'] = this.base64Enc;
+    this.payload['requests'][0]['image']['content'] = this.base64Enc;
     // console.log('set Conten Enc to: ', this.base64Enc);
-    console.log('Calling text extract');
     this.extractText();
   }
 
@@ -36,8 +40,9 @@ request = {
     extractText() {
       // console.log(`Beginning text extraction, base64: ${this.request['requests'][0]['image']['content']}`);
       console.log('Calling vision API');
-      this.httpClient.post(this.url, this.request)
-      .subscribe( (results: any) => {
+      this.httpClient.post(this.url, JSON.stringify(this.payload))
+      .subscribe((results: any) => {
+        // console.log('Received: ', results.responses[0]);
         const tmpArr = results.responses[0].textAnnotations;
         console.log('received tmpArr: ', tmpArr);
         tmpArr.forEach(element => {
@@ -45,9 +50,10 @@ request = {
         });
         // console.log('Going to pass array of type to process: ', typeof this.textArray);
         // this.processIntoForm();
-      }
-    );
-  }
+      });
+    }
+  //   );
+  // }
 
   processIntoForm() {
     console.log('textArray: ');
