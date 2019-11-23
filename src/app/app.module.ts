@@ -21,6 +21,7 @@ import { UploadService } from './upload.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
+import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
     LoginComponent,
     BusinessCardComponent,
     DashBoardComponent,
-    CameraWindowComponent
+    CameraWindowComponent,
+    TopNavBarComponent
   ],
   imports: [
     BrowserModule,

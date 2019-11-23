@@ -1,0 +1,40 @@
+<nav class="main-navbar navbar navbar-expand-lg" >
+  <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true"> BUSINESS CARD SCANNER </a>
+    <span class="navbar-toggler-icon">
+      <span *ngIf="!navbarCollapsed" class="fa fa-times"></span>
+    </span>
+
+
+  <div class="navbar-items-wrapper navbar-collapse collapse" role="navigation">
+    <ul class="navbar-items-list navbar-nav ml-auto">
+      <li class="nav-search-bar-item d-lg-none">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']">
+          DASHBOARD
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/about']">
+          ABOUT
+        </a>
+      </li>
+      <li class="nav-divider d-lg-none">
+        <hr class="divider-line">
+      </li>
+
+      <!-- NEED TO REROUTE TO DASHBOARD IF LOGGEDINOBSERVABLE RETURNS TRUE -->
+      <li class="nav-item user-action-item">
+        <a class="nav-link" [routerLink]="['/user']">
+          Account
+        </a>
+      </li>
+      <li class="nav-item user-action-item">
+        <!-- <a class="nav-link" (click)="logout()"> -->
+            <a class="nav-link">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
