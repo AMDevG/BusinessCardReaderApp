@@ -44,7 +44,7 @@ export class UploadService {
               console.log('Vision Service Returned; 200;');
               this.annotations = this.visionService.getAnnotationsArray();
               console.log('Annots in Upload Service:', this.annotations);
-              this.newCard = new BusinessCard(this.annotations);
+              this.newCard = new BusinessCard();
 
               // MOVE BUSINESS CARD CREATION OUT ---
               // CALL PROCESSOR TO DISTINGUISH NAME; PHONE EMAIL, ETC FROM
