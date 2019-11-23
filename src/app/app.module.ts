@@ -47,7 +47,7 @@ import { BusinessCard } from './business-card';
     AngularFirestoreModule
   ],
   providers: [AuthService, AngularFireAuth,
-              UsersService, UploadService, Title], // BusinessCard
+              UsersService, UploadService, Title, BusinessCard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
