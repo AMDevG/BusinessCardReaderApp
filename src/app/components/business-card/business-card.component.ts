@@ -10,14 +10,24 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './business-card.component.html',
   styleUrls: ['./business-card.component.css']
 })
-export class BusinessCardComponent implements OnInit {
+export class BusinessCardComponent {
 
   base64Img: string;
   filePathUri: string;
   userId: string;
-  uploadForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { this.createForm(); }
+  uploadForm: FormGroup;
+  annotations = [];
+
+  firstName: any;
+  lastName: any;
+  compName: any;
+  titleName: any;
+  phone: any;
+  email: any;
+
+  constructor(private fb: FormBuilder, private visionService: VisionService, private uploadService: UploadService,
+              ) { this.createForm(); }
 
   createForm() {
     this.uploadForm = this.fb.group({
@@ -29,18 +39,19 @@ export class BusinessCardComponent implements OnInit {
     });
     // return FormGroup;
   }
-  ngOnInit() {}
+
+
+  populateForm() {
+    this.uploadForm.setValue({firstNameInput: this.firstName, lastNameInput: this.lastName, companyInput: this.compName,
+
+                              emailInput: this.email, phoneInput: this.phone}
+                              );
+    console.log('Populated Form!');
+    return this.uploadForm;
+  }
 
   onSubmit(value: any) {
     console.log('form submit!');
-  //   // PASSES BUSINESSCARD OBJECT TO UPLOADSERVICE TO HANDE DB WRITES/HTTP; WITH UUID FROM BCARD
-  //   // SERVICE
-  //   let submittedBCard = this.businessCardService
-  //         .createNewBusinessCard(value.firstName, value.lastNameInput,
-  //                               value.companyInput, value.email, value.phoneInput);
-  //   console.log('Calling vision Service');
-  //   this.visionService.extractText();
-  //   console.log(this.visionService.getDescriptionArray());
   }
 
 

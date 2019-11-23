@@ -8,18 +8,27 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent implements OnInit {
-    visibleCam = false;
+    public visibleCam = false;
     userName;
     title = 'Dashboard';
+    public cardsAvailable = false;
 
     constructor(public authService: AuthService, private titleService: Title) {}
 
     ngOnInit() {
-        // this.userName = this.authService.getCurrentUserID();
+        this.userName = this.authService.getCurrentUserID();
         this.titleService.setTitle(this.title);
     }
 
     toggleCameraWindow() {
         this.visibleCam = !this.visibleCam;
+    }
+
+    displayAllCards() {
+
+      /*  FUNCTION NEEDS TO BE ONLOAD
+          HIT FIREBASE SERVICE (UPLOAD") IF USERNAME (UID) !EXIST DISPLAY TEXT 'NO SAVED CARDS' W/ BTN 'GET STARTED' TO FIRE SHOWCAMERA
+          (ONCLICK) */
+
     }
 }

@@ -28,18 +28,20 @@ export class VisionService {
     }]
   };
 
-  createRequest(base64) {
+  async executeRequest(base64) {
     this.base64Enc = base64;
     this.payload.requests[0].image.content = this.base64Enc;
-    this.extractText();
+    await this.extractText();
   }
 
+  // MAKE ASYNCH? HAVE UPLOAD WAIT
     extractText() {
       console.log('Calling vision API');
       this.httpClient.post(this.url, JSON.stringify(this.payload))
       .subscribe((results: any) => {
         const tmpArr = results.responses[0].textAnnotations;
         tmpArr.forEach(element => {
+          console.log('Pushing element to tmparr: ', element);
           this.textArray.push(element.description);
         });
       });

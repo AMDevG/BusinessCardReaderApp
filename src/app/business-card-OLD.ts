@@ -1,4 +1,4 @@
-import { uuid } from '../app/util/uuid';
+import { uuid } from './util/uuid';
 
 export class BusinessCard {
     // ADD PASS DOC ID ASSOCIATED WITH IMAGE??
