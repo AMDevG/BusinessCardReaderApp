@@ -19,9 +19,9 @@
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
           <p>Enter your email and password below to sign in.</p>
           <form [formGroup]="loginForm">
-          <input class="mdl-textfield__input" style="display:inline; width:auto;" [formControl]="loginForm.controls['email']" type="text" id="emailInput" name="email" placeholder="Email"/>
+          <input class="mdl-textfield__input" style="display:inline;" [formControl]="loginForm.controls['email']" type="text" id="emailInput" name="email" placeholder="Email"/>
           &nbsp;&nbsp;&nbsp;
-          <input class="mdl-textfield__input" style="display:inline; width:auto;" [formControl]="loginForm.controls['password']" type="password" id="passwordInput" name="password" placeholder="Password"/>
+          <input class="mdl-textfield__input" style="display:inline;" [formControl]="loginForm.controls['password']" type="password" id="passwordInput" name="password" placeholder="Password"/>
           <br/><br/>
           <button class="mdl-button mdl-js-button mdl-button--raised" name="signin" type="submit" (click)="onSubmit()">Sign In</button>
           &nbsp;&nbsp;&nbsp;

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AuthService } from '../../auth.service';
 
 import { Router} from '@angular/router';
-import { UsersService } from '../../user/users.service';
 import { User } from '../../user/user.model';
 import { Title } from '@angular/platform-browser';
 
