@@ -45,14 +45,10 @@ export class UploadService {
               this.annotations = this.visionService.getAnnotationsArray();
               console.log('Annots in Upload Service:', this.annotations);
               this.newCard = new BusinessCard();
+              this.newCard.populateFields(this.annotations);
 
               // MOVE BUSINESS CARD CREATION OUT ---
               // CALL PROCESSOR TO DISTINGUISH NAME; PHONE EMAIL, ETC FROM
-              // UNORDERED ARRAY OF TEXT
-              // this.newCard = new BusinessCard(this.annotations[0], this.annotations[1],
-                                              // this.annotations[2], this.annotations[3], this.annotations[4]);
-
-              // console.log('Created new Card!');
 
           }, err => reject(err));
         });
@@ -62,6 +58,7 @@ export class UploadService {
     }
 
     getBusinessCard() {
+      console.log('Returning new card: ', this.newCard.firstName)
       return this.newCard;
     }
 

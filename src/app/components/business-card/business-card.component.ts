@@ -12,11 +12,12 @@ import { BusinessCard } from 'src/app/business-card';
   styleUrls: ['./business-card.component.css']
 })
 export class BusinessCardComponent implements OnInit {
-
   base64Img: string;
   filePathUri: string;
   userId: string;
+  public formNotPopulated = true;
 
+  testCard: BusinessCard;
   public uploadForm: FormGroup;
   annotations = [];
 
@@ -40,16 +41,19 @@ export class BusinessCardComponent implements OnInit {
       phoneInput: ['', [Validators.required, Validators.minLength(3)]]
     });
     // MOVE CALL TO GET INTO VARIABLE
-      this.populateForm(this.uploadService.getBusinessCard());
-      console.log('Component Form Set');
-      console.log('BCard Recieved in Component: ', this.uploadService.getBusinessCard() );
+      // this.populateForm(this.uploadService.getBusinessCard());
+      // console.log('Component Form Set');
+      // console.log('BCard Recieved in Component: ', this.uploadService.getBusinessCard() );
   }
-  populateForm(card: BusinessCard) {
-    this.uploadForm.setValue({firstNameInput: card.firstName, lastNameInput: card.lastName, companyInput: card.companyName,
-                              emailInput: card.email, phoneInput: card.phone}
-                              );
 
-    console.log('Populated Form!');
+  populateForm(card: BusinessCard) {
+    this.businessCard = this.uploadService.getBusinessCard();
+    this.uploadForm.setValue({firstNameInput: this.businessCard.firstName, lastNameInput: this.businessCard.lastName,
+                              companyInput: this.businessCard.companyName,
+                              emailInput: this.businessCard.email, phoneInput: this.businessCard.phone}
+                              );
+    console.log('Populated Form! in Component!');
+    this.formNotPopulated = false;
   }
 
   onSubmit(value: any) {
