@@ -1,4 +1,4 @@
-import { BusinessCard } from './business-card-OLD';
+import { BusinessCard } from './business-card';
 
 describe('BusinessCard', () => {
   it('should create an instance', () => {

@@ -28,23 +28,24 @@ export class VisionService {
     }]
   };
 
-  async executeRequest(base64) {
+   executeRequest(base64) {
     this.base64Enc = base64;
     this.payload.requests[0].image.content = this.base64Enc;
-    await this.extractText();
+    this.extractText();
   }
 
   // MAKE ASYNCH? HAVE UPLOAD WAIT
     extractText() {
-      console.log('Calling vision API');
+      console.log('Extracting Text');
       this.httpClient.post(this.url, JSON.stringify(this.payload))
       .subscribe((results: any) => {
         const tmpArr = results.responses[0].textAnnotations;
         tmpArr.forEach(element => {
-          console.log('Pushing element to tmparr: ', element);
+          // console.log('Pushing element to tmparr: ', element);
           this.textArray.push(element.description);
         });
       });
+      console.log('Text ext. Success;');
     }
 
   getAnnotationsArray() {
