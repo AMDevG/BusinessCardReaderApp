@@ -1,7 +1,7 @@
 <nav class="main-navbar navbar navbar-expand-lg" >
   <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true"> BUSINESS CARD SCANNER </a>
     <span class="navbar-toggler-icon">
-      <span *ngIf="!navbarCollapsed" class="fa fa-times"></span>
+        <button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button>
     </span>
 
 
