@@ -1,6 +1,15 @@
-<app-top-nav-bar></app-top-nav-bar>
-<button (click)="toggleCameraWindow()" class="ui button">Scan A Business Card</button>
-<button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button>
+<!-- <app-top-nav-bar></app-top-nav-bar> -->
+<h3>Welcome to your Dashboard!</h3>
+<ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <!-- <li><a href="#news">News</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li> -->
+    <li><a (click)="toggleCameraWindow()" class="ui button">Scan A Business Card</a></li>
+    <li><a (click)="this.authService.logout()" class="ui button">Logout</a></li>
+  </ul>
+<!-- <button (click)="toggleCameraWindow()" class="ui button">Scan A Business Card</button> -->
+<!-- <button type="submit" (click)="this.authService.logout()" class="ui button">Logout</button> -->
 
 <app-camera-window [displayCamera]="visibleCam"></app-camera-window>
 

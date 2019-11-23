@@ -6,11 +6,8 @@ import { AuthService } from 'src/app/auth.service';
   templateUrl: './top-nav-bar.component.html',
   styleUrls: ['./top-nav-bar.styles.scss']
 })
-export class TopNavBarComponent implements OnInit {
+export class TopNavBarComponent {
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit() {
-  }
+  constructor(public authService: AuthService) { }
 
 }
