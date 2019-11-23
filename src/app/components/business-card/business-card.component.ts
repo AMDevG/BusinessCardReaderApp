@@ -41,15 +41,14 @@ export class BusinessCardComponent implements OnInit {
                   emailInput:  ['', [Validators.required, Validators.email]],
                   phoneInput: ['', [Validators.required, Validators.minLength(3)]]
                 });
-                this.businessCard.getCard().subscribe(annotationResults => {
+                this.subscription = this.businessCard.getCard().subscribe(annotationResults => {
                   if (annotationResults) {
                     console.log('BCard Component received', annotationResults);
-                    this.populateForm(annotationResults);
-                    this.populated = true;
+                    // this.populateForm(annotationResults);
+                    // this.populated = true;
                   }
                 });
               } // ) { this.createForm(); }
-
 populateForm(businessCard: BusinessCard) {
     console.log('Populating form with annots in components');
     console.log('Received: ', businessCard);

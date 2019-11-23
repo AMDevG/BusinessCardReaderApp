@@ -22,9 +22,9 @@ export class BusinessCard {
         // this.populated = false;
       }
 
-      populateFields(annotations: any[]) {
+      populateFields(annotationResults: any[]) {
         console.log('Populating in BCard Class');
-        this.subject.next({ annotationResults: annotations});
+        this.subject.next(annotationResults);
       }
 
       getCard(): Observable<BusinessCard> {
