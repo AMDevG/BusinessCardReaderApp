@@ -17,7 +17,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { UsersService } from './user/users.service';
-import { UploadService } from './upload.service';
+import { UploadService } from './fire-store.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';

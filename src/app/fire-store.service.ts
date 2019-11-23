@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 // import { BusinessCardComponent } from '../app/components/business-card/business-card.component';
-import { BusinessCard } from '../app/business-card';
+import { BusinessCard } from './business-card';
 import { BusinessCardService } from './business-card.service';
 import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -11,6 +11,7 @@ import { VisionService } from './vision.service';
   providedIn: 'root'
 })
 export class UploadService {
+  doneProcessing = false;
   imgUID: number;
   base64Img: string;
   filePathUri: string;
@@ -33,6 +34,7 @@ export class UploadService {
 
 */
    uploadImage(base64: string, imageUri: string) {
+    this.doneProcessing = false;
     this.userId = this.authService.getCurrentUserID();
     if (base64 !== null ) {
         return new Promise<any>((resolve, reject) => {
@@ -40,17 +42,17 @@ export class UploadService {
             base64str: `${base64}`,
             dataUrlStr: `${imageUri}`
           }).then(async res => {
+              console.log('Uploaded base64 to user profile, calling API');
               await this.visionService.executeRequest(base64);
-              console.log('Vision Service Returned; 200;');
-              this.annotations = this.visionService.getAnnotationsArray();
-              console.log('Annots in Upload Service:', this.annotations);
-              this.newCard = new BusinessCard();
-              this.newCard.populateFields(this.annotations);
-
-              // MOVE BUSINESS CARD CREATION OUT ---
-              // CALL PROCESSOR TO DISTINGUISH NAME; PHONE EMAIL, ETC FROM
-
-          }, err => reject(err));
+              console.log('API RETURNED');
+          }, err => reject(err))
+          .then(res => {
+            this.annotations = this.visionService.getAnnotationsArray();
+            console.log('Annots in FireStore Service:', this.annotations);
+            this.newCard = new BusinessCard();
+            this.newCard.populateFields(this.annotations);
+            // console.log('populated fields called on new Card');
+          });
         });
       } else {
         console.log('Error uploading');
@@ -58,7 +60,7 @@ export class UploadService {
     }
 
     getBusinessCard() {
-      console.log('Returning new card: ', this.newCard.firstName)
+      console.log('Returning new card: ');
       return this.newCard;
     }
 

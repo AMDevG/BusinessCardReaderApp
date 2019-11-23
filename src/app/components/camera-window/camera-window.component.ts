@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { AuthService } from '../../auth.service';
-import { UploadService } from '../../upload.service';
+import { UploadService } from '../../fire-store.service';
 import { VisionService } from 'src/app/vision.service';
 
 @Component({

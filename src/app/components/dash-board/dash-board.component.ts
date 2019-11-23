@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Title } from '@angular/platform-browser';
 
@@ -9,9 +9,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class DashBoardComponent implements OnInit {
     public visibleCam = false;
+    // public cardsAvailable = false;
+
     userName;
     title = 'Dashboard';
-    public cardsAvailable = false;
 
     constructor(public authService: AuthService, private titleService: Title) {}
 
@@ -24,11 +25,7 @@ export class DashBoardComponent implements OnInit {
         this.visibleCam = !this.visibleCam;
     }
 
-    displayAllCards() {
-
-      /*  FUNCTION NEEDS TO BE ONLOAD
-          HIT FIREBASE SERVICE (UPLOAD") IF USERNAME (UID) !EXIST DISPLAY TEXT 'NO SAVED CARDS' W/ BTN 'GET STARTED' TO FIRE SHOWCAMERA
-          (ONCLICK) */
-
+    displayCardForm() {
+      // this.cardsAvailable = !this.cardsAvailable;
     }
 }
