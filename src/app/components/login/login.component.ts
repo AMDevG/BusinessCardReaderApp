@@ -16,7 +16,15 @@ export class LoginComponent {
   loginForm: FormGroup;
   user: User;
   @Input() redirectUrl: string;
-  @Output() success = new EventEmitter();
+  @Output()
+  // tslint:disable-next-line: variable-name
+  private _success = new EventEmitter();
+  public get success() {
+    return this._success;
+  }
+  public set success(value) {
+    this._success = value;
+  }
 
   constructor(public authService: AuthService, private router: Router,
               public fb: FormBuilder, private titleService: Title) {
