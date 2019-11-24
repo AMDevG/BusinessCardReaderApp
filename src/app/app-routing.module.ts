@@ -5,7 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { PageNotFoundComponent } from '../app/components/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
