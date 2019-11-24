@@ -45,7 +45,7 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
      this.newBusinessCardForm = this.fb.group({
      firstName: ['', Validators.required],
      lastName:  ['', Validators.required],
-     company: [''],
+     companyName: [''],
      email:  [''],
      phone: ['']
    });
