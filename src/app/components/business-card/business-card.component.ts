@@ -44,11 +44,16 @@ export class BusinessCardComponent implements OnInit {
 
 populateForm() {
     // console.log('Populating form with annots in components');
+    if (this.finishedImageProcess) {
     this.annotations = this.uploadService.getAnnotations();
     this.uploadForm.setValue({firstName: this.annotations[1], lastName: this.annotations[2],
                               company: this.annotations[3],
                               email: this.annotations[4], phone: this.annotations[5]}
                               );
+    // this.uploadService.doneProcessing = false;
+    } else{
+      this.populateForm();
+    }
     // this.populated = this.uploadService.doneProcessing;
     console.log('Populated Form! in Component!');
   }
@@ -58,7 +63,6 @@ onSubmit(value: any) {
   }
 
   ngOnInit() {
-
   }
 
 // ngOnDestroy() {
