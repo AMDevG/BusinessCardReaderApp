@@ -1,4 +1,4 @@
-<div class="ui raised segment" *ngIf="this.uploadService.doneProcessing" style="text-align:center">
+<div class="ui raised segment" *ngIf="this.uploadService.doneProcessing; then this.populateForm();" style="text-align:center">
     <h2 class="ui header">Extracted Text</h2>
         <form [formGroup]="uploadForm"
 
@@ -9,7 +9,7 @@
           <input type="text"
                  id="firstName"
                  placeholder="Loading..."
-                 [formControl]="uploadForm.controls['firstNameInput']" >
+                 [formControl]="uploadForm.controls['firstName']" >
           </div>
 
 
@@ -18,7 +18,7 @@
                 <input type="text"
                        id="lastName"
                        placeholder="Loading..."
-                       [formControl]="uploadForm.controls['lastNameInput']" >
+                       [formControl]="uploadForm.controls['lastName']" >
         </div>
 
         <div class="field">
@@ -26,21 +26,21 @@
             <input type="text"
                id="companyName"
                placeholder="Loading..."
-               [formControl]="uploadForm.controls['companyInput']" >
+               [formControl]="uploadForm.controls['company']" >
         </div>
         <div class="field">
                 <label for="emailInput">Email: </label>
                 <input type="text"
                    id="emailInput"
                    placeholder="Loading..."
-                   [formControl]="uploadForm.controls['emailInput']" >
+                   [formControl]="uploadForm.controls['email']" >
         </div>
         <div class="field">
                     <label for="phoneInput">Phone: </label>
                     <input type="text"
                        id="phoneInput"
                        placeholder="Loading..."
-                       [formControl]="uploadForm.controls['phoneInput']" >
+                       [formControl]="uploadForm.controls['phone']" >
         </div>
         <br>
 

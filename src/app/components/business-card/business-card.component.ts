@@ -35,28 +35,28 @@ export class BusinessCardComponent implements OnInit {
                @Optional() public uploadService: UploadService, public businessCard: BusinessCard) {
 
                 this.uploadForm = this.fb.group({
-                  firstNameInput:  ['', [Validators.required, Validators.minLength(3)]],
-                  lastNameInput:  ['', [Validators.required, Validators.minLength(3)]],
-                  companyInput: ['', [Validators.required, Validators.minLength(3)]],
-                  emailInput:  ['', [Validators.required, Validators.email]],
-                  phoneInput: ['', [Validators.required, Validators.minLength(3)]]
+                  firstName: '',
+                  lastName:  '',
+                  company: '',
+                  email:  '',
+                  phone: ''
                 });
-                this.subscription = this.businessCard.getCard().subscribe(annotationResults => {
-                  if (annotationResults) {
-                    console.log('BCard Component received', annotationResults);
-                    // this.populateForm(annotationResults);
-                  }
-                });
+                // this.subscription = this.businessCard.getCard().subscribe(annotationResults => {
+                //   if (annotationResults) {
+                //     console.log('BCard Component received', annotationResults);
+                //     // this.populateForm(annotationResults);
+                //   }
+                // });
               } // ) { this.createForm(); }
 
 populateForm() {
-    console.log('Populating form with annots in components');
+    // console.log('Populating form with annots in components');
     this.annotations = this.uploadService.getAnnotations();
-    this.uploadForm.setValue({firstNameInput: this.annotations[1], lastNameInput: this.annotations[2],
-                              companyInput: this.annotations[3],
-                              emailInput: this.annotations[4], phoneInput: this.annotations[5]}
+    this.uploadForm.setValue({firstName: this.annotations[1], lastName: this.annotations[2],
+                              company: this.annotations[3],
+                              email: this.annotations[4], phone: this.annotations[5]}
                               );
-    this.populated = this.uploadService.doneProcessing;
+    // this.populated = this.uploadService.doneProcessing;
     console.log('Populated Form! in Component!');
   }
 
