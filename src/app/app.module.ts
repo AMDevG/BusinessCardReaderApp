@@ -23,6 +23,7 @@ import { BusinessCardComponent } from './components/business-card/business-card.
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 import { BusinessCardsComponent } from '../app/components/business-cards/business-cards.component';
+import { PageNotFoundComponent } from '../app/components/pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { BusinessCardsComponent } from '../app/components/business-cards/busines
     DashBoardComponent,
     CameraWindowComponent,
     TopNavBarComponent,
-    BusinessCardsComponent
+    BusinessCardsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
