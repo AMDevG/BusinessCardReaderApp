@@ -12,6 +12,7 @@ import { UploadService } from 'src/app/fire-store.service';
 export class DashBoardComponent implements OnInit {
     public visibleCam = false;
     public showForm = this.fireStoreService.doneProcessing;
+    public updateCard = false;
 
     userName;
     title = 'Dashboard';
@@ -31,10 +32,9 @@ export class DashBoardComponent implements OnInit {
 
     displayForm() {
       if (this.fireStoreService.doneProcessing) {
-        this.showForm = true;
+        this.updateCard = true;
         return true;
       } else {
-        this.showForm = false;
         return false;
       }
 
