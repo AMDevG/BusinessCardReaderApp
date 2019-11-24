@@ -23,15 +23,17 @@ export class BusinessCardComponent implements OnInit {
   annotations: any[];
 
   constructor( @Optional() private fb: FormBuilder, @Optional() private visionService: VisionService,
-               @Optional() public uploadService: UploadService, public businessCard: BusinessCard) { }
+               @Optional() public uploadService: UploadService) {
+                  this.uploadForm = this.fb.group({
+                  firstName: '',
+                  lastName:  '',
+                  company: '',
+                  email:  '',
+                  phone: ''
+                });
+                }
 
-                // this.uploadForm = this.fb.group({
-                //   firstName: '',
-                //   lastName:  '',
-                //   company: '',
-                //   email:  '',
-                //   phone: ''
-                // });
+
                 // this.subscription = this.businessCard.getCard().subscribe(annotationResults => {
                 //   if (annotationResults) {
                 //     console.log('BCard Component received', annotationResults);
@@ -43,7 +45,7 @@ export class BusinessCardComponent implements OnInit {
 populateForm() {
     // console.log('Populating form with annots in components');
     this.annotations = this.uploadService.getAnnotations();
-    this.uploadForm = this.fb.group({firstName: this.annotations[1], lastName: this.annotations[2],
+    this.uploadForm.setValue({firstName: this.annotations[1], lastName: this.annotations[2],
                               company: this.annotations[3],
                               email: this.annotations[4], phone: this.annotations[5]}
                               );

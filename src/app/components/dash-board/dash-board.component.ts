@@ -11,7 +11,7 @@ import { UploadService } from 'src/app/fire-store.service';
 })
 export class DashBoardComponent implements OnInit {
     public visibleCam = false;
-    public showForm = false;
+    public showForm = this.fireStoreService.doneProcessing;
 
     userName;
     title = 'Dashboard';
@@ -26,7 +26,7 @@ export class DashBoardComponent implements OnInit {
 
     toggleCameraWindow() {
         this.visibleCam = !this.visibleCam;
-        this.showForm = !this.showForm;
+        // this.showForm = !this.showForm;
     }
 
     displayForm() {
