@@ -10,7 +10,7 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 
 const routes: Routes = [
   {path: '', redirectTo: 'dash', pathMatch: 'full'},
-  {path: 'dash', component: DashBoardComponent , canActivate: [AuthGuard]},
+  {path: 'dash', component: DashBoardComponent, canActivate: [AuthGuard]},
 //   {path: 'scan', component: CameraWindowComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: PageNotFoundComponent}

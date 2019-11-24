@@ -35,7 +35,7 @@ import { PageNotFoundComponent } from '../app/components/pagenotfound/pagenotfou
     CameraWindowComponent,
     TopNavBarComponent,
     BusinessCardsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
