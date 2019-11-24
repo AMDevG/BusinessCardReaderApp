@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./business-card.component.css']
 })
 export class BusinessCardComponent implements OnInit {
-  // @Input() displayCard: boolean;
+  // @Input() annotationResults: any[];
   populated: boolean;
   base64Img: string;
   filePathUri: string;
@@ -32,7 +32,7 @@ export class BusinessCardComponent implements OnInit {
   // email: any;
 
   constructor( @Optional() private fb: FormBuilder, @Optional() private visionService: VisionService,
-               @Optional() private uploadService: UploadService, public businessCard: BusinessCard) {
+               @Optional() public uploadService: UploadService, public businessCard: BusinessCard) {
 
                 this.uploadForm = this.fb.group({
                   firstNameInput:  ['', [Validators.required, Validators.minLength(3)]],
@@ -45,19 +45,19 @@ export class BusinessCardComponent implements OnInit {
                   if (annotationResults) {
                     console.log('BCard Component received', annotationResults);
                     // this.populateForm(annotationResults);
-                    // this.populated = true;
                   }
                 });
               } // ) { this.createForm(); }
-populateForm(businessCard: BusinessCard) {
+
+populateForm() {
     console.log('Populating form with annots in components');
-    console.log('Received: ', businessCard);
-    // this.businessCard = this.uploadService.getBusinessCard();
-    // this.uploadForm.setValue({firstNameInput: businessCard.firstName, lastNameInput: businessCard.lastName,
-    //                           companyInput: this.businessCard.companyName,
-    //                           emailInput: this.businessCard.email, phoneInput: this.businessCard.phone}
-                              // );
-    // console.log('Populated Form! in Component!');
+    this.annotations = this.uploadService.getAnnotations();
+    this.uploadForm.setValue({firstNameInput: this.annotations[1], lastNameInput: this.annotations[2],
+                              companyInput: this.annotations[3],
+                              emailInput: this.annotations[4], phoneInput: this.annotations[5]}
+                              );
+    this.populated = this.uploadService.doneProcessing;
+    console.log('Populated Form! in Component!');
   }
 
 onSubmit(value: any) {

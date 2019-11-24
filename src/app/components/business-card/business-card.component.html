@@ -1,4 +1,4 @@
-<div class="ui raised segment" *ngIf="populated" style="text-align:center">
+<div class="ui raised segment" *ngIf="this.uploadService.doneProcessing" style="text-align:center">
     <h2 class="ui header">Extracted Text</h2>
         <form [formGroup]="uploadForm"
 

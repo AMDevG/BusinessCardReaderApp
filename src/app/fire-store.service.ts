@@ -48,10 +48,11 @@ export class UploadService {
           }, err => reject(err))
           .then(res => {
             this.annotations = this.visionService.getAnnotationsArray();
-            console.log('Annots in FireStore Service:', this.annotations);
-            this.newCard = new BusinessCard();
-            this.newCard.populateFields(this.annotations);
-            // console.log('populated fields called on new Card');
+            this.doneProcessing = true;
+            console.log('Done Processing Image');
+            // this.newCard = new BusinessCard();
+            // this.newCard.populateFields(this.annotations);
+            // // console.log('populated fields called on new Card');
           });
         });
       } else {
@@ -59,9 +60,8 @@ export class UploadService {
       }
     }
 
-    getBusinessCard() {
-      console.log('Returning new card: ');
-      return this.newCard;
+    getAnnotations() {
+      return this.annotations;
     }
 
   // getAnnotations() {
