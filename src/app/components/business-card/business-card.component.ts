@@ -95,6 +95,12 @@ onSubmit(value: any) {
   // });
   }
 
+  retake() {
+    this.webcamImage = null;
+    this.uploadedImgURL = '';
+    this.newBusinessCardForm.reset();
+  }
+
   ngOnInit() {}
   ngOnDestroy() {}
 

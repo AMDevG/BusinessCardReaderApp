@@ -1,50 +1,59 @@
 <div class="ui raised segment" style="text-align:center">
   <!-- *ngIf="finishedImageProcess" -->
     <h4 class="ui header">Business Card </h4>
-        <form [formGroup]="uploadForm" class="ui form">
 
-          <div class="field" >
-          <label for="firstName">First Name: </label>
-          <input type="text"
-                 id="firstName"
-                 placeholder="Loading..."
-                 [formControl]="uploadForm.controls['firstName']" >
-          </div>
+    <div class="webcamBg">
 
+      <webcam *ngIf="webcamImage == null" [width]="470" [height]="264"
+              [allowCameraSwitch]="allowCameraSwitch"
+              [imageQuality] = "imgQuality"
+              [videoOptions]="videoOptions"
+              [trigger]="triggerObservable"
+              (imageCapture)="handleImage($event)"></webcam>
 
-        <div class="field">
-                <label for="lasttName">Last Name: </label>
-                <input type="text"
-                       id="lastName"
-                       placeholder="Loading..."
-                       [formControl]="uploadForm.controls['lastName']" >
-        </div>
+      <img *ngIf="webcamImage" [src]="uploadedImgURL" width="470px" height="auto" />
 
-        <div class="field">
-            <label for="companyName">Company: </label>
-            <input type="text"
-               id="companyName"
-               placeholder="Loading..."
-               [formControl]="uploadForm.controls['company']" >
-        </div>
-        <div class="field">
-                <label for="emailInput">Email: </label>
-                <input type="text"
-                   id="emailInput"
-                   placeholder="Loading..."
-                   [formControl]="uploadForm.controls['email']" >
-        </div>
-        <div class="field">
-                    <label for="phoneInput">Phone: </label>
-                    <input type="text"
-                       id="phoneInput"
-                       placeholder="Loading..."
-                       [formControl]="uploadForm.controls['phone']" >
-        </div>
-        <br>
-</form>
-<button type="submit" (click)="onSubmit(uploadForm.value);"class="ui button">Submit</button>
+  </div>
+
+  <div class="webcamControls mt-2 mb-3">
+
+    <button *ngIf="webcamImage == null" type="button" class="btn btn-success" (click)="triggerSnapshot()">Capture Business Card</button>
+
+    <button *ngIf="webcamImage" type="button" class="btn btn-danger" (click)="retake()"> Retake</button>
+
 </div>
 
-<script>
-</script>
+
+    <form class="mb-5" [formGroup]="newBusinessCardForm" (ngSubmit)="onSubmit(newBusinessCardForm.value)">
+
+      <div class="form-label-group">
+          <input type="text" class="form-control" id="firstName" placeholder="First Name" [formControl]="newBusinessCardForm.controls['firstName']" required>
+          <label for="firstName">First Name</label>
+      </div>
+
+      <div class="form-label-group">
+          <input type="text" class="form-control" id="lastName" placeholder="Last Name" [formControl]="newBusinessCardForm.controls['lastName']" required>
+          <label for="lastName">Last Name</label>
+      </div>
+
+      <div class="form-label-group">
+          <input type="text" class="form-control" id="orgName" placeholder="Organization Name" [formControl]="newBusinessCardForm.controls['orgName']">
+          <label for="orgName">Company Name</label>
+      </div>
+
+      <div class="form-label-group">
+          <input type="email" class="form-control" id="email" placeholder="Email" [formControl]="newBusinessCardForm.controls['email']">
+          <label for="email">Email</label>
+      </div>
+
+      <div class="form-label-group">
+          <input type="text" class="form-control" id="phone" placeholder="Phone" [formControl]="newBusinessCardForm.controls['phone']">
+          <label for="phone">Phone</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!newBusinessCardForm.valid">Add</button>
+  </form>
+</div>
+
+<!-- <script>
+</script> -->
