@@ -17,29 +17,28 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
   styleUrls: ['./business-card.component.css']
 })
 export class BusinessCardComponent implements OnInit, OnDestroy {
-  // @Input() finishedImageProcess: boolean;
-  // @Input() updateCardForm: () => void;
 
   newBusCard: BusinessCard;
   newBusinessCardForm: FormGroup;
-  /* CAMERA CODE */
 
   private trigger: Subject<void> = new Subject<void>();
   allowCameraSwitch = false;
+  errors: WebcamInitError[] = [];
+  webcamImage: WebcamImage = null;
+  base64ImgUpload: string;
+  uploadedImgURL = '';
+
   videoOptions: MediaTrackConstraints = {
     width: {ideal: 640},
     height: {ideal: 360}
   };
-  webcamImage: WebcamImage = null;
-  imageDataUrl = '';
+
   visionSubscription: any;
-  // imgType: 'image/jpg';
   imgQuality = 0.9;
   processing = false;
 
-  base64Img: string;
-  filePathUri: string;
-  annotations: any[];
+  // filePathUri: string;
+  // annotations: any[];
 
   constructor(private fb: FormBuilder, private visionService: VisionService, private httpClient: HttpClient,
               public fireStoreService: UploadService, private route: Router ) {
@@ -58,29 +57,46 @@ onSubmit(value: any) {
     this.newBusCard = {
       firstName: value.firstName,
       lastName: value.lastName,
-      orgName: value.orgName,
+      companyName: value.companyName,
       email: value.email,
       phone: value.phone,
-      additionalInfo: value.additionalInfo,
-      imageBase64: this.imageDataUrl ? this.imageDataUrl : '',
+      imageBase64: this.uploadedImgURL ? this.uploadedImgURL : '',
       createdOn: new Date(),
       updatedOn: new Date(),
       userId: JSON.parse(sessionStorage.getItem('cur-user'))
     };
+    console.log('Created new BCard Object: ');
+    console.log(`User Id ${this.newBusCard.userId} and name ${this.newBusCard.firstName}:`);
 
     /* MOCK CODE NEED TO IMPL CREATE FUNCTION IN FIRESERVICE
-       NAVIGATE BACK TO GALLERY DISPLAY     */
-
-    // this.fireStoreService.addNewCard(this.newBusCard).then( () => {
-    //   this.route.navigate(['/dash']);
-    // });
+       NAVIGATE BACK TO GALLERY DISPLAY
+    this.fireStoreService.addNewCard(this.newBusCard).then( () => {
+      this.route.navigate(['/dash']);
+    });
+    */
   }
 }
+  get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
+  }
 
-/* MOVE CAMERA CODE OVER TO HERE !!! You */
+  triggerSnapshot(): void {
+    this.trigger.next();
+  }
+
+  public handleImage(webcamImage: WebcamImage): void {
+    this.webcamImage = webcamImage;
+    this.base64ImgUpload = this.webcamImage.imageAsBase64;
+    this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
+
+  /*  (*********)     NEED TO IMPLEMENT ****************   */
+  // this.visionSubscription = this.[MAKE-HTTP-REQUEST](this.uploadedImgURL).subscribe( result => {
+  //   this.[FUNCTION TO PROCESS THE RETURNED ANNOTATIONS](result);
+  // });
+  }
+
   ngOnInit() {}
-
-ngOnDestroy() { }
+  ngOnDestroy() {}
 
 }
 

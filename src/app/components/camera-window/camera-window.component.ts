@@ -52,6 +52,7 @@ export class CameraWindowComponent implements OnInit {
         this.webcamImage = webcamImage;
         this.base64ImgUpload = this.webcamImage.imageAsBase64;
         this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
+
     }
 
     uploadImage() {
