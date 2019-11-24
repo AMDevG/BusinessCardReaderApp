@@ -27,12 +27,12 @@ export class DashBoardComponent implements OnInit {
         this.visibleCam = !this.visibleCam;
     }
 
-    displayForm() {
-      if (this.fireStoreService.doneProcessing) {
-        return true;
-      } else {
-        return false;
-      }
+    // displayForm() {
+    //   if (this.fireStoreService.doneProcessing) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
 
-    }
+    // }
 }

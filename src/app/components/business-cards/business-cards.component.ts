@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -10,14 +10,16 @@ import {BusinessCard} from '../../model/business-card.model';
   styleUrls: ['./business-cards.component.css']
 })
 export class BusinessCardsComponent implements OnInit {
+  // @Input() newBusCard: BusinessCard;
+
   bCards: Observable<any>;
 
   constructor(private af: AngularFirestore) {}
 
   ngOnInit() {
-    console.log('Current user in session store: ', sessionStorage.getItem('bcs-user'));
-    let cardsCollectionRef = this.af.collection<any>('images', ref => ref.where('userId', '==',
-                              JSON.parse(sessionStorage.getItem('bcs-user'))));
+    console.log('Current user in session store: ', sessionStorage.getItem('cur-user'));
+    let cardsCollectionRef = this.af.collection<any>(`users/${JSON.parse(sessionStorage.getItem('cur-user'))}/businessCards`, ref => ref.where('userID', '==',
+                              JSON.parse(sessionStorage.getItem('cur-user'))));
     this.bCards = cardsCollectionRef.snapshotChanges().pipe(
       map( actions => {
         return actions.map( a => {
@@ -29,5 +31,4 @@ export class BusinessCardsComponent implements OnInit {
     );
 
   }
-
 }

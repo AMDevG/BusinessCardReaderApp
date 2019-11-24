@@ -9,7 +9,6 @@ import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../src/environments/environment';
 import { BusinessCard } from 'src/app/model/business-card.model';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-business-card',
@@ -18,13 +17,14 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 })
 export class BusinessCardComponent implements OnInit, OnDestroy {
 
-  newBusCard: BusinessCard;
+  @Input() bCard: BusinessCard;
+
   newBusinessCardForm: FormGroup;
 
   private trigger: Subject<void> = new Subject<void>();
   allowCameraSwitch = false;
   errors: WebcamInitError[] = [];
-  webcamImage: WebcamImage = null;
+  webcamImage = null;
   base64ImgUpload: string;
   uploadedImgURL = '';
 
@@ -54,7 +54,7 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
 onSubmit(value: any) {
   if ( this.newBusinessCardForm.valid ) {
 
-    this.newBusCard = {
+    this.bCard = {
       firstName: value.firstName,
       lastName: value.lastName,
       companyName: value.companyName,
@@ -66,7 +66,7 @@ onSubmit(value: any) {
       userId: JSON.parse(sessionStorage.getItem('cur-user'))
     };
     console.log('Created new BCard Object: ');
-    console.log(`User Id ${this.newBusCard.userId} and name ${this.newBusCard.firstName}:`);
+    console.log(`User Id ${this.bCard.userId} and name ${this.bCard.firstName}:`);
 
     /* MOCK CODE NEED TO IMPL CREATE FUNCTION IN FIRESERVICE
        NAVIGATE BACK TO GALLERY DISPLAY

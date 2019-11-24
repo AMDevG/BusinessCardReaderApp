@@ -55,9 +55,9 @@ export class CameraWindowComponent implements OnInit {
 
     }
 
-    uploadImage() {
-      this.uploadService.uploadImage(this.base64ImgUpload, this.uploadedImgURL);
-    }
+    // uploadImage() {
+    //   this.uploadService.uploadImage(this.base64ImgUpload, this.uploadedImgURL);
+    // }
 
     public hideCapture() {
         this.webcamImage = null;
