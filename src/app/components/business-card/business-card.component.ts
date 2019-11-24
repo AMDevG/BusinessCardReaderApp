@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional, Input } from '@angular/core';
+import { Component, OnInit, Optional, Input, OnChanges, OnDestroy, SimpleChanges, SimpleChange } from '@angular/core';
 import { BusinessCardService } from '../../business-card.service';
 import { VisionService } from '../../vision.service';
 import { UploadService } from '../../fire-store.service';
@@ -12,9 +12,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './business-card.component.html',
   styleUrls: ['./business-card.component.css']
 })
-export class BusinessCardComponent implements OnInit {
+export class BusinessCardComponent implements OnInit, OnDestroy {
   @Input() finishedImageProcess: boolean;
-  @Input() updateCard: boolean;
+  // @Input() updateCardForm: () => void;
   populated: boolean;
   base64Img: string;
   filePathUri: string;
@@ -32,27 +32,23 @@ export class BusinessCardComponent implements OnInit {
                   email:  '',
                   phone: ''
                 });
-                }
+  }
 
-
-                // this.subscription = this.businessCard.getCard().subscribe(annotationResults => {
-                //   if (annotationResults) {
-                //     console.log('BCard Component received', annotationResults);
-                //     // this.populateForm(annotationResults);
-                //   }
-                // });
-              // ) { this.createForm(); }
-
+//   ngOnChanges(changes: SimpleChanges) {
+//     const currentItem: SimpleChange = changes.item;
+//     console.log('got item: ', currentItem.currentValue);
+//     this.populateForm();
+// }
 populateForm() {
     // console.log('Populating form with annots in components');
-    if (this.updateCard) {
+    if (this.finishedImageProcess === true) {
     this.annotations = this.uploadService.getAnnotations();
     this.uploadForm.setValue({firstName: this.annotations[1], lastName: this.annotations[2],
                               company: this.annotations[3],
                               email: this.annotations[4], phone: this.annotations[5]}
                               );
     // this.uploadService.doneProcessing = false;
-    } else{
+    } else {
       // this.populateForm();
       console.log('Image Processing not finished yet');
     }
@@ -67,7 +63,7 @@ onSubmit(value: any) {
   ngOnInit() {
   }
 
-// ngOnDestroy() {
-//     this.subscription.unsubscribe();
-//   }
+ngOnDestroy() {
+
+  }
 }
