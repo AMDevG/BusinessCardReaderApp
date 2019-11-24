@@ -1,5 +1,5 @@
-<div class="ui raised segment" *ngIf="this.uploadService.doneProcessing; then this.populateForm();" style="text-align:center">
-    <h2 class="ui header">Extracted Text</h2>
+<div class="ui raised segment" *ngIf="finishedImageProcess then populateForm();" style="text-align:center">
+    <h4 class="ui header">Business Card</h4>
         <form [formGroup]="uploadForm"
 
           class="ui form">

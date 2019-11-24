@@ -11,13 +11,13 @@ import { UploadService } from 'src/app/fire-store.service';
 })
 export class DashBoardComponent implements OnInit {
     public visibleCam = false;
-    // public cardsAvailable = false;
+    public showForm = false;
 
     userName;
     title = 'Dashboard';
 
     constructor(public authService: AuthService, private titleService: Title, private visionService: VisionService,
-                private fireStoreService: UploadService) {}
+                public fireStoreService: UploadService) {}
 
     ngOnInit() {
         this.userName = this.authService.getCurrentUserID();
@@ -26,9 +26,17 @@ export class DashBoardComponent implements OnInit {
 
     toggleCameraWindow() {
         this.visibleCam = !this.visibleCam;
+        this.showForm = !this.showForm;
     }
 
-    displayCardForm() {
-      // this.cardsAvailable = !this.cardsAvailable;
+    displayForm() {
+      if (this.fireStoreService.doneProcessing) {
+        this.showForm = true;
+        return true;
+      } else {
+        this.showForm = false;
+        return false;
+      }
+
     }
 }

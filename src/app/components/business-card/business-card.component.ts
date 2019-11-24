@@ -13,46 +13,37 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./business-card.component.css']
 })
 export class BusinessCardComponent implements OnInit {
-  // @Input() annotationResults: any[];
+  @Input() finishedImageProcess: boolean;
   populated: boolean;
   base64Img: string;
   filePathUri: string;
   userId: string;
-  subscription: Subscription;
 
-  // testCard: BusinessCard;
   public uploadForm: FormGroup;
   annotations: any[];
 
-  // firstName: any;
-  // lastName: any;
-  // compName: any;
-  // titleName: any;
-  // phone: any;
-  // email: any;
-
   constructor( @Optional() private fb: FormBuilder, @Optional() private visionService: VisionService,
-               @Optional() public uploadService: UploadService, public businessCard: BusinessCard) {
+               @Optional() public uploadService: UploadService, public businessCard: BusinessCard) { }
 
-                this.uploadForm = this.fb.group({
-                  firstName: '',
-                  lastName:  '',
-                  company: '',
-                  email:  '',
-                  phone: ''
-                });
+                // this.uploadForm = this.fb.group({
+                //   firstName: '',
+                //   lastName:  '',
+                //   company: '',
+                //   email:  '',
+                //   phone: ''
+                // });
                 // this.subscription = this.businessCard.getCard().subscribe(annotationResults => {
                 //   if (annotationResults) {
                 //     console.log('BCard Component received', annotationResults);
                 //     // this.populateForm(annotationResults);
                 //   }
                 // });
-              } // ) { this.createForm(); }
+              // ) { this.createForm(); }
 
 populateForm() {
     // console.log('Populating form with annots in components');
     this.annotations = this.uploadService.getAnnotations();
-    this.uploadForm.setValue({firstName: this.annotations[1], lastName: this.annotations[2],
+    this.uploadForm = this.fb.group({firstName: this.annotations[1], lastName: this.annotations[2],
                               company: this.annotations[3],
                               email: this.annotations[4], phone: this.annotations[5]}
                               );
@@ -68,7 +59,7 @@ onSubmit(value: any) {
 
   }
 
-ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+// ngOnDestroy() {
+//     this.subscription.unsubscribe();
+//   }
 }
