@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { BusinessCard } from '../app/model/business-card.model';
 // import { BusinessCardComponent } from '../app/components/business-card/business-card.component';
-import { BusinessCard } from './business-card';
-import { BusinessCardService } from './business-card.service';
+// import { BusinessCardService } from './business-card.service';
 import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { VisionService } from './vision.service';
 
 @Injectable({

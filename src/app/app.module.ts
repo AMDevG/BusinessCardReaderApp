@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
-import { BusinessCard } from './business-card';
+import { BusinessCardsComponent } from '../app/components/business-cards/business-cards.component';
 
 
 @NgModule({
@@ -33,6 +33,7 @@ import { BusinessCard } from './business-card';
     DashBoardComponent,
     CameraWindowComponent,
     TopNavBarComponent,
+    BusinessCardsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,7 @@ import { BusinessCard } from './business-card';
     AngularFirestoreModule
   ],
   providers: [AuthService, AngularFireAuth,
-              UsersService, UploadService, Title, BusinessCard],
+              UsersService, UploadService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule {
