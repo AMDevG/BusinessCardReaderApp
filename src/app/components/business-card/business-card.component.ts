@@ -1,10 +1,15 @@
-import { Component, OnInit, Optional, Input, OnChanges, OnDestroy, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Optional, Input, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { WebcamInitError, WebcamImage } from 'ngx-webcam';
 import { VisionService } from '../../vision.service';
 import { UploadService } from '../../fire-store.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../src/environments/environment';
 import { BusinessCard } from 'src/app/model/business-card.model';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-business-card',
@@ -14,25 +19,84 @@ import { BusinessCard } from 'src/app/model/business-card.model';
 export class BusinessCardComponent implements OnInit, OnDestroy {
   // @Input() finishedImageProcess: boolean;
   // @Input() updateCardForm: () => void;
-  @Input() bCard: BusinessCard;
-  populated: boolean;
+
+  newBusCard: BusinessCard;
+  newBusinessCardForm: FormGroup;
+  /* CAMERA CODE */
+
+  private trigger: Subject<void> = new Subject<void>();
+  allowCameraSwitch = false;
+  videoOptions: MediaTrackConstraints = {
+    width: {ideal: 640},
+    height: {ideal: 360}
+  };
+  webcamImage: WebcamImage = null;
+  imageDataUrl = '';
+  visionSubscription: any;
+  // imgType: 'image/jpg';
+  imgQuality = 0.9;
+  processing = false;
+
   base64Img: string;
   filePathUri: string;
-  userId: string;
-
-  public uploadForm: FormGroup;
   annotations: any[];
 
-  constructor( @Optional() private fb: FormBuilder, @Optional() private visionService: VisionService,
-               @Optional() public uploadService: UploadService) {
-                  this.uploadForm = this.fb.group({
-                  firstName: '',
-                  lastName:  '',
-                  company: '',
-                  email:  '',
-                  phone: ''
-                });
+  constructor(private fb: FormBuilder, private visionService: VisionService, private httpClient: HttpClient,
+              public fireStoreService: UploadService, private route: Router ) {
+     this.newBusinessCardForm = this.fb.group({
+     firstName: ['', Validators.required],
+     lastName:  ['', Validators.required],
+     company: [''],
+     email:  [''],
+     phone: ['']
+   });
+}
+
+onSubmit(value: any) {
+  if ( this.newBusinessCardForm.valid ) {
+
+    this.newBusCard = {
+      firstName: value.firstName,
+      lastName: value.lastName,
+      orgName: value.orgName,
+      email: value.email,
+      phone: value.phone,
+      additionalInfo: value.additionalInfo,
+      imageBase64: this.imageDataUrl ? this.imageDataUrl : '',
+      createdOn: new Date(),
+      updatedOn: new Date(),
+      userId: JSON.parse(sessionStorage.getItem('cur-user'))
+    };
+
+    /* MOCK CODE NEED TO IMPL CREATE FUNCTION IN FIRESERVICE
+       NAVIGATE BACK TO GALLERY DISPLAY     */
+
+    // this.fireStoreService.addNewCard(this.newBusCard).then( () => {
+    //   this.route.navigate(['/dash']);
+    // });
   }
+}
+
+/* MOVE CAMERA CODE OVER TO HERE !!! You */
+  ngOnInit() {}
+
+ngOnDestroy() { }
+
+}
+
+
+// ******************* old code   ************************************************* */
+
+  // constructor( @Optional() private fb: FormBuilder, @Optional() private visionService: VisionService,
+  //              @Optional() public uploadService: UploadService) {
+  //                 this.uploadForm = this.fb.group({
+  //                 firstName: '',
+  //                 lastName:  '',
+  //                 company: '',
+  //                 email:  '',
+  //                 phone: ''
+  //               });
+  // }
 
 //   ngOnChanges(changes: SimpleChanges) {
 //     const currentItem: SimpleChange = changes.item;
@@ -56,14 +120,4 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
 //     console.log('Populated Form! in Component!');
 //   }
 
-onSubmit(value: any) {
-    console.log('form submit!');
-  }
 
-  ngOnInit() {
-  }
-
-ngOnDestroy() {
-
-  }
-}
