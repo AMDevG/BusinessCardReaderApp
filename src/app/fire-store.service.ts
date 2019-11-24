@@ -31,9 +31,22 @@ export class UploadService {
   }
 
   deleteCard(id) {
-    
+    this.businessCardDoc = this.af.doc<BusinessCard>(`businessCards/${id}`);
+    this.businessCardDoc.delete();
   }
 
+  // Detect changes to a BusinessCard document //
+  cardListener(id: string): Observable<BusinessCard> {
+    this.businessCardDoc = this.af.doc<BusinessCard>(`businessCards/${id}`);
+    return this.businessCardDoc.snapshotChanges()
+      .pipe(
+        map( changes => {
+          const data = changes.payload.data();
+          const id = changes.payload.id;
+          return { id, ...data };
+        })
+      );
+  }
 }
 
 /* ADD FUNCTIONAL: DO NOT UPLOAD UNTIL FORM HAS BEEN RENDERED AND EDITED
