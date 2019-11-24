@@ -65,8 +65,6 @@ onSubmit(value: any) {
       updatedOn: new Date(),
       userId: JSON.parse(sessionStorage.getItem('cur-user'))
     };
-    console.log('Created new BCard Object: ');
-    console.log(`User Id ${this.bCard.userId} and name ${this.bCard.firstName}:`);
 
     this.fireStoreService.addCard(this.bCard).then( () => {
       this.route.navigate(['dash']);
