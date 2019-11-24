@@ -43,19 +43,6 @@ export class LoginComponent {
     }
 
     doSignin(email: string, password: string): void {
-        this.authService.login(email, password)
-          .then( res => {
-            this.success.emit(true);
-            this.loginForm.reset();
-            if (this.redirectUrl) {
-              setTimeout(() => {
-                return this.router.navigate([this.redirectUrl]);
-              }, 500);
-            }
-          },
-          err => {
-            this.success.emit(false);
-          }
-        );
+        this.authService.login(email, password);
       }
 }
