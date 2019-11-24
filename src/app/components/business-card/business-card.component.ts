@@ -87,7 +87,6 @@ onSubmit(value: any) {
     this.base64ImgUpload = this.webcamImage.imageAsBase64;
     this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
     this.sendVisionRequest(this.base64ImgUpload).subscribe( result => {
-      console.log('handleImageSubscriber received: ', result);
       this.putAnnotationsToForm(result);
     });
   }
@@ -111,8 +110,11 @@ onSubmit(value: any) {
 
   putAnnotationsToForm(value: any) {
     if (value != null) {
-      // const annotsArray = value;
-      console.log('Received text array in put annots: ', value);
+      const fullText = value.responses[0].fullTextAnnotation.text;
+      const annotationArray: Array<string> = fullText.split('\n');
+      annotationArray.forEach( element => {
+        console.log('Annotation for form: ', element);
+      });
     }
     // this.newBusinessCardForm.patchValue({firstName: , lastName: this.annotations[2],
     //                           company: this.annotations[3],
