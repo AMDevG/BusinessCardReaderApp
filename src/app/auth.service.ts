@@ -1,73 +1,49 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-// import { AngularFireAuth } from 'angularfire2/auth';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase/app';
 
-@Injectable()
-export class AuthService implements CanActivate {
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
 
-    private user: Observable<firebase.User>;
-    private userDetails: firebase.User = null;
-    private userID: string;
+    private user: firebase.User;
+    // private userDetails: firebase.User = null;
+    // private userID: string;
+    authSubscription: any;
 
-    constructor(public angularFireAuthentication: AngularFireAuth, private router: Router) {
-        this.user = angularFireAuthentication.authState;
-        this.user.subscribe(
-            (user) => {
-              if (user) {
-                    this.userDetails = user;
-                } else {
-                    this.userDetails = null;
-                }
-            }
-        );
-    }
+    constructor(private angularFireAuthentication: AngularFireAuth, private router: Router) {
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        if (!this.isAuthenticated()) {
-        this.router.navigate(['/login']);
-        }
-        return this.isAuthenticated();
-    }
-
-    isAuthenticated(): boolean {
-        if (this.angularFireAuthentication.auth.currentUser === null) {
-            return false;
-        }
-        this.userID = this.userDetails.uid;
-        return true;
-    }
-
-    isLoggedIn() {
-        if (this.userDetails === null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    getCurrentUserID(): string {
-      return this.userID;
-}
-    logout() {
-        this.angularFireAuthentication.auth.signOut()
-        .then((res) => this.router.navigate(['/login']));
-    }
-
-    login(email: string, password: string) {
-    return new Promise((resolve, reject) => {
-            this.angularFireAuthentication.auth
-                .signInWithEmailAndPassword(email, password)
-                .then(
-                    result => {resolve(result);
-                               this.router.initialNavigation();
-                               this.router.navigate(['/dash']);
-                    },
-                    error => {
-                        return reject(error);
-                    }
-                );
+      this.authSubscription = this.angularFireAuthentication.authState.subscribe( user => {
+          if (user) {
+            this.user = user;
+            sessionStorage.setItem('cur-user', JSON.stringify(this.user.uid));
+          } else {
+            sessionStorage.setItem('cur-user', null);
+          }
         });
     }
-}
+
+    get isAuthenticated(): boolean {
+        const user = JSON.parse(sessionStorage.getItem('cur-user'));
+        return user !== null;
+    }
+    async logout() {
+        await this.angularFireAuthentication.auth.signOut();
+        sessionStorage.removeItem('cur-user');
+        this.authSubscription.unsubscribe();
+        this.router.navigate(['login']);
+    }
+
+    async login(email: string, password: string) {
+      try {
+        await this.angularFireAuthentication.auth.signInWithEmailAndPassword(email, password)
+        this.router.navigate(['dash']);
+        } catch (error) {
+            sessionStorage.removeItem('cur-user');
+            this.router.navigate(['login']);
+        }
+    }
+  }

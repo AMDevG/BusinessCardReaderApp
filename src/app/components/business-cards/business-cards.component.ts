@@ -15,7 +15,8 @@ export class BusinessCardsComponent implements OnInit {
   constructor(private af: AngularFirestore) {}
 
   ngOnInit() {
-    let cardsCollectionRef = this.af.collection<BusinessCard>('images', ref => ref.where('userId', '==',
+    console.log('Current user in session store: ', sessionStorage.getItem('bcs-user'));
+    let cardsCollectionRef = this.af.collection<any>('images', ref => ref.where('userId', '==',
                               JSON.parse(sessionStorage.getItem('bcs-user'))));
     this.bCards = cardsCollectionRef.snapshotChanges().pipe(
       map( actions => {

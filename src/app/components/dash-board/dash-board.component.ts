@@ -20,7 +20,6 @@ export class DashBoardComponent implements OnInit {
                 public fireStoreService: UploadService) {}
 
     ngOnInit() {
-        this.userName = this.authService.getCurrentUserID();
         this.titleService.setTitle(this.title);
     }
 

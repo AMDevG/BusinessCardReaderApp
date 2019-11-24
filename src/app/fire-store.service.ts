@@ -35,7 +35,6 @@ export class UploadService {
 */
    uploadImage(base64: string, imageUri: string) {
     this.doneProcessing = false;
-    this.userId = this.authService.getCurrentUserID();
     if (base64 !== null ) {
         return new Promise<any>((resolve, reject) => {
           this.firestore.collection(`users/${this.userId}/images`).doc('testCard1').set({
