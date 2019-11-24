@@ -28,19 +28,24 @@ export class VisionService {
     }]
   };
 
-   async executeRequest(base64) {
+  executeRequest(base64) {
     this.base64Enc = base64;
     this.payload.requests[0].image.content = this.base64Enc;
-    console.log('Extracting Text');
-    this.httpClient.post(this.url, JSON.stringify(this.payload))
-      .subscribe((results: any) => {
-        const tmpArr = results.responses[0].textAnnotations;
-        tmpArr.forEach(element => {
+    return this.httpClient.post(this.url, JSON.stringify(this.payload));
+      // .subscribe(results => {
+      //   console.log('Extracted Text');
+      //   return results;
+
+      // .subscribe((results: any) => {
+      //   console.log('request returning: ', results);
+      //   return results;
+        // const tmpArr = results.responses[0].textAnnotations;
+        // tmpArr.forEach(element => {
           // console.log('Pushing element to tmparr: ', element);
-          this.textArray.push(element.description);
-        });
-      });
-      console.log('request returning: ', this.textArray);
-    return this.textArray;
+          // this.textArray.push(element.description);
+        // });
+      // });
+
+    // return this.textArray;
     }
 }

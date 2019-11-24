@@ -86,9 +86,9 @@ onSubmit(value: any) {
     this.webcamImage = webcamImage;
     this.base64ImgUpload = this.webcamImage.imageAsBase64;
     this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
-    this.visionSubscription = this.sendVisionRequest(this.base64ImgUpload).subscribe( result => {
+    this.sendVisionRequest(this.base64ImgUpload).subscribe( result => {
       console.log('handleImageSubscriber received: ', result);
-      // this.putAnnotationsToForm(result);
+      this.putAnnotationsToForm(result);
     });
   }
 
@@ -99,7 +99,9 @@ onSubmit(value: any) {
   }
 
   ngOnInit() {}
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.visionSubscription.unsubscribe();
+  }
 
   sendVisionRequest(base64): any {
     this.processing = true;
