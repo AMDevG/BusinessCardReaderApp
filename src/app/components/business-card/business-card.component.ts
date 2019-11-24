@@ -69,7 +69,7 @@ onSubmit(value: any) {
     console.log(`User Id ${this.bCard.userId} and name ${this.bCard.firstName}:`);
 
     this.fireStoreService.addCard(this.bCard).then( () => {
-      this.route.navigate(['/dash']);
+      this.route.navigate(['dash']);
     });
 
   }
@@ -97,11 +97,6 @@ onSubmit(value: any) {
     this.newBusinessCardForm.reset();
   }
 
-  ngOnInit() {}
-  ngOnDestroy() {
-    this.visionSubscription.unsubscribe();
-  }
-
   sendVisionRequest(base64): any {
     this.processing = true;
     const imageToScan = base64;
@@ -112,15 +107,76 @@ onSubmit(value: any) {
     if (value != null) {
       const fullText = value.responses[0].fullTextAnnotation.text;
       const annotationArray: Array<string> = fullText.split('\n');
-      annotationArray.forEach( element => {
-        console.log('Annotation for form: ', element);
-      });
-    }
-    // this.newBusinessCardForm.patchValue({firstName: , lastName: this.annotations[2],
-    //                           company: this.annotations[3],
-    //                           email: this.annotations[4], phone: this.annotations[5]}
-    //                           );
 
+      // REGEX CODE FOR MATHCHING PATTERNS (IE. NAMES, EMAILS. PHONE)
+
+      let fullNameAnn = {
+        matched: false,
+        first: '',
+        last: ''
+      };
+      let emailAnn = {
+        matched: false,
+        text: ''
+      };
+      let phoneAnn = {
+        matched: false,
+        text: ''
+      };
+      let companyNameAnn = {
+        matched: false,
+        text: ''
+      };
+
+      annotationArray.forEach( line => {
+
+        if ( line.match(/\w+\s((\w{1}\.|\w{1})\s)?(\w*\-)?\w+/i) ) {
+
+          if ( !fullNameAnn.matched ) {
+            let names = line.split(' ');
+            fullNameAnn.matched = true;
+            fullNameAnn.first = names[0];
+            fullNameAnn.last = names[names.length - 1];
+            return;
+          }
+
+          if ( !companyNameAnn.matched ) {
+            companyNameAnn.matched = true;
+            companyNameAnn.text = line;
+          }
+      }
+
+      // EMAIL REGEX
+        if ( line.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i) ) {
+            if ( !emailAnn.matched ) {
+              emailAnn.text = line;
+              return;
+            }
+        }
+
+      // PHONE REGEX
+        if ( line.match(/^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/) ) {
+          if ( !phoneAnn.matched ) {
+            phoneAnn.text = line;
+            return;
+          }
+        }
+      });
+
+      this.newBusinessCardForm.patchValue({firstName: fullNameAnn.first, lastName: fullNameAnn.last,
+                              company: companyNameAnn.text,
+                              email: emailAnn.text, phone: phoneAnn.text
+                            });
+
+                          }
+    this.processing = false;
+  }
+
+
+  ngOnInit() {}
+
+  ngOnDestroy() {
+    this.visionSubscription.unsubscribe();
   }
 
 }
