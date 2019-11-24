@@ -38,7 +38,7 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
   processing = false;
 
   // filePathUri: string;
-  // annotations: any[];
+  annotations = [];
 
   constructor(private fb: FormBuilder, private visionService: VisionService, private httpClient: HttpClient,
               public fireStoreService: UploadService, private route: Router ) {
@@ -60,7 +60,7 @@ onSubmit(value: any) {
       companyName: value.companyName,
       email: value.email,
       phone: value.phone,
-      imageBase64: this.uploadedImgURL ? this.uploadedImgURL : '',
+      imageBase64: this.base64ImgUpload ? this.base64ImgUpload : '',
       createdOn: new Date(),
       updatedOn: new Date(),
       userId: JSON.parse(sessionStorage.getItem('cur-user'))
@@ -68,12 +68,10 @@ onSubmit(value: any) {
     console.log('Created new BCard Object: ');
     console.log(`User Id ${this.bCard.userId} and name ${this.bCard.firstName}:`);
 
-    /* MOCK CODE NEED TO IMPL CREATE FUNCTION IN FIRESERVICE
-       NAVIGATE BACK TO GALLERY DISPLAY
-    this.fireStoreService.addNewCard(this.newBusCard).then( () => {
+    this.fireStoreService.addCard(this.bCard).then( () => {
       this.route.navigate(['/dash']);
     });
-    */
+
   }
 }
   get triggerObservable(): Observable<void> {
@@ -84,15 +82,14 @@ onSubmit(value: any) {
     this.trigger.next();
   }
 
-  public handleImage(webcamImage: WebcamImage): void {
+  public handleImage(webcamImage: WebcamImage) {
     this.webcamImage = webcamImage;
     this.base64ImgUpload = this.webcamImage.imageAsBase64;
     this.uploadedImgURL = this.webcamImage.imageAsDataUrl;
-
-  /*  (*********)     NEED TO IMPLEMENT ****************   */
-  // this.visionSubscription = this.[MAKE-HTTP-REQUEST](this.uploadedImgURL).subscribe( result => {
-  //   this.[FUNCTION TO PROCESS THE RETURNED ANNOTATIONS](result);
-  // });
+    this.visionSubscription = this.sendVisionRequest(this.base64ImgUpload).subscribe( result => {
+      console.log('handleImageSubscriber received: ', result);
+      // this.putAnnotationsToForm(result);
+    });
   }
 
   retake() {
@@ -103,6 +100,24 @@ onSubmit(value: any) {
 
   ngOnInit() {}
   ngOnDestroy() {}
+
+  sendVisionRequest(base64): any {
+    this.processing = true;
+    const imageToScan = base64;
+    return this.visionService.executeRequest(imageToScan);
+  }
+
+  putAnnotationsToForm(value: any) {
+    if (value != null) {
+      // const annotsArray = value;
+      console.log('Received text array in put annots: ', value);
+    }
+    // this.newBusinessCardForm.patchValue({firstName: , lastName: this.annotations[2],
+    //                           company: this.annotations[3],
+    //                           email: this.annotations[4], phone: this.annotations[5]}
+    //                           );
+
+  }
 
 }
 
