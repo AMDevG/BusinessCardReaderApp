@@ -18,7 +18,6 @@ import { BusinessCard } from 'src/app/model/business-card.model';
 export class BusinessCardComponent implements OnInit, OnDestroy {
 
   @Input() bCard: BusinessCard;
-
   newBusinessCardForm: FormGroup;
 
   private trigger: Subject<void> = new Subject<void>();
