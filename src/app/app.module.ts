@@ -25,6 +25,7 @@ import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.compone
 import { BusinessCardsComponent } from '../app/components/business-cards/business-cards.component';
 import { PageNotFoundComponent } from '../app/components/page-not-found/page-not-found.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { EditCardComponent } from './components/edit-card/edit-card.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     BusinessCardsComponent,
     PageNotFoundComponent,
     GalleryComponent,
+    EditCardComponent,
   ],
   imports: [
     BrowserModule,
