@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 
 @Injectable({
@@ -10,8 +9,6 @@ import * as firebase from 'firebase/app';
 export class AuthService {
 
     private user: firebase.User;
-    // private userDetails: firebase.User = null;
-    // private userID: string;
     authSubscription: any;
 
     constructor(private angularFireAuthentication: AngularFireAuth, private router: Router) {

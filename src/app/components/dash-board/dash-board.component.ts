@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Title } from '@angular/platform-browser';
-import { VisionService } from 'src/app/vision.service';
 import { UploadService } from 'src/app/fire-store.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent implements OnInit {
-    // public visibleCam = false;
     title = 'Dashboard';
 
     constructor(public authService: AuthService, private titleService: Title, private router: Router,
@@ -24,8 +22,4 @@ export class DashBoardComponent implements OnInit {
     scanNew() {
       this.router.navigate(['new']);
     }
-
-    // toggleCameraWindow() {
-    //     this.visibleCam = !this.visibleCam;
-    // }
 }

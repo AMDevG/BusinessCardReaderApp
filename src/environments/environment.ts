@@ -1,24 +1,20 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-import * as admin from 'firebase-admin';
 
 export const environment = {
   production: false,
-firebaseConfig: {
-  apiKey: 'AIzaSyBU4V7viJWvLgC-snqGH7nU1nbdSucG6TI',
-  authDomain: 'buseinesscardreader.firebaseapp.com',
-  databaseURL: 'https://buseinesscardreader.firebaseio.com',
-  projectId: 'buseinesscardreader',
-  storageBucket: 'buseinesscardreader.appspot.com',
-  messagingSenderId: '1013747302742',
-  appId: '1:1013747302742:web:fc7d2a9c46e49a4c7556f7',
-  measurementId: 'G-SHK8X6PTFB'
-},
 
-// fireAdmin: {
-// })
-// },
+  firebaseConfig: {
+    apiKey: 'AIzaSyBU4V7viJWvLgC-snqGH7nU1nbdSucG6TI',
+    authDomain: 'buseinesscardreader.firebaseapp.com',
+    databaseURL: 'https://buseinesscardreader.firebaseio.com',
+    projectId: 'buseinesscardreader',
+    storageBucket: 'buseinesscardreader.appspot.com',
+    messagingSenderId: '1013747302742',
+    appId: '1:1013747302742:web:fc7d2a9c46e49a4c7556f7',
+    measurementId: 'G-SHK8X6PTFB'
+},
 
 GOOGLE_APPLICATION_CREDENTIALS: {
     type: 'service_account',
@@ -31,15 +27,9 @@ GOOGLE_APPLICATION_CREDENTIALS: {
     token_uri: 'https://oauth2.googleapis.com/token',
     auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
     client_x509_cert_url: 'https://www.googleapis.com/robot/v1/metadata/x509/visionapi%40buseinesscardreader.iam.gserviceaccount.com'
+  },
+
+  VISION_KEY: {
+    key: 'AIzaSyBZFB9-CMuMag5APKDt_WxZ_BNS1HO-en4'
   }
 };
-
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

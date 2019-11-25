@@ -16,12 +16,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { UsersService } from './user/users.service';
 import { UploadService } from './fire-store.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
-import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 import { BusinessCardsComponent } from '../app/components/business-cards/business-cards.component';
 import { PageNotFoundComponent } from '../app/components/page-not-found/page-not-found.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
@@ -35,7 +33,6 @@ import { EditCardComponent } from './components/edit-card/edit-card.component';
     BusinessCardComponent,
     DashBoardComponent,
     CameraWindowComponent,
-    TopNavBarComponent,
     BusinessCardsComponent,
     PageNotFoundComponent,
     GalleryComponent,
@@ -53,8 +50,7 @@ import { EditCardComponent } from './components/edit-card/edit-card.component';
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [AuthService, AngularFireAuth,
-              UsersService, UploadService, Title],
+  providers: [AuthService, AngularFireAuth, UploadService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule {

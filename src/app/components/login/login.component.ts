@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AuthService } from '../../auth.service';
 
 import { Router} from '@angular/router';
-import { User } from '../../user/user.model';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -14,7 +13,6 @@ import { Title } from '@angular/platform-browser';
 export class LoginComponent {
   title = 'Login';
   loginForm: FormGroup;
-  user: User;
 
   @Output()
   // tslint:disable-next-line: variable-name

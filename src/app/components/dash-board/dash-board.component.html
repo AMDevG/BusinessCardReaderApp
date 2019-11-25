@@ -1,16 +1,11 @@
 <h3>Welcome to your Dashboard!</h3>
-<!-- nav -->
 <ul>
-    <!-- <li><a (click)="toggleCameraWindow()" class="ui button">Scan A Business Card</a></li> -->
     <li><a (click)="this.authService.logout()" class="ui button">Logout</a></li>
     <li><a (click)="scanNew();">Scan New Card</a></li>
   </ul>
-<!-- end nav -->
 <br>
 <br>
 <br>
-<!-- <app-camera-window [displayCamera]="visibleCam"></app-camera-window> -->
 
 <app-business-cards></app-business-cards>
-<!-- <app-gallery></app-gallery> -->
 
