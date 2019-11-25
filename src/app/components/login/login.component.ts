@@ -15,7 +15,7 @@ export class LoginComponent {
   title = 'Login';
   loginForm: FormGroup;
   user: User;
-  @Input() redirectUrl: string;
+
   @Output()
   // tslint:disable-next-line: variable-name
   private _success = new EventEmitter();
