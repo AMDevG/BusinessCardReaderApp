@@ -12,7 +12,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 const routes: Routes = [
   {path: '', redirectTo: 'dash', pathMatch: 'full'},
   {path: 'dash', component: DashBoardComponent, canActivate: [AuthGuard]},
-//   {path: 'scan', component: CameraWindowComponent},
+  {path: 'gallery', component: GalleryComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: PageNotFoundComponent}
 ];

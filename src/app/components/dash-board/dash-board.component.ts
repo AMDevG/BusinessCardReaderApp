@@ -10,7 +10,7 @@ import { UploadService } from 'src/app/fire-store.service';
   styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent implements OnInit {
-    public visibleCam = false;
+    // public visibleCam = false;
     title = 'Dashboard';
 
     constructor(public authService: AuthService, private titleService: Title, private visionService: VisionService,
@@ -20,7 +20,7 @@ export class DashBoardComponent implements OnInit {
         this.titleService.setTitle(this.title);
     }
 
-    toggleCameraWindow() {
-        this.visibleCam = !this.visibleCam;
-    }
+    // toggleCameraWindow() {
+    //     this.visibleCam = !this.visibleCam;
+    // }
 }

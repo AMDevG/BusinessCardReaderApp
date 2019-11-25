@@ -8,9 +8,12 @@ import { BusinessCard } from 'src/app/model/business-card.model';
 })
 export class GalleryComponent implements OnInit {
   @Input() bCard: BusinessCard;
+
   constructor() { }
 
   ngOnInit() {
+
   }
+
 
 }
