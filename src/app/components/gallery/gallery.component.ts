@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BusinessCard } from 'src/app/model/business-card.model';
 
 @Component({
   selector: 'app-gallery',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-
+  @Input() bCard: BusinessCard;
   constructor() { }
 
   ngOnInit() {

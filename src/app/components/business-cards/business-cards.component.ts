@@ -10,7 +10,6 @@ import {BusinessCard} from '../../model/business-card.model';
   styleUrls: ['./business-cards.component.css']
 })
 export class BusinessCardsComponent implements OnInit {
-  // @Input() newBusCard: BusinessCard;
 
   bCards: Observable<any>;
 
@@ -18,7 +17,7 @@ export class BusinessCardsComponent implements OnInit {
 
   ngOnInit() {
     console.log('Current user in session store: ', sessionStorage.getItem('cur-user'));
-    let cardsCollectionRef = this.af.collection<any>(`users/${JSON.parse(sessionStorage.getItem('cur-user'))}/businessCards`, ref => ref.where('userID', '==',
+    let cardsCollectionRef = this.af.collection<any>(`businessCards`, ref => ref.where('userId', '==',
                               JSON.parse(sessionStorage.getItem('cur-user'))));
     this.bCards = cardsCollectionRef.snapshotChanges().pipe(
       map( actions => {

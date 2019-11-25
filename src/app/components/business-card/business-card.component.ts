@@ -37,7 +37,6 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
   imgQuality = 0.9;
   processing = false;
 
-  // filePathUri: string;
   annotations = [];
 
   constructor(private fb: FormBuilder, private visionService: VisionService, private httpClient: HttpClient,
@@ -67,7 +66,7 @@ onSubmit(value: any) {
     };
 
     this.fireStoreService.addCard(this.bCard).then( () => {
-      this.route.navigate(['dash']);
+      this.route.navigate(['gallery']);
     });
 
   }
