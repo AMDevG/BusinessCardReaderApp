@@ -65,7 +65,7 @@ onSubmit(value: any) {
     };
 
     this.fireStoreService.addCard(this.bCard).then( () => {
-      this.route.navigate(['gallery']);
+      this.route.navigate(['dash']);
     });
 
   }
@@ -172,7 +172,7 @@ onSubmit(value: any) {
   ngOnInit() {}
 
   ngOnDestroy() {
-    this.visionSubscription.unsubscribe();
+    // this.visionSubscription.unsubscribe();
   }
 
 }

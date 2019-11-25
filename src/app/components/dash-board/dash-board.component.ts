@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth.service';
 import { Title } from '@angular/platform-browser';
 import { VisionService } from 'src/app/vision.service';
 import { UploadService } from 'src/app/fire-store.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dash-board',
@@ -13,11 +14,15 @@ export class DashBoardComponent implements OnInit {
     // public visibleCam = false;
     title = 'Dashboard';
 
-    constructor(public authService: AuthService, private titleService: Title, private visionService: VisionService,
+    constructor(public authService: AuthService, private titleService: Title, private router: Router,
                 public fireStoreService: UploadService) {}
 
     ngOnInit() {
         this.titleService.setTitle(this.title);
+    }
+
+    scanNew() {
+      this.router.navigate(['new']);
     }
 
     // toggleCameraWindow() {
