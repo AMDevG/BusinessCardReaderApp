@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./business-cards.component.css']
 })
 export class BusinessCardsComponent implements OnInit {
-
+  checkForEmpty: Observable <any>;
   bCards: Observable<any>;
   cardsAvailable: boolean;
   collectionLength: number;
@@ -38,6 +38,12 @@ export class BusinessCardsComponent implements OnInit {
           return {id, ...data};
         });
       }),
+    );
+
+    this.checkForEmpty = cardsCollectionRef.valueChanges().pipe(
+      map( a => {
+        console.log('received var in emptycheck: ', a);
+      })
     );
     }
 
