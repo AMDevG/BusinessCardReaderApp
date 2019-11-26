@@ -2,7 +2,6 @@
     <h4 class="ui header">Business Card </h4>
 
     <div class="webcamBg">
-
       <webcam *ngIf="webcamImage == null" [width]="470" [height]="264"
               [allowCameraSwitch]="allowCameraSwitch"
               [imageQuality] = "imgQuality"
@@ -11,47 +10,34 @@
               (imageCapture)="handleImage($event)"></webcam>
 
       <img *ngIf="webcamImage" [src]="uploadedImgURL" width="470px" height="auto" />
-
   </div>
 
   <div class="webcamControls mt-2 mb-3">
-
     <button *ngIf="webcamImage == null" type="button" class="btn btn-success" (click)="triggerSnapshot()">Capture Business Card</button>
-
     <button *ngIf="webcamImage" type="button" class="btn btn-danger" (click)="retake()"> Retake</button>
-
 </div>
-
-
     <form class="mb-5" [formGroup]="newBusinessCardForm" (ngSubmit)="onSubmit(newBusinessCardForm.value)">
-
       <div class="form-label-group">
           <input type="text" class="form-control" id="firstName" placeholder="First Name" [formControl]="newBusinessCardForm.controls['firstName']" required>
           <label for="firstName">First Name</label>
       </div>
-
       <div class="form-label-group">
           <input type="text" class="form-control" id="lastName" placeholder="Last Name" [formControl]="newBusinessCardForm.controls['lastName']" required>
           <label for="lastName">Last Name</label>
       </div>
-
       <div class="form-label-group">
           <input type="text" class="form-control" id="companyName" placeholder="Company Name" [formControl]="newBusinessCardForm.controls['companyName']">
           <label for="orgName">Company Name</label>
       </div>
-
       <div class="form-label-group">
           <input type="email" class="form-control" id="email" placeholder="Email" [formControl]="newBusinessCardForm.controls['email']">
           <label for="email">Email</label>
       </div>
-
       <div class="form-label-group">
           <input type="text" class="form-control" id="phone" placeholder="Phone" [formControl]="newBusinessCardForm.controls['phone']">
           <label for="phone">Phone</label>
       </div>
-
       <button type="submit" class="btn btn-primary" [disabled]="!newBusinessCardForm.valid">Add</button>
   </form>
-
 </div>
 
