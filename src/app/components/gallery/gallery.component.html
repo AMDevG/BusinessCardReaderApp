@@ -1,11 +1,13 @@
 <div>
-    <h4>Card: {{ bCard.companyName }} </h4>
-
-            <p> {{ bCard.lastName }} </p>
-            <p> {{ bCard.companyName }} </p>
-            <p> {{ bCard.email }} </p>
-            <p> {{ bCard.phone }} </p>
+    <img [src]="this.bCard.imageDataUrl" width="250px" height="250px" alt="Card Image" />
+            <p>First: {{ bCard.firstName }} </p>
+            <p>Last: {{ bCard.lastName }} </p>
+            <p>Company: {{ bCard.companyName }} </p>
+            <p>Email: {{ bCard.email }} </p>
+            <p>Phone: {{ bCard.phone }} </p>
+            <p>Uploaded: {{ bCard.createdOn.seconds*1000 | date }} </p>
           <button type="submit" (click)="this.onEdit()" class="btn btn-primary">Edit</button>
           <button type="submit" (click)="this.onEdit()" class="btn btn-primary">Delete</button>
 </div>
 
+<br>
