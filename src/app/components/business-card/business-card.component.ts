@@ -30,7 +30,6 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
     height: {ideal: 360}
   };
 
-  visionSubscription: any;
   imgQuality = 0.9;
   processing = false;
 
@@ -171,8 +170,6 @@ onSubmit(value: any) {
 
   ngOnInit() {}
 
-  ngOnDestroy() {
-    // this.visionSubscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 
 }

@@ -29,9 +29,11 @@ export class AuthService {
     }
     async logout() {
         await this.angularFireAuthentication.auth.signOut();
-        this.authSubscription.unsubscribe();
-        this.router.navigate(['/'], { replaceUrl: true });
         sessionStorage.removeItem('cur-user');
+        this.authSubscription.unsubscribe();
+        console.log('Router on logout: ', this.router.routerState.snapshot);
+        location.replace('login');
+        // this.router.navigate(['login']);
     }
 
     async login(email: string, password: string) {
