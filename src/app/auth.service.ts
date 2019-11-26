@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
@@ -29,9 +29,9 @@ export class AuthService {
     }
     async logout() {
         await this.angularFireAuthentication.auth.signOut();
-        sessionStorage.removeItem('cur-user');
         this.authSubscription.unsubscribe();
-        this.router.navigate(['login']);
+        this.router.navigate(['/'], { replaceUrl: true });
+        sessionStorage.removeItem('cur-user');
     }
 
     async login(email: string, password: string) {
