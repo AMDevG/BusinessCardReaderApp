@@ -7,7 +7,6 @@ import { PageNotFoundComponent } from '../app/components/page-not-found/page-not
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { EditCardComponent } from './components/edit-card/edit-card.component';
 
-
 const routes: Routes = [
   {path: '', redirectTo: 'dash', pathMatch: 'full'},
   {path: 'dash', component: DashBoardComponent, canActivate: [AuthGuard]},
