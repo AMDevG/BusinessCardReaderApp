@@ -32,7 +32,7 @@ export class UploadService {
   }
 
   // Detect changes to a BusinessCard document //
-  cardListener(id: string): Observable<BusinessCard> {
+  getCard(id: string): Observable<BusinessCard> {
     this.businessCardDoc = this.af.doc<BusinessCard>(`businessCards/${id}`);
     return this.businessCardDoc.snapshotChanges()
       .pipe(
