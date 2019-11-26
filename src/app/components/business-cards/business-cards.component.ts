@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {BusinessCard} from '../../model/business-card.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-business-cards',
@@ -12,12 +13,23 @@ import {BusinessCard} from '../../model/business-card.model';
 export class BusinessCardsComponent implements OnInit {
 
   bCards: Observable<any>;
+  cardsAvailable: boolean;
+  collectionLength: number;
 
-  constructor(private af: AngularFirestore) {}
+  constructor(private af: AngularFirestore, private router: Router) {}
 
   ngOnInit() {
+
     let cardsCollectionRef = this.af.collection<any>(`businessCards`, ref => ref.where('userId', '==',
                               JSON.parse(sessionStorage.getItem('cur-user'))));
+
+    this.collectionLength = cardsCollectionRef.doc.length;
+    if (this.collectionLength > 0) {
+      this.cardsAvailable = true;
+    } else {
+        this.cardsAvailable = false;
+      }
+
     this.bCards = cardsCollectionRef.snapshotChanges().pipe(
       map( actions => {
         return actions.map( a => {
@@ -25,8 +37,12 @@ export class BusinessCardsComponent implements OnInit {
           const id = a.payload.doc.id;
           return {id, ...data};
         });
-      } )
+      }),
     );
+    }
+
+  onScan() {
+    this.router.navigate(['/new']);
 
   }
 }

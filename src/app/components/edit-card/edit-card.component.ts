@@ -59,8 +59,9 @@ export class EditCardComponent implements OnInit {
 
   }
 
-  onSubmit(value: any) {
-    console.log('Card Edit submitted:');
+  onSubmit(id: any, value: any) {
+    this.fireStoreService.updateCard(id, value);
+    this.route.navigate([`dash`]);
   }
 
   onCancel() {
@@ -72,4 +73,5 @@ export class EditCardComponent implements OnInit {
     console.log('Deleted Card ', id);
     this.route.navigate([`dash`]);
   }
+
 }

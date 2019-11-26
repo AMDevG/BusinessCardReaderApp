@@ -1,5 +1,4 @@
 <div class="ui raised segment" style="text-align:center">
-    <!-- *ngIf="finishedImageProcess" -->
       <h4 class="ui header"> Business Card </h4>
 
       <div class="webcamBg">
@@ -7,7 +6,7 @@
     </div>
 
 
-      <form class="mb-5" [formGroup]="editBusinessCardForm" (ngSubmit)="onSubmit(editBusinessCardForm.value)">
+      <form class="mb-5" [formGroup]="editBusinessCardForm" (ngSubmit)="onSubmit(this.cardId, editBusinessCardForm.value)">
 
         <div class="form-label-group">
             <input type="text" class="form-control" id="firstName" placeholder="First Name" [formControl]="editBusinessCardForm.controls['firstName']" required>
