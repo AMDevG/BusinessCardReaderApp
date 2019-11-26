@@ -4,7 +4,7 @@ import { VisionService } from 'src/app/vision.service';
 import { UploadService } from 'src/app/fire-store.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessCard } from 'src/app/model/business-card.model';
-import {BrowserModule} from '@angular/platform-browser'
+import {BrowserModule} from '@angular/platform-browser';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -18,8 +18,7 @@ export class EditCardComponent implements OnInit {
   card: BusinessCard;
   editedCard: BusinessCard;
   cardId: string;
-  imgBase64: string;
-  hasImg: boolean;
+
 
   fileName: string;
   filePreview: string;
@@ -28,7 +27,7 @@ export class EditCardComponent implements OnInit {
   private cardSub: any;
 
   constructor(private fb: FormBuilder, public fireStoreService: UploadService,
-    private route: Router, private activeRoute: ActivatedRoute, private sanitizer: DomSanitizer) {
+              private route: Router, private activeRoute: ActivatedRoute, private sanitizer: DomSanitizer) {
           this.editBusinessCardForm = this.fb.group({
                 firstName: ['', Validators.required],
                 lastName:  ['', Validators.required],
@@ -39,18 +38,12 @@ export class EditCardComponent implements OnInit {
     }
 
   ngOnInit() {
-    // let reader = new FileReader();
-
-
     this.paramSub = this.activeRoute.params.subscribe(params => {
       const localID = 'id';
       this.cardId = params[localID];
-      console.log('Param sub received id', this.cardId);
+      // console.log('Param sub received id', this.cardId);
       this.cardSub = this.fireStoreService.getCard( this.cardId ).subscribe( result => {
-        // reader.readAsDataURL(this.i);
         this.card = result;
-        this.imgBase64 = this.card.imageBase64;
-        if (this.imgBase64) {this.hasImg = true; }
 
         this.editBusinessCardForm.patchValue({
           firstName: this.card.firstName,
