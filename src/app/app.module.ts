@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { WebcamModule } from 'ngx-webcam';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './components/login/login.component';
-import { CameraWindowComponent } from './components/camera-window/camera-window.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
@@ -32,7 +31,6 @@ import { EditCardComponent } from './components/edit-card/edit-card.component';
     LoginComponent,
     BusinessCardComponent,
     DashBoardComponent,
-    CameraWindowComponent,
     BusinessCardsComponent,
     PageNotFoundComponent,
     GalleryComponent,
