@@ -24,5 +24,9 @@ export const environment = {
         token_uri: 'https://oauth2.googleapis.com/token',
         auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
         client_x509_cert_url: 'https://www.googleapis.com/robot/v1/metadata/x509/visionapi%40buseinesscardreader.iam.gserviceaccount.com'
+      },
+
+      VISION_KEY: {
+        key: 'AIzaSyBZFB9-CMuMag5APKDt_WxZ_BNS1HO-en4'
       }
 };

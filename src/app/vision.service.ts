@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
@@ -6,7 +7,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class VisionService {
-  VIS_KEY = environment.VISION_KEY.key;
+ VIS_KEY = environment.VISION_KEY.key;
 
   constructor(private httpClient: HttpClient) {}
 
