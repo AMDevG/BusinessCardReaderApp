@@ -32,8 +32,8 @@ export class AuthService {
         sessionStorage.removeItem('cur-user');
         this.authSubscription.unsubscribe();
         console.log('Router on logout: ', this.router.routerState.snapshot);
+        this.router.navigate(['/login']);
         location.replace('login');
-        // this.router.navigate(['login']);
     }
 
     async login(email: string, password: string) {
@@ -42,7 +42,7 @@ export class AuthService {
         this.router.navigate(['dash']);
         } catch (error) {
             sessionStorage.removeItem('cur-user');
-            this.router.navigate(['login']);
+            this.router.navigate(['/login']);
         }
     }
   }
