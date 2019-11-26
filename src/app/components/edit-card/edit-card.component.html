@@ -5,7 +5,6 @@
         <img *ngIf="hasImage" [src]="this.card.imageDataUrl" width="470px" height="auto" alt="Card Image Here" />
     </div>
 
-
       <form class="mb-5" [formGroup]="editBusinessCardForm" (ngSubmit)="onSubmit(this.cardId, editBusinessCardForm.value)">
 
         <div class="form-label-group">
@@ -35,7 +34,6 @@
 
         <button type="submit" class="btn btn-primary" [disabled]="!editBusinessCardForm.valid">Update</button>
     </form>
-
     <button (click)="this.onCancel()" class="btn btn-primary">Cancel</button>
     <button (click)="this.onDelete(this.cardId)" class="btn btn-primary">Delete</button>
   </div>

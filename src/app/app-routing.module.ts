@@ -11,8 +11,8 @@ import { EditCardComponent } from './components/edit-card/edit-card.component';
 const routes: Routes = [
   {path: '', redirectTo: 'dash', pathMatch: 'full'},
   {path: 'dash', component: DashBoardComponent, canActivate: [AuthGuard]},
-  {path: 'new', component: BusinessCardComponent},
-  {path: 'edit/:id', component: EditCardComponent},
+  {path: 'new', component: BusinessCardComponent, canActivate: [AuthGuard]},
+  {path: 'edit/:id', component: EditCardComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: '**', component: PageNotFoundComponent}
 ];

@@ -4,10 +4,8 @@ import { WebcamInitError, WebcamImage } from 'ngx-webcam';
 import { VisionService } from '../../vision.service';
 import { UploadService } from '../../fire-store.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../src/environments/environment';
 import { BusinessCard } from 'src/app/model/business-card.model';
 
 @Component({
