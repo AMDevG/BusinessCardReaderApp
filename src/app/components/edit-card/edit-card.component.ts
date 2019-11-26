@@ -18,7 +18,7 @@ export class EditCardComponent implements OnInit {
   card: BusinessCard;
   editedCard: BusinessCard;
   cardId: string;
-
+  hasImage = false;
 
   fileName: string;
   filePreview: string;
@@ -44,7 +44,7 @@ export class EditCardComponent implements OnInit {
       // console.log('Param sub received id', this.cardId);
       this.cardSub = this.fireStoreService.getCard( this.cardId ).subscribe( result => {
         this.card = result;
-
+        this.hasImage = true;
         this.editBusinessCardForm.patchValue({
           firstName: this.card.firstName,
           lastName: this.card.lastName,
@@ -65,6 +65,11 @@ export class EditCardComponent implements OnInit {
 
   onCancel() {
     this.editBusinessCardForm.reset();
+    this.route.navigate([`dash`]);
+  }
+  onDelete(id: any) {
+    this.fireStoreService.deleteCard(id);
+    console.log('Deleted Card ', id);
     this.route.navigate([`dash`]);
   }
 }

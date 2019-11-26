@@ -3,7 +3,7 @@
       <h4 class="ui header"> Business Card </h4>
 
       <div class="webcamBg">
-        <img [src]="this.card.imageDataUrl" width="470px" height="auto" />
+        <img *ngIf="hasImage" [src]="this.card.imageDataUrl" width="470px" height="auto" alt="Card Image Here" />
     </div>
 
 
@@ -38,4 +38,5 @@
     </form>
 
     <button (click)="this.onCancel()" class="btn btn-primary">Cancel</button>
+    <button (click)="this.onDelete(this.cardId)" class="btn btn-primary">Delete</button>
   </div>
