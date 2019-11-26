@@ -36,7 +36,8 @@ export class EditCardComponent implements OnInit {
   ngOnInit() {
 
     this.paramSub = this.activeRoute.params.subscribe(params => {
-      this.cardId = params['id'];
+      const localID = 'id';
+      this.cardId = params[localID];
       this.cardSub = this.fireStoreService.getCard( this.cardId ).subscribe( result => {
 
         this.card = result;

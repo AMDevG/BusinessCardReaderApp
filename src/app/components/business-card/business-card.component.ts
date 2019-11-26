@@ -106,20 +106,20 @@ onSubmit(value: any) {
 
       // REGEX CODE FOR MATHCHING PATTERNS (IE. NAMES, EMAILS. PHONE)
 
-      let fullNameAnn = {
+      const fullNameAnn = {
         matched: false,
         first: '',
         last: ''
       };
-      let emailAnn = {
+      const emailAnn = {
         matched: false,
         text: ''
       };
-      let phoneAnn = {
+      const phoneAnn = {
         matched: false,
         text: ''
       };
-      let companyNameAnn = {
+      const companyNameAnn = {
         matched: false,
         text: ''
       };
@@ -129,7 +129,7 @@ onSubmit(value: any) {
         if ( line.match(/\w+\s((\w{1}\.|\w{1})\s)?(\w*\-)?\w+/i) ) {
 
           if ( !fullNameAnn.matched ) {
-            let names = line.split(' ');
+            const names = line.split(' ');
             fullNameAnn.matched = true;
             fullNameAnn.first = names[0];
             fullNameAnn.last = names[names.length - 1];
@@ -176,41 +176,3 @@ onSubmit(value: any) {
   }
 
 }
-
-
-// ******************* old code   ************************************************* */
-
-  // constructor( @Optional() private fb: FormBuilder, @Optional() private visionService: VisionService,
-  //              @Optional() public uploadService: UploadService) {
-  //                 this.uploadForm = this.fb.group({
-  //                 firstName: '',
-  //                 lastName:  '',
-  //                 company: '',
-  //                 email:  '',
-  //                 phone: ''
-  //               });
-  // }
-
-//   ngOnChanges(changes: SimpleChanges) {
-//     const currentItem: SimpleChange = changes.item;
-//     console.log('got item: ', currentItem.currentValue);
-//     this.populateForm();
-// }
-// populateForm() {
-//     // console.log('Populating form with annots in components');
-//     if (this.finishedImageProcess === true) {
-//     this.annotations = this.uploadService.getAnnotations();
-//     this.uploadForm.patchValue({firstName: this.annotations[1], lastName: this.annotations[2],
-//                               company: this.annotations[3],
-//                               email: this.annotations[4], phone: this.annotations[5]}
-//                               );
-//     // this.uploadService.doneProcessing = false;
-//     } else {
-//       // this.populateForm();
-//       console.log('Image Processing not finished yet');
-//     }
-//     // this.populated = this.uploadService.doneProcessing;
-//     console.log('Populated Form! in Component!');
-//   }
-
-

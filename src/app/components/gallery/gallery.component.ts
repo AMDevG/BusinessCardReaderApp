@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BusinessCard } from 'src/app/model/business-card.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -9,7 +10,7 @@ import { BusinessCard } from 'src/app/model/business-card.model';
 export class GalleryComponent implements OnInit {
   @Input() bCard: BusinessCard;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
