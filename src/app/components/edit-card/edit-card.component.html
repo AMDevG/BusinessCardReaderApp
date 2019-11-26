@@ -3,18 +3,8 @@
       <h4 class="ui header"> Business Card </h4>
 
       <div class="webcamBg">
-
-        <!-- <img *ngIf="webcamImage" [src]="uploadedImgURL" width="470px" height="auto" /> -->
-
+        <img *ngIf="hasImg" [src]="this.card.imageDataUrl" width="470px" height="auto" />
     </div>
-
-    <div class="webcamControls mt-2 mb-3">
-
-      <!-- <button *ngIf="webcamImage == null" type="button" class="btn btn-success" (click)="triggerSnapshot()">Capture Business Card</button> -->
-
-      <!-- <button *ngIf="webcamImage" type="button" class="btn btn-danger" (click)="retake()"> Retake</button> -->
-
-  </div>
 
 
       <form class="mb-5" [formGroup]="editBusinessCardForm" (ngSubmit)="onSubmit(editBusinessCardForm.value)">
@@ -44,8 +34,8 @@
             <label for="phone">Phone</label>
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="!editBusinessCardForm.valid">Add</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!editBusinessCardForm.valid">Update</button>
     </form>
 
-    <button type="submit" (click)="this.onCancel()" class="btn btn-primary">Cancel</button>
+    <button (click)="this.onCancel()" class="btn btn-primary">Cancel</button>
   </div>

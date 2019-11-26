@@ -5,12 +5,14 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
 import { AuthGuard } from './auth.guard';
 import { PageNotFoundComponent } from '../app/components/page-not-found/page-not-found.component';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
+import { EditCardComponent } from './components/edit-card/edit-card.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'dash', pathMatch: 'full'},
   {path: 'dash', component: DashBoardComponent, canActivate: [AuthGuard]},
   {path: 'new', component: BusinessCardComponent},
+  {path: 'edit/:id', component: EditCardComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: PageNotFoundComponent}
 ];

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { VisionService } from 'src/app/vision.service';
-import { HttpClient } from 'selenium-webdriver/http';
 import { UploadService } from 'src/app/fire-store.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessCard } from 'src/app/model/business-card.model';
+import {BrowserModule} from '@angular/platform-browser'
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-card',
@@ -18,12 +19,16 @@ export class EditCardComponent implements OnInit {
   editedCard: BusinessCard;
   cardId: string;
   imgBase64: string;
+  hasImg: boolean;
+
+  fileName: string;
+  filePreview: string;
 
   private paramSub: any;
   private cardSub: any;
 
-  constructor(private fb: FormBuilder, private visionService: VisionService, private httpClient: HttpClient,
-              public fireStoreService: UploadService, private route: Router, private activeRoute: ActivatedRoute, ) {
+  constructor(private fb: FormBuilder, public fireStoreService: UploadService,
+    private route: Router, private activeRoute: ActivatedRoute, private sanitizer: DomSanitizer) {
           this.editBusinessCardForm = this.fb.group({
                 firstName: ['', Validators.required],
                 lastName:  ['', Validators.required],
@@ -34,14 +39,18 @@ export class EditCardComponent implements OnInit {
     }
 
   ngOnInit() {
+    // let reader = new FileReader();
+
 
     this.paramSub = this.activeRoute.params.subscribe(params => {
       const localID = 'id';
       this.cardId = params[localID];
+      console.log('Param sub received id', this.cardId);
       this.cardSub = this.fireStoreService.getCard( this.cardId ).subscribe( result => {
-
+        // reader.readAsDataURL(this.i);
         this.card = result;
         this.imgBase64 = this.card.imageBase64;
+        if (this.imgBase64) {this.hasImg = true; }
 
         this.editBusinessCardForm.patchValue({
           firstName: this.card.firstName,
@@ -58,7 +67,7 @@ export class EditCardComponent implements OnInit {
   }
 
   onSubmit(value: any) {
-    console.log('Card Edit submitted');
+    console.log('Card Edit submitted:');
   }
 
   onCancel() {

@@ -25,7 +25,7 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
   errors: WebcamInitError[] = [];
   webcamImage = null;
   base64ImgUpload: string;
-  uploadedImgURL = '';
+  uploadedImgURL: string;
 
   videoOptions: MediaTrackConstraints = {
     width: {ideal: 640},
@@ -59,6 +59,7 @@ onSubmit(value: any) {
       email: value.email,
       phone: value.phone,
       imageBase64: this.base64ImgUpload ? this.base64ImgUpload : '',
+      imageDataUrl: this.uploadedImgURL ? this.uploadedImgURL : '',
       createdOn: new Date(),
       updatedOn: new Date(),
       userId: JSON.parse(sessionStorage.getItem('cur-user'))

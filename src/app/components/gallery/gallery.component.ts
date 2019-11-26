@@ -16,12 +16,8 @@ export class GalleryComponent implements OnInit {
 
   }
 
-  onDelete() {
-    console.log('Do you want to delete this card?');
-  }
-
   onEdit() {
-    console.log('Do you want to edit this card?');
+    this.router.navigate([`edit/${this.bCard.id}`]);
   }
 
 }

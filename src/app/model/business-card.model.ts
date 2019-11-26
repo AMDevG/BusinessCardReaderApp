@@ -5,7 +5,7 @@ export interface BusinessCard {
   companyName: string;
   email: string;
   phone: string;
-
+  imageDataUrl: string;
   imageBase64: string;
   userId: string;
   createdOn: any;
