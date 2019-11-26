@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UploadService } from 'src/app/fire-store.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,7 +10,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   templateUrl: './edit-card.component.html',
   styleUrls: ['./edit-card.component.css']
 })
-export class EditCardComponent implements OnInit {
+export class EditCardComponent implements OnInit, OnDestroy {
 
   editBusinessCardForm: FormGroup;
   card: BusinessCard;
@@ -53,10 +53,8 @@ export class EditCardComponent implements OnInit {
       const localID = 'id';
       this.cardId = params[localID];
       this.cardSub = this.fireStoreService.getCard( this.cardId ).subscribe( result => {
-
           this.card = result;
           this.hasImage = true;
-
           this.editBusinessCardForm.patchValue({
             firstName: this.card.firstName,
             lastName: this.card.lastName,
@@ -66,5 +64,10 @@ export class EditCardComponent implements OnInit {
         });
       });
     });
+  }
+
+  ngOnDestroy() {
+    this.cardSub.unsubscribe();
+    this.paramSub.unsubscribe();
   }
 }

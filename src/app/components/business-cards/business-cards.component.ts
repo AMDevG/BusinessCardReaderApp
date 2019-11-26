@@ -20,7 +20,7 @@ export class BusinessCardsComponent implements OnInit {
 
   ngOnInit() {
 
-    let cardsCollectionRef = this.af.collection<any>(`businessCards`, ref => ref.where('userId', '==',
+    const cardsCollectionRef = this.af.collection<any>(`businessCards`, ref => ref.where('userId', '==',
                               JSON.parse(sessionStorage.getItem('cur-user'))));
 
     this.collectionLength = cardsCollectionRef.doc.length;
@@ -40,11 +40,11 @@ export class BusinessCardsComponent implements OnInit {
       }),
     );
 
-    this.checkForEmpty = cardsCollectionRef.valueChanges().pipe(
-      map( a => {
-        console.log('received var in emptycheck: ', a);
-      })
-    );
+    // this.checkForEmpty = cardsCollectionRef.valueChanges().pipe(
+    //   map( a => {
+    //     console.log('received var in emptycheck: ', a);
+    //   })
+    // );
     }
 
   onScan() {

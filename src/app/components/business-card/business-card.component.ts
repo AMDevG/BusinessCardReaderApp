@@ -48,7 +48,6 @@ export class BusinessCardComponent implements OnInit, OnDestroy {
 
 onSubmit(value: any) {
   if ( this.newBusinessCardForm.valid ) {
-
     this.bCard = {
       firstName: value.firstName,
       lastName: value.lastName,
@@ -103,7 +102,6 @@ onSubmit(value: any) {
       const annotationArray: Array<string> = fullText.split('\n');
 
       // REGEX CODE FOR MATHCHING PATTERNS (IE. NAMES, EMAILS. PHONE)
-
       const fullNameAnn = {
         matched: false,
         first: '',
@@ -122,10 +120,9 @@ onSubmit(value: any) {
         text: ''
       };
 
+      // REGEX CODE FOR CLASSIFYING ANNOTATIONS
       annotationArray.forEach( line => {
-
         if ( line.match(/\w+\s((\w{1}\.|\w{1})\s)?(\w*\-)?\w+/i) ) {
-
           if ( !fullNameAnn.matched ) {
             const names = line.split(' ');
             fullNameAnn.matched = true;
@@ -133,43 +130,31 @@ onSubmit(value: any) {
             fullNameAnn.last = names[names.length - 1];
             return;
           }
-
           if ( !companyNameAnn.matched ) {
             companyNameAnn.matched = true;
             companyNameAnn.text = line;
-          }
-      }
-
+          }}
       // EMAIL REGEX
         // tslint:disable-next-line: max-line-length
         if ( line.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i) ) {
             if ( !emailAnn.matched ) {
               emailAnn.text = line;
               return;
-            }
-        }
-
+            }}
       // PHONE REGEX
         if ( line.match(/^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/) ) {
           if ( !phoneAnn.matched ) {
             phoneAnn.text = line;
             return;
-          }
-        }
-      });
+          }}});
 
       this.newBusinessCardForm.patchValue({firstName: fullNameAnn.first, lastName: fullNameAnn.last,
-                              company: companyNameAnn.text,
-                              email: emailAnn.text, phone: phoneAnn.text
-                            });
+                              company: companyNameAnn.text, email: emailAnn.text,
+                              phone: phoneAnn.text}); }
 
-                          }
     this.processing = false;
   }
-
-
   ngOnInit() {}
-
   ngOnDestroy() {}
 
 }
