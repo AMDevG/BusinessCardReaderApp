@@ -2,7 +2,7 @@
       <h4 class="ui header"> Business Card </h4>
 
       <div class="webcamBg">
-        <img *ngIf="hasImage" [src]="this.card.imageDataUrl" width="470px" height="auto" alt="Card Image Here" />
+        <img *ngIf="hasImage" [src]="this.card.imageDataUrl" width="470px" height="300px" alt="Card Image Here" />
     </div>
 
       <form class="mb-5" [formGroup]="editBusinessCardForm" (ngSubmit)="onSubmit(this.cardId, editBusinessCardForm.value)">
@@ -34,6 +34,11 @@
 
         <button type="submit" class="btn btn-primary" [disabled]="!editBusinessCardForm.valid">Update</button>
     </form>
+    <br>
+    <span>
     <button (click)="this.onCancel()" class="btn btn-primary">Cancel</button>
     <button (click)="this.onDelete(this.cardId)" class="btn btn-primary">Delete</button>
+  </span>
+    <br>
   </div>
+

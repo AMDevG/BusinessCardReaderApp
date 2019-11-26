@@ -29,7 +29,7 @@ export class EditCardComponent implements OnInit {
           this.editBusinessCardForm = this.fb.group({
                 firstName: ['', Validators.required],
                 lastName:  ['', Validators.required],
-                companyName: [''],
+                companyName: ['', Validators.required],
                 email:  [''],
                 phone: ['']
             });
@@ -60,7 +60,7 @@ export class EditCardComponent implements OnInit {
           this.editBusinessCardForm.patchValue({
             firstName: this.card.firstName,
             lastName: this.card.lastName,
-            orgName: this.card.companyName,
+            companyName: this.card.companyName,
             email: this.card.email,
             phone: this.card.phone
         });
